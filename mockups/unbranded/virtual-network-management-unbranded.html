@@ -1,0 +1,1291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Customer Portal – Virtual Network Management – Full Mock-up</title>
+  <style>
+    :root{
+      --brand-primary:#2563EB;
+      --brand-accent:#2a918a;
+      --ink:#0F172A;
+      --muted:#64748B;
+      --line:#E2E8F0;
+      --bg:#FFFFFF;
+      --bg2:#F8FAFC;
+      --success:#16A34A;
+      --danger:#DC2626;
+      --shadow:0 10px 25px rgba(15,23,42,.06);
+      --radius:16px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg)}
+    a{color:var(--brand-primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    @media (max-width:980px){
+      .layout{grid-template-columns:1fr}
+      .sidebar{display:none}
+    }
+
+    .sidebar{
+      border-right:1px solid var(--line);
+      padding:18px 14px;
+      background:linear-gradient(180deg,#fff,#fbfcff)
+    }
+
+    .brand{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px}
+    .logo{
+      width:40px;height:40px;border-radius:14px;
+      background:rgba(37,99,235,.12);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:1100;color:var(--brand-primary)
+    }
+
+    .nav{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+    .nav a{
+      padding:10px;border-radius:14px;font-weight:1100;color:var(--muted);
+      display:flex;align-items:center;gap:10px
+    }
+    .nav a.active{background:rgba(37,99,235,.10);color:var(--ink)}
+    .nav a:hover{background:rgba(37,99,235,.06);text-decoration:none}
+
+    .main{padding:18px 22px}
+    .toprow{
+      display:flex;gap:14px;align-items:center;justify-content:space-between;
+      position:sticky;top:0;z-index:10;background:#fff;
+      padding:14px 0 10px;border-bottom:1px solid var(--line)
+    }
+
+    .searchbar{
+      flex:1;max-width:560px;display:flex;gap:10px;align-items:center;
+      border:1px solid var(--line);border-radius:999px;padding:10px 14px;
+      background:var(--bg2);color:var(--muted)
+    }
+    .searchbar input{
+      border:none;outline:none;background:transparent;width:100%;
+      font-size:14px;color:var(--ink)
+    }
+
+    .user{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:1100}
+    .dot{width:10px;height:10px;border-radius:99px;background:var(--brand-primary)}
+
+    h1{margin:12px 0 2px;font-size:30px;letter-spacing:-.02em}
+    .sub{color:var(--muted);font-size:13px}
+    .muted{color:var(--muted)}
+    .mono{font-family:var(--mono);font-size:12px}
+    .divider{height:1px;background:var(--line);margin:14px 0}
+
+    .btn{
+      border-radius:999px;
+      border:2px solid var(--line);
+      background:#fff;
+      padding:10px 14px;
+      font-weight:1100;
+      font-size:14px;
+      cursor:pointer;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      transition:.15s transform,.15s opacity,.15s border-color,color .15s;
+      color:#111827;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:#d7dbe5}
+    .btn:active{transform:translateY(0)}
+    .btn.primary{
+      border-color:#2a918a;
+      color:#2a918a;
+      background:#fff;
+    }
+    .btn.primary:hover{
+      background:rgba(42,145,138,.06);
+    }
+    .btn.neutral{border-color:#111827;color:#111827;background:#fff}
+    .btn.neutral:hover{background:rgba(17,24,39,.04)}
+    .btn.black{border-color:#111827;color:#111827;background:#fff}
+    .btn.black:hover{background:rgba(17,24,39,.04)}
+    .btn.danger{border-color:rgba(220,38,38,.65);color:#111827;background:#fff}
+    .btn.danger:hover{background:rgba(220,38,38,.05)}
+    .btn.small{padding:8px 12px;font-size:13px}
+    .btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      margin-top:18px;
+    }
+    .cardhead{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      background:linear-gradient(180deg,#fff,#fbfcff)
+    }
+    .cardhead h2{margin:0;font-size:16px}
+    .cardbody{padding:14px 16px}
+
+    .hint{
+      padding:12px;
+      border-radius:14px;
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(37,99,235,.18);
+      font-size:13px;
+      line-height:1.45;
+      color:#1E3A8A;
+    }
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;
+      background:rgba(37,99,235,.08);
+      border:1px solid rgba(37,99,235,.18);
+      font-size:12px;font-weight:1100;white-space:nowrap;color:#1E3A8A
+    }
+    .pill.ok{
+      background:rgba(22,163,74,.10);
+      border-color:rgba(22,163,74,.22);
+      color:#166534
+    }
+    .pill.pending{
+      background:rgba(37,99,235,.10);
+      border-color:rgba(37,99,235,.22);
+      color:#1E3A8A
+    }
+
+    .filters{
+      display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;
+      justify-content:space-between;margin-top:12px
+    }
+    .field{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+    .label{
+      display:block;font-size:12px;font-weight:1100;color:var(--muted);
+      letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px
+    }
+    .field input, .field select{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      font-size:14px;
+      outline:none;
+      background:#fff;
+      min-width:320px
+    }
+
+    .qf-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .qf-label{font-size:12px;font-weight:1100;color:var(--muted)}
+    .qf{
+      display:inline-flex;border:1px solid var(--line);
+      border-radius:999px;overflow:hidden;background:#fff
+    }
+    .qf button{
+      border:none;background:transparent;cursor:pointer;
+      padding:10px 14px;font-weight:1100;color:#6b7280;font-size:14px
+    }
+    .qf button.active{background:rgba(37,99,235,.10);color:var(--brand-primary)}
+
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th,td{
+      padding:12px 10px;border-bottom:1px solid var(--line);
+      vertical-align:top;text-align:left
+    }
+    th{color:var(--brand-primary);font-size:13px;font-weight:1100;white-space:nowrap}
+    th .sort{display:inline-flex;align-items:center;gap:6px}
+    th .arrows{
+      display:inline-flex;flex-direction:column;line-height:8px;
+      margin-top:-1px;color:#111827;opacity:.55;font-size:7px
+    }
+    tr:hover td{background:rgba(37,99,235,.03)}
+
+    .row-actions{
+      display:flex;gap:14px;justify-content:flex-end;align-items:center
+    }
+    .iconbtn{
+      border:none;background:transparent;cursor:pointer;
+      padding:6px;border-radius:10px;color:#111827
+    }
+    .iconbtn:hover{background:rgba(17,24,39,.04);color:var(--brand-primary)}
+    .icon{width:18px;height:18px;display:inline-block}
+    .icon.stroke{
+      stroke:currentColor;fill:none;stroke-width:2;
+      stroke-linecap:round;stroke-linejoin:round
+    }
+
+    .drawer{
+      position:fixed;top:0;right:-620px;height:100vh;width:min(620px,100%);
+      background:#fff;border-left:1px solid var(--line);
+      box-shadow:-18px 0 50px rgba(16,24,40,.14);
+      transition:right .18s ease;z-index:200;
+      display:flex;flex-direction:column
+    }
+    .drawer.show{right:0}
+    .drawerhead{
+      padding:16px;border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:flex-start;gap:10px
+    }
+    .drawerhead h3{margin:0;font-size:16px}
+    .xbtn{
+      border:none;background:transparent;cursor:pointer;
+      border-radius:10px;padding:8px
+    }
+    .xbtn:hover{background:rgba(17,24,39,.04)}
+    .drawerbody{padding:14px 16px;overflow:auto}
+    .drawerfoot{
+      padding:14px 16px;border-top:1px solid var(--line);
+      background:linear-gradient(180deg,#fff,#fbfcff);
+      display:flex;justify-content:flex-end;gap:12px
+    }
+
+    textarea{
+      width:100%;border:1px solid var(--line);border-radius:14px;
+      padding:10px 12px;font-size:14px;min-height:92px;resize:vertical;outline:none
+    }
+    .readonly{background:#f3f5f9}
+
+    .lp-list{display:flex;flex-direction:column;gap:12px}
+    .lp-item{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      background:#fff
+    }
+    .lp-main{min-width:0}
+    .lp-title{font-weight:1100;font-size:15px;line-height:1.25}
+    .lp-sub{color:var(--muted);margin-top:6px;font-size:13px;line-height:1.35}
+    .lp-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+    .pending-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .pending-item{
+      display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+      border:1px dashed rgba(37,99,235,.28);
+      background:rgba(37,99,235,.04);
+      border-radius:12px;padding:10px 12px
+    }
+
+    .box{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}
+    .box h4{margin:0 0 10px;font-size:14px}
+    .row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+    .row input, .row select{
+      border:1px solid var(--line);border-radius:14px;
+      padding:10px 12px;font-size:14px;outline:none;background:#fff;min-width:360px
+    }
+
+    .backdrop{
+      position:fixed;inset:0;background:rgba(16,24,40,.42);
+      display:none;align-items:center;justify-content:center;
+      padding:18px;z-index:300
+    }
+    .backdrop.show{display:flex}
+    .modal{
+      width:min(920px,100%);
+      background:#fff;border-radius:24px;border:1px solid var(--line);
+      box-shadow:0 25px 60px rgba(16,24,40,.22);overflow:hidden
+    }
+    .modal.sm{width:min(480px,100%)}
+    .modalhead{
+      padding:16px 18px;border-bottom:1px solid var(--line);
+      display:flex;justify-content:space-between;align-items:center;gap:12px
+    }
+    .modalhead h3{margin:0;font-size:16px}
+    .modalbody{padding:16px 18px}
+    .modalfoot{
+      padding:14px 18px;border-top:1px solid var(--line);
+      display:flex;justify-content:flex-end;gap:12px;
+      background:linear-gradient(180deg,#fff,#fbfcff)
+    }
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.grid2{grid-template-columns:1fr}}
+    .error{color:var(--danger);font-weight:1100;font-size:12px;margin-top:6px}
+    .checkbox{display:flex;gap:10px;align-items:center;font-weight:1100;color:#1E3A8A}
+    .checkbox input{width:18px;height:18px}
+    .vidBig{min-width:300px;width:75%;padding-top:14px;padding-bottom:14px}
+
+    .crumb{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
+    .crumb a{color:var(--muted);font-weight:1100}
+    .crumb a:hover{color:var(--brand-primary)}
+    .pd-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+
+    .meta-panel{
+      margin-top:14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .meta-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(180px,1fr));
+    }
+
+    @media (max-width:980px){
+      .meta-grid{grid-template-columns:1fr}
+    }
+
+    .meta-item{
+      padding:14px 16px;
+      border-right:1px solid var(--line);
+    }
+
+    .meta-item:last-child{
+      border-right:none;
+    }
+
+    @media (max-width:980px){
+      .meta-item{
+        border-right:none;
+        border-bottom:1px solid var(--line);
+      }
+      .meta-item:last-child{
+        border-bottom:none;
+      }
+    }
+
+    .meta-label{
+      font-size:12px;
+      font-weight:1100;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:var(--muted);
+    }
+
+    .meta-value{
+      margin-top:8px;
+      font-size:16px;
+      font-weight:1100;
+      color:var(--ink);
+      line-height:1.25;
+    }
+
+    .ptabs{
+      display:flex;gap:0;align-items:flex-end;flex-wrap:nowrap;
+      margin-top:16px;border-bottom:1px solid var(--line);overflow:auto
+    }
+    .ptab{
+      padding:12px 18px;font-weight:1100;color:#111827;
+      cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;user-select:none
+    }
+    .ptab.active{border-bottom-color:var(--brand-primary)}
+    .ptab + .ptab{margin-left:26px}
+    .ptabpane{display:none;padding-top:14px}
+    .ptabpane.show{display:block}
+
+    .hl{
+      background:rgba(37,99,235,.18);
+      border-radius:4px;
+      padding:0 2px;
+    }
+
+    #toast{
+      position:fixed;bottom:18px;left:18px;right:18px;
+      display:none;justify-content:center;z-index:500
+    }
+    #toast > div{
+      background:#111827;color:#fff;padding:12px 14px;border-radius:999px;
+      box-shadow:0 18px 40px rgba(16,24,40,.25);
+      font-weight:1100;font-size:13px;max-width:960px;text-align:center
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">cp</div>
+        <div>
+          <div style="font-weight:1100">Customer Portal</div>
+          <div class="muted" style="font-size:12px">Prototype • Virtual Networks</div>
+        </div>
+      </div>
+
+      <div class="nav" id="nav">
+        <a href="#" data-route="services" class="active" onclick="go('services');return false;">Virtual Networks</a>
+        <a href="#" data-route="product" onclick="go('product');return false;">Products</a>
+      </div>
+
+      <div style="margin-top:18px;padding:12px 10px;border:1px solid var(--line);border-radius:16px;background:#fff">
+        <div class="muted" style="font-size:12px;font-weight:1100;letter-spacing:.06em;text-transform:uppercase">Notes</div>
+        <div class="divider"></div>
+        <div class="muted" style="font-size:12px;line-height:1.45">
+          • Limited number of networks per user<br/>
+          • Status: <strong>Active</strong> / <strong>Pending</strong><br/>
+          • Changes may take a few minutes to apply
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="toprow">
+        <div class="searchbar">
+          <span style="font-weight:1100;color:var(--muted)">⌕</span>
+          <input placeholder="Search..." />
+        </div>
+        <div class="user"><span class="dot"></span><span>max.mustermann</span><span class="muted">Read Only</span></div>
+      </div>
+
+      <section id="route-services">
+        <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px">
+          <div>
+            <h1>Virtual Network Management</h1>
+            <div class="sub">Standalone feature • Prototype</div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn neutral" onclick="toast('Open documentation (prototype)')">Documentation</button>
+            <button class="btn primary" onclick="openCreateOrSupport()"><span style="font-weight:1100">+</span> Create Virtual Network</button>
+          </div>
+        </div>
+
+        <section class="card">
+          <div class="cardhead">
+            <h2>Overview</h2>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <span class="pill">Usage: <span class="mono" id="quotaText">5 / 20</span></span>
+            </div>
+          </div>
+
+          <div class="cardbody">
+            <div class="filters">
+              <div class="qf-wrap">
+                <span class="qf-label">Status:</span>
+                <div class="qf" role="tablist" aria-label="Status Quick Filter">
+                  <button type="button" class="active" data-st="" onclick="setStatusB(this)">All</button>
+                  <button type="button" data-st="active" onclick="setStatusB(this)">Active</button>
+                  <button type="button" data-st="pending" onclick="setStatusB(this)">Pending</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <div>
+                  <span class="label">Search</span>
+                  <input id="qB" placeholder="e.g. 2000 or vlan-app" oninput="applyFilterB()"/>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;overflow:auto">
+              <table>
+                <thead>
+                  <tr>
+                    <th style="width:190px"><span class="sort">Status <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                    <th style="width:120px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                    <th><span class="sort">Description <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                    <th style="width:160px;text-align:right"><span class="sort">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody id="rowsB">
+                  <tr data-st="active" data-text="active 2000 vlan-app">
+                    <td><span class="pill ok">Active</span></td>
+                    <td class="mono">2000</td>
+                    <td>vlan-app</td>
+                    <td>
+                      <div class="row-actions">
+                        <button class="iconbtn" title="View" onclick="openDrawer('view',2000,'active')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+                        </button>
+                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2000,'active')">
+                          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
+                          </svg>
+                        </button>
+                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2000,'active')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-st="pending" data-text="pending 2004 vlan-db">
+                    <td><span class="pill pending">Pending</span></td>
+                    <td class="mono">2004</td>
+                    <td>vlan-db</td>
+                    <td>
+                      <div class="row-actions">
+                        <button class="iconbtn" title="View" onclick="openDrawer('view',2004,'pending')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+                        </button>
+                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2004,'pending')">
+                          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
+                          </svg>
+                        </button>
+                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2004,'pending')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-st="pending" data-text="pending 2003 vlan-web">
+                    <td><span class="pill pending">Pending</span></td>
+                    <td class="mono">2003</td>
+                    <td>vlan-web</td>
+                    <td>
+                      <div class="row-actions">
+                        <button class="iconbtn" title="View" onclick="openDrawer('view',2003,'pending')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
+                        </button>
+                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2003,'pending')">
+                          <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
+                          </svg>
+                        </button>
+                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2003,'pending')">
+                          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div style="margin-top:16px">
+              <div class="hint">
+                Manage your virtual networks and connect them to your services. Additional configuration may be required on the system level.
+                <div class="muted" style="margin-top:8px"><strong>Further information and step-by-step instructions can be found in our documentation.</strong></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="route-product" style="display:none">
+        <div class="crumb" style="margin-top:10px">
+          <a href="#" onclick="go('services');return false;">Product</a> <span>→</span>
+          <a href="#" onclick="toast('Open instance overview (prototype)');return false;">Instance</a> <span>→</span>
+          <span>Details</span>
+        </div>
+
+        <div class="pd-head" style="margin-top:10px">
+          <div>
+            <h1>Instance Details</h1>
+            <div class="sub">Instance ID: <span class="mono">INST-001</span></div>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
+            <button class="btn neutral" onclick="toast('Create ticket (prototype)')">Create Ticket</button>
+          </div>
+        </div>
+
+        <div class="meta-panel">
+          <div class="meta-grid">
+            <div class="meta-item">
+              <div class="meta-label">Instance Type</div>
+              <div class="meta-value">Standard Compute</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Operating System</div>
+              <div class="meta-value">Linux Distribution</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-label">Region</div>
+              <div class="meta-value">Region A</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ptabs" role="tablist" aria-label="Product Tabs">
+          <div class="ptab active" data-ptab="info" onclick="setPTab('info')">Overview</div>
+          <div class="ptab" data-ptab="vn" onclick="setPTab('vn')">Virtual Networks</div>
+          <div class="ptab" data-ptab="access" onclick="setPTab('access')">Access</div>
+          <div class="ptab" data-ptab="monitoring" onclick="setPTab('monitoring')">Monitoring</div>
+          <div class="ptab" data-ptab="usage" onclick="setPTab('usage')">Usage</div>
+          <div class="ptab" data-ptab="log" onclick="setPTab('log')">Logs</div>
+          <div class="ptab" data-ptab="tickets" onclick="setPTab('tickets')">Tickets</div>
+        </div>
+
+        <div class="ptabpane show" id="ptab-info">
+          <section class="card"><div class="cardhead"><h2>Overview</h2></div><div class="cardbody muted">Placeholder content for the "Overview" tab.</div></section>
+        </div>
+        <div class="ptabpane" id="ptab-access">
+          <section class="card"><div class="cardhead"><h2>Access</h2></div><div class="cardbody muted">Placeholder content for the "Access" tab.</div></section>
+        </div>
+        <div class="ptabpane" id="ptab-monitoring">
+          <section class="card"><div class="cardhead"><h2>Monitoring</h2></div><div class="cardbody muted">Placeholder content for the "Monitoring" tab.</div></section>
+        </div>
+        <div class="ptabpane" id="ptab-usage">
+          <section class="card"><div class="cardhead"><h2>Usage</h2></div><div class="cardbody muted">Placeholder content for the "Usage" tab.</div></section>
+        </div>
+        <div class="ptabpane" id="ptab-log">
+          <section class="card"><div class="cardhead"><h2>Logs</h2></div><div class="cardbody muted">Placeholder content for the "Logs" tab.</div></section>
+        </div>
+        <div class="ptabpane" id="ptab-tickets">
+          <section class="card"><div class="cardhead"><h2>Tickets</h2></div><div class="cardbody muted">Placeholder content for the "Tickets" tab.</div></section>
+        </div>
+
+        <div class="ptabpane" id="ptab-vn">
+          <section class="card">
+            <div class="cardhead" style="align-items:flex-start">
+              <div>
+                <h2>Virtual Networks</h2>
+                <div class="muted" style="font-size:12px;margin-top:4px">Overview of assigned virtual networks.</div>
+              </div>
+              <div style="display:flex;gap:12px;flex-wrap:wrap">
+                <button class="btn primary" onclick="go('services')">Configure</button>
+              </div>
+            </div>
+
+            <div class="cardbody">
+              <div class="filters">
+                <div class="qf-wrap">
+                  <span class="qf-label">Status:</span>
+                  <div class="qf" role="tablist" aria-label="Status Quick Filter">
+                    <button type="button" class="active" data-st="" onclick="setStatusA(this)">All</button>
+                    <button type="button" data-st="active" onclick="setStatusA(this)">Active</button>
+                    <button type="button" data-st="pending" onclick="setStatusA(this)">Pending</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div>
+                    <span class="label">Search</span>
+                    <input id="qA" placeholder="e.g. 2000 or vlan-app" oninput="applyFilterA()"/>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:12px;overflow:auto">
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width:190px"><span class="sort">Status <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                      <th style="width:120px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                      <th><span class="sort">Description <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                    </tr>
+                  </thead>
+                  <tbody id="rowsA">
+                    <tr data-st="active" data-text="active 2000 vlan-app">
+                      <td><span class="pill ok">Active</span></td>
+                      <td class="mono">2000</td>
+                      <td>vlan-app</td>
+                    </tr>
+                    <tr data-st="pending" data-text="pending 2003 vlan-web">
+                      <td><span class="pill pending">Pending</span></td>
+                      <td class="mono">2003</td>
+                      <td>vlan-web</td>
+                    </tr>
+                    <tr data-st="pending" data-text="pending 2004 vlan-db">
+                      <td><span class="pill pending">Pending</span></td>
+                      <td class="mono">2004</td>
+                      <td>vlan-db</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div style="margin-top:16px">
+                <div class="hint">
+                  Assigned virtual networks may require additional system-level configuration.
+                  <div class="muted" style="margin-top:8px"><strong>Further information and step-by-step instructions can be found in our documentation.</strong></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-label="Virtual Network Details">
+    <div class="drawerhead">
+      <div>
+        <h3 id="dTitle">VLAN 2000 • Virtual Network</h3>
+        <div class="muted" id="dMeta">Status: Active</div>
+      </div>
+      <button class="xbtn" onclick="closeDrawer()" aria-label="Close">
+        <svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="drawerbody">
+      <div>
+        <div class="label" id="descLabel">Description</div>
+        <textarea id="dDesc"></textarea>
+        <div class="muted" id="descNote" style="font-size:12px;margin-top:6px"></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div>
+        <div style="font-weight:1100;margin-bottom:8px">Linked Resources</div>
+        <div id="linkedProducts"></div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="editArea" style="display:none">
+        <div class="hint">
+          Changes to a virtual network are processed after saving. During this time, the status will be set to <strong>Pending</strong>. Once complete, the status will return to <strong>Active</strong>.
+          <div class="muted" style="margin-top:8px">Changes may take a few minutes to apply.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="box">
+          <h4>Add / Remove Resource</h4>
+
+          <div class="row">
+            <select id="bulkAddSelect">
+              <option value="">Select resource</option>
+              <option value="res-001|APP NODE|Compute Instance|INST-001">Name: res-001 • Alias: APP NODE • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="res-002|DB NODE|Compute Instance|INST-001">Name: res-002 • Alias: DB NODE • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="res-003|WEB NODE|Compute Instance|INST-001">Name: res-003 • Alias: WEB NODE • Resource: Compute Instance • Instance ID: INST-001</option>
+            </select>
+            <button class="btn black" onclick="addPendingProduct()">Add</button>
+          </div>
+
+          <div id="pendingWrap" style="display:none">
+            <div class="label" style="margin-top:14px">Pending Changes</div>
+            <div class="pending-list" id="pendingList"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="deleteArea" style="display:none">
+        <div class="hint">
+          Deleting a virtual network will remove existing connections to assigned resources. Please review the linked resources below before continuing.
+          <div style="margin-top:10px">
+            Once deleted, this virtual network will be permanently removed from the list.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawerfoot" id="drawerFoot">
+      <button class="btn" onclick="closeDrawer()">Cancel</button>
+      <button class="btn primary" id="btnSave" onclick="saveAndDeploy()">Save</button>
+      <button class="btn danger" id="btnDeletePrimary" onclick="openDeleteConfirm()" style="display:none">Delete</button>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="createModal">
+    <div class="modal">
+      <div class="modalhead">
+        <h3>Create Virtual Network</h3>
+        <button class="xbtn" onclick="closeCreate()" aria-label="Close">
+          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="modalbody">
+        <div class="hint">
+          Virtual networks connect your resources over a private network. After creation, it may take a few minutes until the network is fully available.
+          <div class="muted" style="margin-top:8px"><strong>Further information and step-by-step instructions can be found in our documentation.</strong></div>
+        </div>
+
+        <div class="divider"></div>
+
+        <label class="checkbox"><input type="checkbox" id="autoVid" checked onchange="toggleVidMode()"/> Assign VLAN ID automatically (default)</label>
+
+        <div class="divider"></div>
+
+        <div class="grid2">
+          <div>
+            <span class="label">VLAN ID</span>
+            <input id="vid" class="readonly vidBig" placeholder="automatic" disabled />
+            <div class="muted" style="font-size:12px;margin-top:10px">Range: 2000–3999. System validation applies.</div>
+            <div class="error" id="vidError" style="display:none;margin-top:10px">VLAN ID is invalid or already assigned.</div>
+          </div>
+          <div>
+            <span class="label">Description</span>
+            <textarea id="desc" placeholder="e.g. vlan-app"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="modalfoot">
+        <button class="btn" onclick="closeCreate()">Cancel</button>
+        <button class="btn primary" onclick="createNow()"><span style="font-weight:1100">+</span> Create</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="supportModal">
+    <div class="modal sm">
+      <div class="modalhead">
+        <h3>Maximum Number of Networks Reached</h3>
+        <button class="xbtn" onclick="closeSupport()" aria-label="Close">
+          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="modalbody">
+        <div class="hint">You have reached the self-service limit. Please start the support process.</div>
+      </div>
+      <div class="modalfoot">
+        <button class="btn" onclick="closeSupport()">Cancel</button>
+        <button class="btn primary" onclick="toast('Support request started (prototype)'); closeSupport();"><span style="font-weight:1100">+</span> Start Request</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="backdrop" id="deleteConfirmModal">
+    <div class="modal sm">
+      <div class="modalhead">
+        <h3>Confirm Deletion</h3>
+        <button class="xbtn" onclick="closeDeleteConfirm()" aria-label="Close">
+          <svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="modalbody">
+        <div style="font-size:15px;line-height:1.5">
+          Are you sure you want to delete this virtual network?
+        </div>
+      </div>
+      <div class="modalfoot">
+        <button class="btn" onclick="closeDeleteConfirm()">Cancel</button>
+        <button class="btn danger" onclick="confirmDeleteNow()">Yes, delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast"><div><span id="toastText"></span></div></div>
+
+<script>
+  let vnCount = 5, vnMax = 20;
+  let statusFilterB = "";
+  let statusFilterA = "";
+  let currentVlan = null;
+  let currentDeleteRow = null;
+  let currentMode = 'view';
+  let pendingAdds = [];
+  let removedNames = [];
+
+  const drawer = document.getElementById('drawer');
+  const editArea = document.getElementById('editArea');
+  const deleteArea = document.getElementById('deleteArea');
+  const btnSave = document.getElementById('btnSave');
+  const btnDeletePrimary = document.getElementById('btnDeletePrimary');
+  const desc = document.getElementById('dDesc');
+
+  function go(route){
+    document.getElementById('route-services').style.display = (route==='services') ? '' : 'none';
+    document.getElementById('route-product').style.display  = (route==='product') ? '' : 'none';
+    document.querySelectorAll('#nav a').forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('data-route')===route);
+    });
+    closeDrawer();
+    closeCreate();
+    closeSupport();
+    closeDeleteConfirm();
+    toast(route==='services' ? 'Virtual Networks' : 'Products');
+  }
+
+  function setPTab(which){
+    document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+    const t = document.querySelector(`.ptab[data-ptab="${which}"]`);
+    if(t) t.classList.add('active');
+
+    const ids = ['info','vn','access','monitoring','usage','log','tickets'];
+    ids.forEach(id=>{
+      const pane = document.getElementById('ptab-'+id);
+      if(pane) pane.classList.toggle('show', id===which);
+    });
+
+    if(which==='vn'){
+      applyFilterA();
+    }
+  }
+
+  function applyFilterB(){
+    const qRaw = (document.getElementById('qB').value || '');
+    const q = qRaw.toLowerCase().trim();
+
+    document.querySelectorAll('#rowsB tr').forEach(tr=>{
+      const text = (tr.getAttribute('data-text') || '').toLowerCase();
+      const tSt = tr.getAttribute('data-st') || '';
+      const okQ = !q || text.includes(q);
+      const okS = !statusFilterB || tSt === statusFilterB;
+      tr.style.display = (okQ && okS) ? '' : 'none';
+    });
+
+    highlightTable('rowsB', qRaw);
+  }
+
+  function setStatusB(btn){
+    document.querySelectorAll('#route-services .qf button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    statusFilterB = btn.getAttribute('data-st') || "";
+    applyFilterB();
+  }
+
+  function applyFilterA(){
+    const qRaw = (document.getElementById('qA').value || '');
+    const q = qRaw.toLowerCase().trim();
+
+    document.querySelectorAll('#rowsA tr').forEach(tr=>{
+      const text = (tr.getAttribute('data-text') || '').toLowerCase();
+      const tSt = tr.getAttribute('data-st') || '';
+      const okQ = !q || text.includes(q);
+      const okS = !statusFilterA || tSt === statusFilterA;
+      tr.style.display = (okQ && okS) ? '' : 'none';
+    });
+
+    highlightTable('rowsA', qRaw);
+  }
+
+  function setStatusA(btn){
+    document.querySelectorAll('#ptab-vn .qf button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    statusFilterA = btn.getAttribute('data-st') || "";
+    applyFilterA();
+  }
+
+  function openCreateOrSupport(){
+    if(vnCount >= vnMax){
+      document.getElementById('supportModal').classList.add('show');
+    } else {
+      document.getElementById('createModal').classList.add('show');
+      document.getElementById('autoVid').checked = true;
+      toggleVidMode();
+      document.getElementById('vidError').style.display = 'none';
+      document.getElementById('desc').value = '';
+    }
+  }
+
+  function closeCreate(){ document.getElementById('createModal').classList.remove('show'); }
+  function closeSupport(){ document.getElementById('supportModal').classList.remove('show'); }
+
+  function toggleVidMode(){
+    const auto = document.getElementById('autoVid').checked;
+    const vid = document.getElementById('vid');
+
+    if(auto){
+      vid.value = '';
+      vid.placeholder = 'automatic';
+      vid.disabled = true;
+      vid.classList.add('readonly');
+      document.getElementById('vidError').style.display = 'none';
+    } else {
+      vid.disabled = false;
+      vid.classList.remove('readonly');
+      vid.placeholder = 'e.g. 2007';
+    }
+  }
+
+  function createNow(){
+    const auto = document.getElementById('autoVid').checked;
+    const vidStr = (document.getElementById('vid').value || '').trim();
+    const err = document.getElementById('vidError');
+
+    if(!auto){
+      const vid = Number(vidStr);
+      const inRange = Number.isInteger(vid) && vid >= 2000 && vid <= 3999;
+      const exists = [2000,2003,2004].includes(vid);
+      if(!inRange || exists){
+        err.style.display = 'block';
+        toast('System validation failed (prototype)');
+        return;
+      }
+    }
+
+    err.style.display = 'none';
+    vnCount += 1;
+    document.getElementById('quotaText').textContent = vnCount + ' / ' + vnMax;
+    closeCreate();
+    toast('Virtual network created (prototype)');
+  }
+
+  function openDrawer(mode, vlanId, status){
+    currentMode = mode;
+    currentVlan = vlanId;
+    currentDeleteRow = findRowForVlan(vlanId);
+    pendingAdds = [];
+    removedNames = [];
+
+    drawer.classList.add('show');
+    document.getElementById('dTitle').textContent = 'VLAN ' + vlanId + ' • Virtual Network';
+    document.getElementById('dMeta').textContent = 'Status: ' + (status === 'active' ? 'Active' : 'Pending');
+
+    desc.value = (vlanId===2003) ? 'vlan-web' : (vlanId===2004 ? 'vlan-db' : 'vlan-app');
+
+    editArea.style.display = (mode === 'edit') ? 'block' : 'none';
+    deleteArea.style.display = (mode === 'delete') ? 'block' : 'none';
+
+    const editable = (mode === 'edit');
+    desc.disabled = !editable;
+    desc.classList.toggle('readonly', !editable);
+    document.getElementById('descLabel').textContent = editable ? 'Description (editable)' : 'Description';
+    document.getElementById('descNote').textContent = editable ? 'Saving will set the status to Pending (may take a few minutes).' : '';
+
+    btnSave.style.display = (mode === 'edit') ? 'inline-flex' : 'none';
+    btnDeletePrimary.style.display = (mode === 'delete') ? 'inline-flex' : 'none';
+
+    renderLinkedProducts();
+    renderPendingAdds();
+  }
+
+  function closeDrawer(){
+    drawer.classList.remove('show');
+  }
+
+  function findRowForVlan(vlanId){
+    return Array.from(document.querySelectorAll('#rowsB tr')).find(tr=>{
+      const td = tr.querySelectorAll('td')[1];
+      return td && td.textContent.trim() === String(vlanId);
+    }) || null;
+  }
+
+  function getProductsForCurrentVlan(){
+    if(currentVlan === 2003){
+      return [];
+    } else if(currentVlan === 2004){
+      return [
+        {name:"res-004", alias:"DB NODE", product:"Compute Instance", project:"INST-001"}
+      ];
+    } else {
+      return [
+        {name:"res-001", alias:"APP NODE", product:"Compute Instance", project:"INST-001"},
+        {name:"res-002", alias:"—", product:"Compute Instance", project:"INST-001"}
+      ];
+    }
+  }
+
+  function renderLinkedProducts(){
+    const lp = document.getElementById('linkedProducts');
+    lp.innerHTML = '';
+
+    const products = getProductsForCurrentVlan().filter(p => !removedNames.includes(p.name));
+
+    if(products.length === 0){
+      lp.innerHTML = '<div class="muted">No linked resources</div>';
+      return;
+    }
+
+    const list = document.createElement('div');
+    list.className = 'lp-list';
+
+    products.forEach(p=>{
+      const item = document.createElement('div');
+      item.className = 'lp-item';
+
+      const main = document.createElement('div');
+      main.className = 'lp-main';
+      main.innerHTML = `
+        <a href="#" onclick="openProduct('${p.name}'); return false;">
+          <div class="lp-title">Name: <span class="mono">${p.name}</span> <span class="muted">• Alias: ${p.alias}</span></div>
+          <div class="lp-sub">Resource: ${p.product}<br/>Instance ID: <span class="mono">${p.project}</span></div>
+        </a>
+      `;
+      item.appendChild(main);
+
+      if(currentMode === 'edit'){
+        const actions = document.createElement('div');
+        actions.className = 'lp-actions';
+        actions.innerHTML = `
+          <button class="iconbtn" title="Remove" onclick="markRemoveProduct('${p.name}')">
+            <svg class="icon stroke" viewBox="0 0 24 24">
+              <path d="M3 6h18"/>
+              <path d="M8 6V4h8v2"/>
+              <path d="M6 6l1 16h10l1-16"/>
+              <path d="M10 11v6"/>
+              <path d="M14 11v6"/>
+            </svg>
+          </button>
+        `;
+        item.appendChild(actions);
+      }
+
+      list.appendChild(item);
+    });
+
+    lp.appendChild(list);
+  }
+
+  function markRemoveProduct(name){
+    if(!removedNames.includes(name)){
+      removedNames.push(name);
+      renderLinkedProducts();
+      renderPendingAdds();
+      toast('Resource marked for removal (prototype)');
+    }
+  }
+
+  function addPendingProduct(){
+    const select = document.getElementById('bulkAddSelect');
+    const val = select.value;
+    if(!val){
+      toast('Please select a resource first');
+      return;
+    }
+
+    const [name, alias, product, project] = val.split('|');
+    if(pendingAdds.find(p => p.name === name)){
+      toast('Resource already marked for change');
+      return;
+    }
+
+    pendingAdds.push({name, alias, product, project});
+    renderPendingAdds();
+    select.value = '';
+    toast('Resource marked for change (prototype)');
+  }
+
+  function renderPendingAdds(){
+    const wrap = document.getElementById('pendingWrap');
+    const list = document.getElementById('pendingList');
+    if(!wrap || !list) return;
+
+    list.innerHTML = '';
+
+    const pendingItems = [];
+
+    pendingAdds.forEach((p, idx)=>{
+      pendingItems.push({
+        type: 'add',
+        idx,
+        name: p.name,
+        alias: p.alias,
+        product: p.product,
+        project: p.project
+      });
+    });
+
+    removedNames.forEach((name, idx)=>{
+      const original = getProductsForCurrentVlan().find(p => p.name === name);
+      if(original){
+        pendingItems.push({
+          type: 'remove',
+          idx,
+          name: original.name,
+          alias: original.alias,
+          product: original.product,
+          project: original.project
+        });
+      }
+    });
+
+    if(pendingItems.length === 0){
+      wrap.style.display = 'none';
+      return;
+    }
+
+    wrap.style.display = '';
+
+    pendingItems.forEach(item=>{
+      const row = document.createElement('div');
+      row.className = 'pending-item';
+
+      const label = item.type === 'add'
+        ? '<span class="pill pending">Add</span>'
+        : '<span class="pill" style="background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.18);color:#b42318;">Remove</span>';
+
+      row.innerHTML = `
+        <div>
+          <div style="margin-bottom:8px">${label}</div>
+          <div class="lp-title">Name: <span class="mono">${item.name}</span> <span class="muted">• Alias: ${item.alias}</span></div>
+          <div class="lp-sub">Resource: ${item.product}<br/>Instance ID: <span class="mono">${item.project}</span></div>
+        </div>
+        <button class="iconbtn" title="Remove marker" onclick="${item.type === 'add' ? `removePendingAdd(${item.idx})` : `undoPendingRemove('${item.name}')`}">
+          <svg class="icon stroke" viewBox="0 0 24 24">
+            <path d="M3 6h18"/>
+            <path d="M8 6V4h8v2"/>
+            <path d="M6 6l1 16h10l1-16"/>
+            <path d="M10 11v6"/>
+            <path d="M14 11v6"/>
+          </svg>
+        </button>
+      `;
+      list.appendChild(row);
+    });
+  }
+
+  function removePendingAdd(idx){
+    pendingAdds.splice(idx, 1);
+    renderPendingAdds();
+    toast('Add marker removed (prototype)');
+  }
+
+  function undoPendingRemove(name){
+    removedNames = removedNames.filter(n => n !== name);
+    renderLinkedProducts();
+    renderPendingAdds();
+    toast('Remove marker removed (prototype)');
+  }
+
+  function saveAndDeploy(){
+    toast('Saved → Status Pending (prototype)');
+    closeDrawer();
+  }
+
+  function openDeleteConfirm(){
+    document.getElementById('deleteConfirmModal').classList.add('show');
+  }
+
+  function closeDeleteConfirm(){
+    document.getElementById('deleteConfirmModal').classList.remove('show');
+  }
+
+  function confirmDeleteNow(){
+    closeDeleteConfirm();
+    if(currentDeleteRow){
+      currentDeleteRow.remove();
+    }
+    closeDrawer();
+    toast('Virtual network deleted (prototype)');
+  }
+
+  function openProduct(name){
+    go('product');
+    setPTab('vn');
+    toast(`Open resource details (prototype): ${name}`);
+  }
+
+  function escapeRegExp(str){
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function stripHighlightsInTbody(tbody){
+    tbody.querySelectorAll('td').forEach(td=>{
+      if(td.querySelector('.row-actions')) return;
+      if(td.dataset && td.dataset.orig != null){
+        td.innerHTML = td.dataset.orig;
+      }
+    });
+  }
+
+  function applyHighlightsInTbody(tbody, query){
+    const q = (query || '').trim();
+    if(!q) return;
+    const re = new RegExp(escapeRegExp(q), 'ig');
+
+    tbody.querySelectorAll('tr').forEach(tr=>{
+      if(tr.style.display === 'none') return;
+      tr.querySelectorAll('td').forEach(td=>{
+        if(td.querySelector('.row-actions')) return;
+        if(td.dataset.orig == null){
+          td.dataset.orig = td.innerHTML;
+        } else {
+          td.innerHTML = td.dataset.orig;
+        }
+        td.innerHTML = td.innerHTML.replace(re, m => `<span class="hl">${m}</span>`);
+      });
+    });
+  }
+
+  function highlightTable(tbodyId, query){
+    const tbody = document.getElementById(tbodyId);
+    if(!tbody) return;
+    stripHighlightsInTbody(tbody);
+    applyHighlightsInTbody(tbody, query);
+  }
+
+  let toastTimer;
+  function toast(msg){
+    const el = document.getElementById('toast');
+    document.getElementById('toastText').textContent = msg;
+    el.style.display = 'flex';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(()=>el.style.display='none', 2400);
+  }
+
+  setTimeout(()=>{ applyFilterB(); }, 0);
+</script>  
+</body>
+</html>

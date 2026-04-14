@@ -56,19 +56,9 @@
 
     .main{padding:18px 22px}
     .toprow{
-      display:flex;gap:14px;align-items:center;justify-content:space-between;
+      display:flex;gap:14px;align-items:center;justify-content:flex-end;
       position:sticky;top:0;z-index:10;background:#fff;
       padding:14px 0 10px;border-bottom:1px solid var(--line)
-    }
-
-    .searchbar{
-      flex:1;max-width:560px;display:flex;gap:10px;align-items:center;
-      border:1px solid var(--line);border-radius:999px;padding:10px 14px;
-      background:var(--bg2);color:var(--muted)
-    }
-    .searchbar input{
-      border:none;outline:none;background:transparent;width:100%;
-      font-size:14px;color:var(--ink)
     }
 
     .user{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:1100}
@@ -93,6 +83,7 @@
       align-items:center;
       transition:.15s transform,.15s opacity,.15s border-color,color .15s;
       color:#111827;
+      font-family:var(--sans);
     }
     .btn:hover{transform:translateY(-1px);border-color:#d7dbe5}
     .btn:active{transform:translateY(0)}
@@ -108,9 +99,35 @@
     .btn.neutral:hover{background:rgba(17,24,39,.04)}
     .btn.black{border-color:#111827;color:#111827;background:#fff}
     .btn.black:hover{background:rgba(17,24,39,.04)}
-    .btn.danger{border-color:rgba(220,38,38,.65);color:#111827;background:#fff}
-    .btn.danger:hover{background:rgba(220,38,38,.05)}
+    .btn.black.small{
+      padding:8px 12px;
+      font-size:13px;
+    }
+    .btn.danger{
+      border-color:rgba(220,38,38,.18);
+      color:#b42318;
+      background:rgba(220,38,38,.08);
+    }
+    .btn.danger:hover{
+      background:rgba(220,38,38,.12);
+      border-color:rgba(220,38,38,.22);
+    }
     .btn.small{padding:8px 12px;font-size:13px}
+    .btn.text{
+      border:none;
+      background:transparent;
+      padding:0;
+      font-size:13px;
+      color:#111827;
+      border-radius:0;
+      gap:0;
+    }
+    .btn.text:hover{
+      transform:none;
+      border-color:transparent;
+      background:transparent;
+      text-decoration:underline;
+    }
     .btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
 
     .card{
@@ -163,9 +180,34 @@
       justify-content:space-between;margin-top:12px
     }
     .field{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+    .inline-field{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    .inline-field input{
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      font-size:14px;
+      outline:none;
+      background:var(--bg2);
+      color:var(--ink);
+      min-width:320px;
+      font-family:var(--sans);
+    }
+
     .label{
       display:block;font-size:12px;font-weight:1100;color:var(--muted);
       letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px
+    }
+    .inline-label{
+      font-size:12px;
+      font-weight:1100;
+      color:var(--muted);
+      white-space:nowrap;
     }
     .field input, .field select{
       border:1px solid var(--line);
@@ -174,7 +216,8 @@
       font-size:14px;
       outline:none;
       background:#fff;
-      min-width:320px
+      min-width:320px;
+      font-family:var(--sans);
     }
 
     .qf-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -185,11 +228,17 @@
     }
     .qf button{
       border:none;background:transparent;cursor:pointer;
-      padding:10px 14px;font-weight:1100;color:#6b7280;font-size:14px
+      padding:10px 14px;font-weight:1100;color:#6b7280;font-size:14px;
+      font-family:var(--sans);
     }
     .qf button.active{background:rgba(37,99,235,.10);color:var(--brand-primary)}
 
-    table{width:100%;border-collapse:collapse;font-size:14px}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:14px;
+      font-family:var(--sans);
+    }
     th,td{
       padding:12px 10px;border-bottom:1px solid var(--line);
       vertical-align:top;text-align:left
@@ -203,11 +252,14 @@
     tr:hover td{background:rgba(37,99,235,.03)}
 
     .row-actions{
-      display:flex;gap:14px;justify-content:flex-end;align-items:center
+      display:flex;gap:14px;justify-content:flex-start;align-items:center
     }
     .iconbtn{
       border:none;background:transparent;cursor:pointer;
-      padding:6px;border-radius:10px;color:#111827
+      padding:6px;border-radius:10px;color:#111827;
+      font-family:var(--sans);
+      font-size:14px;
+      line-height:1;
     }
     .iconbtn:hover{background:rgba(17,24,39,.04);color:var(--brand-primary)}
     .icon{width:18px;height:18px;display:inline-block}
@@ -243,7 +295,8 @@
 
     textarea{
       width:100%;border:1px solid var(--line);border-radius:14px;
-      padding:10px 12px;font-size:14px;min-height:92px;resize:vertical;outline:none
+      padding:10px 12px;font-size:14px;min-height:92px;resize:vertical;outline:none;
+      font-family:var(--sans);
     }
     .readonly{background:#f3f5f9}
 
@@ -276,8 +329,19 @@
     .row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
     .row input, .row select{
       border:1px solid var(--line);border-radius:14px;
-      padding:10px 12px;font-size:14px;outline:none;background:#fff;min-width:360px
+      padding:10px 12px;font-size:14px;outline:none;background:#fff;min-width:360px;
+      font-family:var(--sans);
     }
+    .row select{
+  padding-right:56px;
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23111827' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 18px center;
+  background-size:16px;
+}
 
     .backdrop{
       position:fixed;inset:0;background:rgba(16,24,40,.42);
@@ -305,8 +369,14 @@
     .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     @media (max-width:760px){.grid2{grid-template-columns:1fr}}
     .error{color:var(--danger);font-weight:1100;font-size:12px;margin-top:6px}
-    .checkbox{display:flex;gap:10px;align-items:center;font-weight:1100;color:#1E3A8A}
-    .checkbox input{width:18px;height:18px}
+    .checkbox{
+      display:flex;gap:10px;align-items:center;font-weight:1100;color:#1E3A8A;
+      accent-color: var(--brand-accent);
+    }
+    .checkbox input{
+      width:18px;height:18px;
+      accent-color: var(--brand-accent);
+    }
     .vidBig{min-width:300px;width:75%;padding-top:14px;padding-bottom:14px}
 
     .crumb{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
@@ -426,11 +496,11 @@
 
     <main class="main">
       <div class="toprow">
-        <div class="searchbar">
-          <span style="font-weight:1100;color:var(--muted)">⌕</span>
-          <input placeholder="Search..." />
+        <div class="user">
+          <span class="dot"></span>
+          <span>max.mustermann</span>
+          <span class="pill">user-role</span>
         </div>
-        <div class="user"><span class="dot"></span><span>max.mustermann</span><span class="muted">Read Only</span></div>
       </div>
 
       <section id="route-services">
@@ -464,11 +534,9 @@
                 </div>
               </div>
 
-              <div class="field">
-                <div>
-                  <span class="label">Search</span>
-                  <input id="qB" placeholder="e.g. 2000 or vlan-app" oninput="applyFilterB()"/>
-                </div>
+              <div class="inline-field">
+                <span class="inline-label">Search:</span>
+                <input id="qB" placeholder="e.g. 2000 or network-1" oninput="applyFilterB()"/>
               </div>
             </div>
 
@@ -479,67 +547,79 @@
                     <th style="width:190px"><span class="sort">Status <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
                     <th style="width:120px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
                     <th><span class="sort">Description <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
-                    <th style="width:160px;text-align:right"><span class="sort">Actions</span></th>
+                    <th style="width:280px"><span class="sort">Assigned Resources <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                    <th style="width:160px"><span class="sort">Actions</span></th>
                   </tr>
                 </thead>
                 <tbody id="rowsB">
-                  <tr data-st="active" data-text="active 2000 vlan-app">
+                  <tr data-st="active" data-text="active 2000 network-1 srv-2001 app-server srv-2002 db-primary">
                     <td><span class="pill ok">Active</span></td>
                     <td class="mono">2000</td>
-                    <td>vlan-app</td>
+                    <td>network-1</td>
+                    <td>
+                      <div>srv-2001 (App-Server)</div>
+                      <div>srv-2002 (DB-Primary)</div>
+                    </td>
                     <td>
                       <div class="row-actions">
-                        <button class="iconbtn" title="View" onclick="openDrawer('view',2000,'active')">
+                        <button class="iconbtn" title="View Network" onclick="openDrawer('view',2000,'active')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
                         </button>
-                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2000,'active')">
+                        <button class="iconbtn" title="Edit Network" onclick="openDrawer('edit',2000,'active')">
                           <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
                           </svg>
                         </button>
-                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2000,'active')">
+                        <button class="iconbtn" title="Remove Network" onclick="openDrawer('delete',2000,'active')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
                         </button>
                       </div>
                     </td>
                   </tr>
 
-                  <tr data-st="pending" data-text="pending 2004 vlan-db">
+                  <tr data-st="pending" data-text="pending 2004 network-2 srv-2003 web-node">
                     <td><span class="pill pending">Pending</span></td>
                     <td class="mono">2004</td>
-                    <td>vlan-db</td>
+                    <td>network-2</td>
+                    <td>
+                      <div>srv-2003 (Web-Node)</div>
+                    </td>
                     <td>
                       <div class="row-actions">
-                        <button class="iconbtn" title="View" onclick="openDrawer('view',2004,'pending')">
+                        <button class="iconbtn" title="View Network" onclick="openDrawer('view',2004,'pending')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
                         </button>
-                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2004,'pending')">
+                        <button class="iconbtn" title="Edit Network" onclick="openDrawer('edit',2004,'pending')">
                           <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
                           </svg>
                         </button>
-                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2004,'pending')">
+                        <button class="iconbtn" title="Remove Network" onclick="openDrawer('delete',2004,'pending')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
                         </button>
                       </div>
                     </td>
                   </tr>
 
-                  <tr data-st="pending" data-text="pending 2003 vlan-web">
+                  <tr data-st="pending" data-text="pending 2003 network-3 srv-2004 db-secondary srv-2005 cache-node">
                     <td><span class="pill pending">Pending</span></td>
                     <td class="mono">2003</td>
-                    <td>vlan-web</td>
+                    <td>network-3</td>
+                    <td>
+                      <div>srv-2004 (DB-Secondary)</div>
+                      <div>srv-2005 (Cache-Node)</div>
+                    </td>
                     <td>
                       <div class="row-actions">
-                        <button class="iconbtn" title="View" onclick="openDrawer('view',2003,'pending')">
+                        <button class="iconbtn" title="View Network" onclick="openDrawer('view',2003,'pending')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/></svg>
                         </button>
-                        <button class="iconbtn" title="Edit" onclick="openDrawer('edit',2003,'pending')">
+                        <button class="iconbtn" title="Edit Network" onclick="openDrawer('edit',2003,'pending')">
                           <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.5625 14.7812C15.5 14.8438 15.5 14.9062 15.5 14.9688V18.5H4.5V7.5H12.0312C12.0938 7.5 12.1562 7.5 12.2188 7.4375L13.2188 6.4375C13.375 6.28125 13.25 6 13.0312 6H4.5C3.65625 6 3 6.6875 3 7.5V18.5C3 19.3438 3.65625 20 4.5 20H15.5C16.3125 20 17 19.3438 17 18.5V13.9688C17 13.75 16.7188 13.625 16.5625 13.7812L15.5625 14.7812ZM20.4375 8.5C21.1562 7.78125 21.1562 6.625 20.4375 5.90625L19.0938 4.5625C18.375 3.84375 17.2188 3.84375 16.5 4.5625L8.3125 12.75L8 15.5938C7.90625 16.4062 8.59375 17.0938 9.40625 17L12.25 16.6875L20.4375 8.5ZM17.375 9.4375L11.5625 15.25L9.5 15.5L9.75 13.4375L15.5625 7.625L17.375 9.4375ZM19.375 6.96875C19.5312 7.09375 19.5312 7.28125 19.4062 7.4375L18.4375 8.40625L16.625 6.5625L17.5625 5.625C17.6875 5.46875 17.9062 5.46875 18.0312 5.625L19.375 6.96875Z" fill="currentColor"/>
                           </svg>
                         </button>
-                        <button class="iconbtn" title="Delete" onclick="openDrawer('delete',2003,'pending')">
+                        <button class="iconbtn" title="Remove Network" onclick="openDrawer('delete',2003,'pending')">
                           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
                         </button>
                       </div>
@@ -551,7 +631,7 @@
 
             <div style="margin-top:16px">
               <div class="hint">
-                Manage your virtual networks and connect them to your services. Additional configuration may be required on the system level.
+                Manage your virtual networks and connect them to your assigned resources. Additional configuration may be required on the resource level.
                 <div class="muted" style="margin-top:8px"><strong>Further information and step-by-step instructions can be found in our documentation.</strong></div>
               </div>
             </div>
@@ -645,11 +725,9 @@
                   </div>
                 </div>
 
-                <div class="field">
-                  <div>
-                    <span class="label">Search</span>
-                    <input id="qA" placeholder="e.g. 2000 or vlan-app" oninput="applyFilterA()"/>
-                  </div>
+                <div class="inline-field">
+                  <span class="inline-label">Search:</span>
+                  <input id="qA" placeholder="e.g. 2000 or network-1" oninput="applyFilterA()"/>
                 </div>
               </div>
 
@@ -659,24 +737,73 @@
                     <tr>
                       <th style="width:190px"><span class="sort">Status <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
                       <th style="width:120px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
-                      <th><span class="sort">Description <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                      <th style="width:220px"><span class="sort">Description <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                      <th style="width:280px"><span class="sort">Assigned Resources <span class="arrows"><span>▲</span><span>▼</span></span></span></th>
+                      <th style="width:160px"><span class="sort">Actions</span></th>
                     </tr>
                   </thead>
                   <tbody id="rowsA">
-                    <tr data-st="active" data-text="active 2000 vlan-app">
+                    <tr data-st="active" data-text="active 2000 network-1 srv-2001 app-server srv-2002 db-primary">
                       <td><span class="pill ok">Active</span></td>
                       <td class="mono">2000</td>
-                      <td>vlan-app</td>
+                      <td>network-1</td>
+                      <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                          <div>srv-2001 (App-Server)</div>
+                          <div>srv-2002 (DB-Primary)</div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="iconbtn" title="View Network" onclick="openDrawer('view',2000,'active')">
+                            <svg class="icon stroke" viewBox="0 0 24 24">
+                              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
                     </tr>
-                    <tr data-st="pending" data-text="pending 2003 vlan-web">
+                    <tr data-st="pending" data-text="pending 2003 network-3 srv-2004 db-secondary srv-2005 cache-node">
                       <td><span class="pill pending">Pending</span></td>
                       <td class="mono">2003</td>
-                      <td>vlan-web</td>
+                      <td>network-3</td>
+                      <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                          <div>srv-2004 (DB-Secondary)</div>
+                          <div>srv-2005 (Cache-Node)</div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="iconbtn" title="View Network" onclick="openDrawer('view',2003,'pending')">
+                            <svg class="icon stroke" viewBox="0 0 24 24">
+                              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
                     </tr>
-                    <tr data-st="pending" data-text="pending 2004 vlan-db">
+                    <tr data-st="pending" data-text="pending 2004 network-2 srv-2003 web-node">
                       <td><span class="pill pending">Pending</span></td>
                       <td class="mono">2004</td>
-                      <td>vlan-db</td>
+                      <td>network-2</td>
+                      <td>
+                        <div style="display:flex;flex-direction:column;gap:2px">
+                          <div>srv-2003 (Web-Node)</div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="row-actions">
+                          <button class="iconbtn" title="View Network" onclick="openDrawer('view',2004,'pending')">
+                            <svg class="icon stroke" viewBox="0 0 24 24">
+                              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                              <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -684,7 +811,7 @@
 
               <div style="margin-top:16px">
                 <div class="hint">
-                  Assigned virtual networks may require additional system-level configuration.
+                  Assigned virtual networks may require additional resource-level configuration.
                   <div class="muted" style="margin-top:8px"><strong>Further information and step-by-step instructions can be found in our documentation.</strong></div>
                 </div>
               </div>
@@ -716,7 +843,7 @@
       <div class="divider"></div>
 
       <div>
-        <div style="font-weight:1100;margin-bottom:8px">Linked Resources</div>
+        <div style="font-weight:1100;margin-bottom:8px">Assigned Resources</div>
         <div id="linkedProducts"></div>
       </div>
 
@@ -724,23 +851,25 @@
 
       <div id="editArea" style="display:none">
         <div class="hint">
-          Changes to a virtual network are processed after saving. During this time, the status will be set to <strong>Pending</strong>. Once complete, the status will return to <strong>Active</strong>.
-          <div class="muted" style="margin-top:8px">Changes may take a few minutes to apply.</div>
+          Changes to a network are processed after saving. During this time, the status will be set to <strong>Pending</strong>. Once complete, the status will return to <strong>Active</strong>.
+          <div class="muted" style="margin-top:8px">Changes will be applied to assigned resources.</div>
         </div>
 
         <div class="divider"></div>
 
         <div class="box">
-          <h4>Add / Remove Resource</h4>
+          <h4>Add Resource</h4>
 
           <div class="row">
             <select id="bulkAddSelect">
               <option value="">Select resource</option>
-              <option value="res-001|APP NODE|Compute Instance|INST-001">Name: res-001 • Alias: APP NODE • Resource: Compute Instance • Instance ID: INST-001</option>
-              <option value="res-002|DB NODE|Compute Instance|INST-001">Name: res-002 • Alias: DB NODE • Resource: Compute Instance • Instance ID: INST-001</option>
-              <option value="res-003|WEB NODE|Compute Instance|INST-001">Name: res-003 • Alias: WEB NODE • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="srv-2001|App-Server|Compute Instance|INST-001">Name: srv-2001 • Alias: App-Server • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="srv-2002|DB-Primary|Compute Instance|INST-001">Name: srv-2002 • Alias: DB-Primary • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="srv-2003|Web-Node|Compute Instance|INST-001">Name: srv-2003 • Alias: Web-Node • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="srv-2004|DB-Secondary|Compute Instance|INST-001">Name: srv-2004 • Alias: DB-Secondary • Resource: Compute Instance • Instance ID: INST-001</option>
+              <option value="srv-2005|Cache-Node|Compute Instance|INST-001">Name: srv-2005 • Alias: Cache-Node • Resource: Compute Instance • Instance ID: INST-001</option>
             </select>
-            <button class="btn black" onclick="addPendingProduct()">Add</button>
+            <button class="btn black" onclick="addPendingProduct()">Add Resource</button>
           </div>
 
           <div id="pendingWrap" style="display:none">
@@ -752,18 +881,18 @@
 
       <div id="deleteArea" style="display:none">
         <div class="hint">
-          Deleting a virtual network will remove existing connections to assigned resources. Please review the linked resources below before continuing.
+          Removing a network will remove existing connections to assigned resources. Please review the assigned resources below before continuing.
           <div style="margin-top:10px">
-            Once deleted, this virtual network will be permanently removed from the list.
+            Once removed, this network will be permanently removed from the list.
           </div>
         </div>
       </div>
     </div>
 
     <div class="drawerfoot" id="drawerFoot">
-      <button class="btn" onclick="closeDrawer()">Cancel</button>
+      <button class="btn black" onclick="closeDrawer()">Cancel</button>
       <button class="btn primary" id="btnSave" onclick="saveAndDeploy()">Save</button>
-      <button class="btn danger" id="btnDeletePrimary" onclick="openDeleteConfirm()" style="display:none">Delete</button>
+      <button class="btn danger" id="btnDeletePrimary" onclick="openDeleteConfirm()" style="display:none">Remove Network</button>
     </div>
   </aside>
 
@@ -796,12 +925,12 @@
           </div>
           <div>
             <span class="label">Description</span>
-            <textarea id="desc" placeholder="e.g. vlan-app"></textarea>
+            <textarea id="desc" placeholder="e.g. network-4"></textarea>
           </div>
         </div>
       </div>
       <div class="modalfoot">
-        <button class="btn" onclick="closeCreate()">Cancel</button>
+        <button class="btn black" onclick="closeCreate()">Cancel</button>
         <button class="btn primary" onclick="createNow()"><span style="font-weight:1100">+</span> Create</button>
       </div>
     </div>
@@ -819,7 +948,7 @@
         <div class="hint">You have reached the self-service limit. Please start the support process.</div>
       </div>
       <div class="modalfoot">
-        <button class="btn" onclick="closeSupport()">Cancel</button>
+        <button class="btn black" onclick="closeSupport()">Cancel</button>
         <button class="btn primary" onclick="toast('Support request started (prototype)'); closeSupport();"><span style="font-weight:1100">+</span> Start Request</button>
       </div>
     </div>
@@ -828,19 +957,19 @@
   <div class="backdrop" id="deleteConfirmModal">
     <div class="modal sm">
       <div class="modalhead">
-        <h3>Confirm Deletion</h3>
+        <h3>Confirm Removal</h3>
         <button class="xbtn" onclick="closeDeleteConfirm()" aria-label="Close">
           <svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
       </div>
       <div class="modalbody">
         <div style="font-size:15px;line-height:1.5">
-          Are you sure you want to delete this virtual network?
+          Are you sure you want to remove this network?
         </div>
       </div>
       <div class="modalfoot">
-        <button class="btn" onclick="closeDeleteConfirm()">Cancel</button>
-        <button class="btn danger" onclick="confirmDeleteNow()">Yes, delete</button>
+        <button class="btn black" onclick="closeDeleteConfirm()">Cancel</button>
+        <button class="btn danger" onclick="confirmDeleteNow()">Yes, remove</button>
       </div>
     </div>
   </div>
@@ -1003,7 +1132,7 @@
     document.getElementById('dTitle').textContent = 'VLAN ' + vlanId + ' • Virtual Network';
     document.getElementById('dMeta').textContent = 'Status: ' + (status === 'active' ? 'Active' : 'Pending');
 
-    desc.value = (vlanId===2003) ? 'vlan-web' : (vlanId===2004 ? 'vlan-db' : 'vlan-app');
+    desc.value = (vlanId===2003) ? 'network-3' : (vlanId===2004 ? 'network-2' : 'network-1');
 
     editArea.style.display = (mode === 'edit') ? 'block' : 'none';
     deleteArea.style.display = (mode === 'delete') ? 'block' : 'none';
@@ -1012,7 +1141,7 @@
     desc.disabled = !editable;
     desc.classList.toggle('readonly', !editable);
     document.getElementById('descLabel').textContent = editable ? 'Description (editable)' : 'Description';
-    document.getElementById('descNote').textContent = editable ? 'Saving will set the status to Pending (may take a few minutes).' : '';
+    document.getElementById('descNote').textContent = editable ? 'Saving will set the status to Pending. Changes will be applied to assigned resources.' : '';
 
     btnSave.style.display = (mode === 'edit') ? 'inline-flex' : 'none';
     btnDeletePrimary.style.display = (mode === 'delete') ? 'inline-flex' : 'none';
@@ -1034,15 +1163,18 @@
 
   function getProductsForCurrentVlan(){
     if(currentVlan === 2003){
-      return [];
+      return [
+        {name:"srv-2004", alias:"DB-Secondary", product:"Compute Instance", project:"INST-001"},
+        {name:"srv-2005", alias:"Cache-Node", product:"Compute Instance", project:"INST-001"}
+      ];
     } else if(currentVlan === 2004){
       return [
-        {name:"res-004", alias:"DB NODE", product:"Compute Instance", project:"INST-001"}
+        {name:"srv-2003", alias:"Web-Node", product:"Compute Instance", project:"INST-001"}
       ];
     } else {
       return [
-        {name:"res-001", alias:"APP NODE", product:"Compute Instance", project:"INST-001"},
-        {name:"res-002", alias:"—", product:"Compute Instance", project:"INST-001"}
+        {name:"srv-2001", alias:"App-Server", product:"Compute Instance", project:"INST-001"},
+        {name:"srv-2002", alias:"DB-Primary", product:"Compute Instance", project:"INST-001"}
       ];
     }
   }
@@ -1054,7 +1186,7 @@
     const products = getProductsForCurrentVlan().filter(p => !removedNames.includes(p.name));
 
     if(products.length === 0){
-      lp.innerHTML = '<div class="muted">No linked resources</div>';
+      lp.innerHTML = '<div class="muted">No assigned resources</div>';
       return;
     }
 
@@ -1078,17 +1210,7 @@
       if(currentMode === 'edit'){
         const actions = document.createElement('div');
         actions.className = 'lp-actions';
-        actions.innerHTML = `
-          <button class="iconbtn" title="Remove" onclick="markRemoveProduct('${p.name}')">
-            <svg class="icon stroke" viewBox="0 0 24 24">
-              <path d="M3 6h18"/>
-              <path d="M8 6V4h8v2"/>
-              <path d="M6 6l1 16h10l1-16"/>
-              <path d="M10 11v6"/>
-              <path d="M14 11v6"/>
-            </svg>
-          </button>
-        `;
+        actions.innerHTML = `<button class="btn black small" title="Remove" onclick="markRemoveProduct('${p.name}')">Remove</button>`;
         item.appendChild(actions);
       }
 
@@ -1182,15 +1304,7 @@
           <div class="lp-title">Name: <span class="mono">${item.name}</span> <span class="muted">• Alias: ${item.alias}</span></div>
           <div class="lp-sub">Resource: ${item.product}<br/>Instance ID: <span class="mono">${item.project}</span></div>
         </div>
-        <button class="iconbtn" title="Remove marker" onclick="${item.type === 'add' ? `removePendingAdd(${item.idx})` : `undoPendingRemove('${item.name}')`}">
-          <svg class="icon stroke" viewBox="0 0 24 24">
-            <path d="M3 6h18"/>
-            <path d="M8 6V4h8v2"/>
-            <path d="M6 6l1 16h10l1-16"/>
-            <path d="M10 11v6"/>
-            <path d="M14 11v6"/>
-          </svg>
-        </button>
+        <button class="iconbtn" title="Remove marker" onclick="${item.type === 'add' ? `removePendingAdd(${item.idx})` : `undoPendingRemove('${item.name}')`}">×</button>
       `;
       list.appendChild(row);
     });
@@ -1228,7 +1342,7 @@
       currentDeleteRow.remove();
     }
     closeDrawer();
-    toast('Virtual network deleted (prototype)');
+    toast('Network removed (prototype)');
   }
 
   function openProduct(name){
@@ -1286,6 +1400,6 @@
   }
 
   setTimeout(()=>{ applyFilterB(); }, 0);
-</script>  
+</script>
 </body>
 </html>

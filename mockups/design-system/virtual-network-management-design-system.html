@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Customer Portal – Virtual Networks – Full Mock-up</title>
+  <style>
+    :root{
+      --blue:#2c4d7a;
+      --blue-2:#2e4e7b;
+      --slate:#37465b;
+      --soft-blue:#C7D5E0;
+      --forest:#3f5146;
+      --warm-clay:#8a504c;
+      --cream:#f6eee3;
+      --ink:#13222f;
+      --muted:#4f545c;
+      --line:#e3ddd7;
+      --bg:#faf8f6;
+      --panel:#ffffff;
+      --shadow:0 10px 24px rgba(19,34,47,.05);
+      --radius:18px;
+      --active-text:#2e6f5f;
+      --active-bg:#e2e9e7;
+      --pending-text:#2c4d7a;
+      --pending-bg:rgba(44,77,122,.12);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
+
+    body.dark{
+      --ink:#e8edf2;
+      --muted:#9fb0c0;
+      --line:#25303a;
+      --bg:#161d24;
+      --panel:#1b232c;
+      --shadow:0 10px 24px rgba(0,0,0,.22);
+      --active-text:#9fc7bb;
+      --active-bg:rgba(46,111,95,.25);
+      --pending-text:#d5e4f5;
+      --pending-bg:rgba(44,77,122,.26);
+    }
+
+    *{box-sizing:border-box}
+    body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    a:hover{text-decoration:none}
+
+    .layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+    @media (max-width:980px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
+
+    .sidebar{
+      border-right:1px solid rgba(44,77,122,.12);
+      padding:18px 14px;
+      background:linear-gradient(90deg,rgba(44,77,122,.38) 0%,rgba(199,213,224,.58) 44%,#faf8f6 100%);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    body.dark .sidebar{background:linear-gradient(90deg,rgba(44,77,122,.34) 0%,rgba(31,42,54,.88) 48%,var(--bg) 100%)}
+
+    .portal-card{
+      border-radius:28px;
+      background:rgba(255,255,255,.65);
+      border:1px solid rgba(44,77,122,.08);
+      box-shadow:0 8px 22px rgba(44,77,122,.05);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      padding:24px 18px;
+      text-align:center;
+    }
+    body.dark .portal-card{background:rgba(27,35,44,.72);border-color:rgba(199,213,224,.10)}
+    .portal-title{font-weight:800;font-size:16px;letter-spacing:.05em;text-transform:uppercase;color:var(--blue);line-height:1.15}
+    body.dark .portal-title{color:var(--soft-blue)}
+    .logo-placeholder{border:1.5px dashed rgba(19,34,47,.22);border-radius:14px;padding:8px 20px;font-size:12.5px;font-weight:600;color:rgba(19,34,47,.65);background:rgba(255,255,255,.2)}
+    body.dark .logo-placeholder{border-color:rgba(199,213,224,.24);color:rgba(232,237,242,.72);background:rgba(255,255,255,.04)}
+
+    .nav{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+    .nav a{padding:10px 12px;border-radius:14px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:10px}
+    .nav a.active{background:rgba(255,255,255,.70);color:var(--blue);box-shadow:inset 0 0 0 1px rgba(44,77,122,.08)}
+    .nav a:hover{background:rgba(255,255,255,.48)}
+    body.dark .nav a.active{background:rgba(199,213,224,.10);color:var(--soft-blue)}
+    body.dark .nav a:hover{background:rgba(199,213,224,.08)}
+
+    .brand-footer{margin-top:auto;padding:16px 12px;border-top:1px solid rgba(44,77,122,.10)}
+    body.dark .brand-footer{border-top-color:rgba(199,213,224,.10)}
+    .brand-container{display:flex;align-items:center;gap:10px;padding:6px 0;background:transparent;border:none;box-shadow:none}
+    body.dark .brand-container{background:transparent;border:none}
+    .brand-icon{width:54px;height:36px;display:flex;align-items:center;justify-content:center;flex:0 0 54px;color:var(--blue)}
+    body.dark .brand-icon{color:var(--soft-blue)}
+    .brand-mark{width:100%;height:100%;display:block;color:currentColor}
+    .brand-mark path{fill:none;stroke:currentColor;stroke-width:24;stroke-linecap:round;stroke-linejoin:round}
+    .brand-mark circle{fill:rgba(250,248,246,.92);stroke:currentColor;stroke-width:24}
+    body.dark .brand-mark circle{fill:#1b232c}
+    .brand-mark text{fill:currentColor;font-family:Manrope, Inter, Avenir Next, Helvetica Neue, Arial, sans-serif;font-weight:650;font-size:220px;letter-spacing:-8px}
+    .brand-copy{display:flex;align-items:center;line-height:1;min-width:0}
+    .brand-title{font-weight:800;font-size:14px;color:var(--blue);white-space:nowrap}
+    body.dark .brand-title{color:var(--soft-blue)}
+
+    .main{padding:18px 22px}
+    .global-head{display:flex;justify-content:flex-end;align-items:center;gap:12px;padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+    .header-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+    .lang-switch{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--panel)}
+    .lang-btn{border:none;background:transparent;padding:6px 10px;cursor:pointer;color:var(--muted);font-weight:700;font-size:12px}
+    .lang-btn.active{background:rgba(55,70,91,.12);color:var(--blue)}
+    body.dark .lang-btn.active{background:rgba(199,213,224,.12);color:#e6edf5}
+    .user{display:flex;gap:6px;align-items:center;color:var(--muted);font-weight:700;font-size:13px}
+    .theme-toggle{position:relative;display:inline-flex;align-items:center;cursor:pointer}
+    .theme-toggle input{position:absolute;opacity:0;pointer-events:none}
+    .theme-toggle-track{width:52px;height:28px;border-radius:999px;border:2px solid var(--blue);background:#fff;display:flex;align-items:center;padding:3px;transition:.2s ease}
+    body.dark .theme-toggle-track{border-color:var(--soft-blue);background:#111820}
+    .theme-toggle-thumb{width:18px;height:18px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:var(--blue);background:rgba(199,213,224,.22);transition:.2s ease;transform:translateX(0)}
+    body.dark .theme-toggle-thumb{color:var(--soft-blue);background:rgba(199,213,224,.14)}
+    .theme-toggle input:checked + .theme-toggle-track .theme-toggle-thumb{transform:translateX(22px)}
+
+    h1{margin:12px 0 2px;font-size:28px;letter-spacing:-.02em;color:var(--ink)}
+    h2,h3{color:var(--ink)}
+    .sub{color:var(--muted);font-size:13px}
+    .muted{color:var(--muted)}
+    .mono{font-family:var(--mono);font-size:12px}
+    .divider{height:1px;background:var(--line);margin:14px 0}
+
+    .btn{border-radius:999px;border:2px solid transparent;background:#fff;padding:10px 14px;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:.15s ease;color:var(--ink);font-family:var(--sans)}
+    body.dark .btn{background:transparent}
+    .btn.primary{border-color:var(--forest);color:#fff;background:var(--forest)}
+    .btn.primary:hover{background:#36453c}
+    body.dark .btn.primary{border-color:var(--forest);color:#fff;background:var(--forest)}
+    body.dark .btn.primary:hover{background:#4a5e53}
+    .btn.secondary{border-color:var(--blue);color:var(--blue);background:#fff}
+    .btn.secondary:hover{background:rgba(199,213,224,.28)}
+    body.dark .btn.secondary{border-color:var(--soft-blue);color:var(--soft-blue);background:transparent}
+    body.dark .btn.secondary:hover{background:rgba(199,213,224,.12)}
+    .btn.doc{border-color:var(--warm-clay);color:var(--warm-clay);background:#fff}
+    .btn.doc:hover{background:rgba(138,80,76,.08)}
+    body.dark .btn.doc{color:#d6a49d;border-color:var(--warm-clay);background:transparent}
+    body.dark .btn.doc:hover{background:rgba(138,80,76,.14)}
+    .btn.danger{border-color:#a42c29;color:#a42c29}
+    .btn.danger:hover{background:rgba(164,44,41,.08)}
+    .btn.text{border:none;background:transparent;padding:0;color:var(--blue);font-size:13px;font-weight:700;gap:6px}
+    .btn.text:hover{background:transparent;color:var(--blue-2)}
+    .btn.small{padding:7px 10px;font-size:13px}
+    .btn[disabled]{opacity:.45;cursor:not-allowed}
+
+    .card{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);overflow:hidden;margin-top:18px}
+    .cardhead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:transparent}
+    .cardhead h2{margin:0;font-size:16px;color:var(--ink)}
+    .cardbody{padding:14px 16px}
+    .hint{padding:12px;border-radius:14px;background:var(--cream);border:1px solid rgba(202,172,146,.45);font-size:13px;line-height:1.45;color:#5f4a3f}
+    .hint strong{color:var(--warm-clay)}
+    body.dark .hint{background:#2b241f;border-color:rgba(246,238,227,.10);color:#eadfd2}
+    body.dark .hint strong{color:#e3b0a8}
+
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap;border:1px solid transparent;line-height:1}
+    .pill.compact{gap:4px;padding:5px 8px}
+    .pill.active{background:var(--active-bg);color:var(--active-text)}
+    .pill.pending{background:var(--pending-bg);color:var(--pending-text)}
+    .change-type{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:3px 0}
+    .change-type.add{color:var(--blue)}
+    .change-type.remove{color:var(--ink)}
+
+    .filters{display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between;margin-top:12px;padding:0;background:transparent;border:none}
+    .no-scroll{margin-top:12px;overflow-x:hidden;overflow-y:visible;padding-right:0;display:block}
+    .no-scroll table{min-width:0;height:auto}
+    .no-scroll thead th{background:var(--panel)}
+    .field{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .label-inline,.qf-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+    .field-title{color:var(--slate);font-size:12px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;margin-bottom:6px}
+    body.dark .field-title{color:#c7d5e0}
+    .field input,.field select,textarea{border:1px solid rgba(55,70,91,.18);border-radius:14px;padding:10px 12px;font-size:14px;outline:none;background:var(--panel);color:var(--ink);min-width:220px;font-family:var(--sans)}
+    #vid{border-radius:14px;padding:10px 12px}
+    body.dark .field input,body.dark .field select,body.dark textarea{background:#111820;border-color:#2d3945;color:#e8edf2}
+    .qf-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .qf{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--panel)}
+    body.dark .qf{background:#111820;border-color:#2d3945}
+    .qf button{border:none;background:transparent;cursor:pointer;padding:10px 14px;font-weight:700;color:var(--muted);font-size:14px;font-family:var(--sans)}
+    .qf button.active{background:rgba(55,70,91,.12);color:var(--slate)}
+    body.dark .qf button{color:#98a7b6}
+    body.dark .qf button.active{background:rgba(199,213,224,.12);color:#e6edf5}
+
+    table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.4;font-family:var(--sans)}
+    th,td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+    th{color:var(--slate);font-size:12px;font-weight:800;letter-spacing:.03em;white-space:nowrap;background:transparent}
+    td{font-size:14px;font-weight:500}
+    body.dark th{color:#c7d5e0;background:transparent;border-bottom:1px solid #304050}
+    th .sort{display:inline-flex;align-items:center;gap:6px}
+    th .arrows{display:inline-flex;flex-direction:column;line-height:8px;margin-top:-1px;color:currentColor;opacity:.55;font-size:7px}
+    tr:hover td{background:rgba(55,70,91,.04)}
+    body.dark tr:hover td{background:rgba(199,213,224,.05)}
+    .row-actions{display:flex;gap:10px;justify-content:flex-start;align-items:center}
+    .iconbtn{border:none;background:transparent;cursor:pointer;padding:6px;border-radius:10px;color:var(--blue);position:relative}
+    .iconbtn:hover{background:rgba(44,77,122,.08)}
+    body.dark .iconbtn{color:var(--soft-blue)}
+    body.dark .iconbtn:hover{background:rgba(199,213,224,.12)}
+    .iconbtn[data-tooltip]::after{content:attr(data-tooltip);position:absolute;left:50%;top:calc(100% + 8px);transform:translateX(-50%);background:#111827;color:#fff;padding:6px 8px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s ease;z-index:999}
+    .iconbtn[data-tooltip]:hover::after{opacity:1}
+    .iconbtn.disabled-action{opacity:.38;cursor:not-allowed;color:var(--muted)}
+    .iconbtn.disabled-action:hover{background:transparent}
+    .icon{width:18px;height:18px;display:inline-block;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+    .drawer{position:fixed;top:0;right:-620px;height:100vh;width:min(620px,100%);background:var(--panel);border-left:1px solid var(--line);box-shadow:-18px 0 50px rgba(16,24,40,.14);transition:right .18s ease;z-index:200;display:flex;flex-direction:column}
+    .drawer.show{right:0}
+    .drawerhead{padding:16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+    .drawerhead h3{margin:0;font-size:18px;color:var(--ink)}
+    .drawerhead-meta{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+    .xbtn{border:none;background:transparent;cursor:pointer;border-radius:10px;padding:8px;color:var(--muted)}
+    .xbtn:hover{background:rgba(55,70,91,.08)}
+    .drawerbody{padding:14px 16px;overflow:auto}
+    .drawerfoot{padding:14px 16px;border-top:1px solid var(--line);background:transparent;display:flex;justify-content:flex-end;gap:12px}
+    textarea{width:100%;min-height:92px;resize:vertical;font-family:var(--sans)}
+    .readonly{background:#f3f5f9}
+    body.dark .readonly{background:#111820}
+
+    .section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+    .section-head-title{font-weight:700;min-width:0}
+    .lp-list{display:flex;flex-direction:column;gap:12px}
+    .lp-item{border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;background:var(--panel)}
+    .lp-main{min-width:0}
+    .lp-title{font-weight:700;font-size:15px;line-height:1.25}
+    .lp-sub{color:var(--muted);margin-top:6px;font-size:13px;line-height:1.35}
+    .lp-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    .edit-config{display:flex;flex-direction:column;gap:14px}
+    .add-panel{border:1px solid var(--line);border-radius:16px;padding:12px;background:var(--panel)}
+    .add-panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .add-panel h4{margin:0;font-size:14px;color:var(--ink)}
+    .resource-dropdown{position:relative;margin-top:12px}
+    .resource-dropdown-trigger{width:100%;min-height:42px;border:1px solid rgba(55,70,91,.18);border-radius:14px;padding:10px 12px;background:var(--panel);color:var(--ink);display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font-family:var(--sans);font-size:14px}
+    .resource-dropdown-trigger:hover{background:rgba(44,77,122,.04)}
+    body.dark .resource-dropdown-trigger{background:#111820;border-color:#2d3945;color:#e8edf2}
+    .resource-dropdown-panel{display:none;margin-top:8px;border:1px solid var(--line);border-radius:16px;padding:10px;background:var(--panel);box-shadow:var(--shadow);z-index:20}
+    .resource-dropdown-panel.show{display:block}
+    .resource-search{width:100%;border:1px solid rgba(55,70,91,.18);border-radius:14px;padding:10px 12px;font-size:14px;outline:none;background:var(--panel);color:var(--ink);font-family:var(--sans);margin-bottom:10px}
+    body.dark .resource-search{background:#111820;border-color:#2d3945;color:#e8edf2}
+    .resource-options{display:flex;flex-direction:column;gap:8px;max-height:190px;overflow:auto}
+    .resource-option{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;background:var(--panel)}
+    .resource-option:hover{background:rgba(44,77,122,.04)}
+    .resource-option.disabled{opacity:.48;cursor:not-allowed;background:rgba(55,70,91,.03)}
+    .resource-option input{margin-top:2px;accent-color:var(--forest);flex:0 0 auto}
+    .resource-option-main{display:flex;gap:10px;align-items:flex-start;min-width:0;flex:1 1 auto}
+    .resource-option-copy{min-width:0}
+    .resource-option-title{display:block;font-weight:700;font-size:14px;line-height:1.25}
+    .resource-option-sub{display:block;color:var(--muted);font-size:12px;line-height:1.35;margin-top:3px}
+    .resource-state{margin-left:auto;white-space:nowrap;color:var(--blue);font-size:12px;font-weight:700;text-align:right;padding-top:2px;flex:0 0 auto}
+    .add-actions{display:flex;justify-content:flex-end;margin-top:10px}
+    .pending-review{border-top:1px solid var(--line);padding-top:14px}
+    .pending-sub{margin-top:-2px;color:var(--muted);font-size:12px;line-height:1.4}
+    .pending-list{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .pending-item{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;border:1px dashed rgba(199,213,224,.65);background:rgba(199,213,224,.14);border-radius:12px;padding:10px 12px}
+    body.dark .pending-item{border-color:#304050;background:rgba(199,213,224,.06)}
+    .pending-dismiss{border:none;background:transparent;cursor:pointer;color:var(--muted);padding:2px 4px;border-radius:6px;font-size:18px;line-height:1;flex:0 0 auto}
+    .pending-dismiss:hover{background:rgba(44,77,122,.08);color:var(--blue)}
+
+    .backdrop{position:fixed;inset:0;background:rgba(16,24,40,.42);display:none;align-items:center;justify-content:center;padding:18px;z-index:300}
+    .backdrop.show{display:flex}
+    .modal{width:min(920px,100%);background:var(--panel);border-radius:24px;border:1px solid var(--line);box-shadow:0 25px 60px rgba(16,24,40,.22);overflow:hidden}
+    .modal.sm{width:min(480px,100%)}
+    .modalhead{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+    .modalhead h3{margin:0;font-size:18px;color:var(--ink)}
+    .modalbody{padding:16px 18px}
+    .modalfoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:12px;background:transparent}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:760px){.grid2{grid-template-columns:1fr}}
+    .error-text{color:#a42c29;font-weight:700;font-size:12px;margin-top:6px}
+    .checkbox{display:flex;gap:10px;align-items:center;font-weight:700;color:var(--ink)}
+    .checkbox input{width:18px;height:18px}
+    .checkbox-green input{accent-color:var(--forest)}
+    .vidBig{min-width:300px;width:75%;padding-top:14px;padding-bottom:14px}
+    .crumb{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
+    .crumb a{color:var(--muted);font-weight:700}
+    .crumb a:hover{color:var(--blue)}
+    .pd-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+    .meta-panel{margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--panel);box-shadow:var(--shadow);overflow:hidden}
+    .meta-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr))}
+    @media (max-width:980px){.meta-grid{grid-template-columns:1fr}}
+    .meta-item{padding:14px 16px;border-right:1px solid var(--line)}
+    .meta-item:last-child{border-right:none}
+    @media (max-width:980px){.meta-item{border-right:none;border-bottom:1px solid var(--line)}.meta-item:last-child{border-bottom:none}}
+    .meta-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+    .meta-value{margin-top:8px;font-size:16px;font-weight:800;color:var(--ink);line-height:1.25}
+    .ptabs{display:flex;gap:0;align-items:flex-end;flex-wrap:nowrap;margin-top:16px;border-bottom:1px solid var(--line);overflow:auto}
+    .ptab{padding:12px 18px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;user-select:none}
+    .ptab.active{border-bottom-color:var(--blue);color:var(--blue)}
+    .ptab + .ptab{margin-left:26px}
+    .ptabpane{display:none;padding-top:14px}
+    .ptabpane.show{display:block}
+    .hl{background:rgba(199,213,224,.42);border-radius:4px;padding:0 2px}
+
+    #toast{position:fixed;top:12px;left:252px;right:auto;bottom:auto;display:none;justify-content:flex-start;z-index:500}
+    #toast > div{background:#111827;color:#fff;padding:12px 16px;border-radius:16px;box-shadow:0 18px 40px rgba(16,24,40,.25);font-weight:700;font-size:13px;max-width:420px;text-align:left}
+    @media (max-width:980px){#toast{left:18px;top:18px}}
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="portal-card">
+        <div class="portal-title">Customer<br>Portal</div>
+        <div class="logo-placeholder">Company Logo</div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="#" data-route="services" class="active" onclick="go('services');return false;" data-i18n="navVirtualNetworks">Virtual Networks</a>
+        <a href="#" data-route="product" onclick="go('product');return false;" data-i18n="navInstanceDetails">Instance Details</a>
+      </nav>
+
+      <div class="brand-footer">
+        <div class="brand-container">
+          <div class="brand-icon">
+            <svg class="brand-mark" xmlns="http://www.w3.org/2000/svg" viewBox="1120 760 870 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+              <path d="M1198 837 V1198 Q1198 1227 1227 1227 H1882 Q1909 1227 1909 1200 V825 Q1909 800 1884 800 H1292" />
+              <path d="M1198 800 H1240" />
+              <path d="M1198 1117 C1300 1188 1430 1208 1530 1204 C1645 1198 1712 1084 1810 1022 C1840 1004 1872 990 1909 982" />
+              <circle cx="1198" cy="800" r="42" />
+              <circle cx="1909" cy="982" r="42" />
+              <circle cx="1530" cy="1194" r="42" />
+              <text x="1536" y="1060" text-anchor="middle">AM</text>
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <div class="brand-title">AM Mock-ups</div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="global-head">
+        <div class="header-controls">
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button class="lang-btn" id="lang-de" onclick="setLanguage('de')">🇩🇪 DE</button>
+            <button class="lang-btn active" id="lang-en" onclick="setLanguage('en')">🇬🇧 EN</button>
+          </div>
+          <div class="user"><svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg><span>max.mustermann</span></div>
+          <label class="theme-toggle" aria-label="Theme toggle"><input type="checkbox" id="themeToggle" onchange="toggleThemeSwitch()"><span class="theme-toggle-track"><span class="theme-toggle-thumb"><svg class="icon" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M12 2v2"/><path d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"/><path d="M16 12a4 4 0 0 0-4-4"/><path d="m19 5-1.256 1.256"/><path d="M20 12h2"/></svg></span></span></label>
+        </div>
+      </div>
+
+      <section id="route-services">
+        <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px">
+          <div><h1 data-i18n="pageTitleVirtualNetworks">Virtual Networks</h1><div class="sub" data-i18n="pageSubVirtualNetworks">Standalone feature • Mock-up</div></div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn doc" onclick="toast(currentLanguage === 'de' ? 'Dokumentation öffnen (Mock-up)' : 'Open documentation (mock-up)')" data-i18n="documentation">Documentation</button><button class="btn primary" onclick="openCreateOrSupport()"><span style="font-weight:800">+</span> <span data-i18n="createVirtualNetwork">Create Virtual Network</span></button></div>
+        </div>
+        <section class="card"><div class="cardhead"><h2 data-i18n="overview">Overview</h2><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="pill pending compact"><span data-i18n="networksLabel">Networks:</span> <span class="mono" id="quotaText">5 / 20</span></span></div></div><div class="cardbody"><div class="filters"><div class="qf-wrap"><span class="qf-label" data-i18n="status">Status</span><div class="qf" role="tablist" aria-label="Status Quickfilter"><button type="button" class="active" data-st="" onclick="setStatusB(this)" data-i18n="all">All</button><button type="button" data-st="active" onclick="setStatusB(this)" data-i18n="active">Active</button><button type="button" data-st="pending" onclick="setStatusB(this)" data-i18n="pending">Pending</button></div></div><div class="field"><span class="label-inline" data-i18n="search">Search</span><input id="qB" placeholder="e.g. 2000 or network-1" oninput="applyFilterB()"/></div></div><div><table><thead><tr><th style="width:170px"><span class="sort"><span data-i18n="status">Status</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:110px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th><span class="sort"><span data-i18n="description">Description</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:280px"><span class="sort"><span data-i18n="assignedResources">Assigned Resources</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:160px"><span class="sort" data-i18n="actions">Actions</span></th></tr></thead><tbody id="rowsB">
+          <tr data-vlan="2000" data-st="active" data-text="active 2000 network-1 srv-2001 app-server srv-2002 db-primary"><td><span class="pill active" title="Network is active">Active</span></td><td class="mono">2000</td><td>network-1</td><td><div>srv-2001 (App-Server)</div><div>srv-2002 (DB-Primary)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2000,'active')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2000,'active')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button><button class="iconbtn" title="Remove network" data-tooltip="Remove network" onclick="openDrawer('delete',2000,'active')"><svg class="icon" viewBox="0 0 24 24"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div></td></tr>
+          <tr data-vlan="2004" data-st="pending" data-text="pending 2004 network-2 srv-2003 web-node"><td><span class="pill pending" title="Applying changes to network">Pending</span></td><td class="mono">2004</td><td>network-2</td><td><div>srv-2003 (Web-Node)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2004,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2004,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button><button class="iconbtn" title="Remove network" data-tooltip="Remove network" onclick="openDrawer('delete',2004,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div></td></tr>
+          <tr data-vlan="2003" data-st="pending" data-text="pending 2003 network-3 srv-2004 db-secondary srv-2005 cache-node"><td><span class="pill pending" title="Applying changes to network">Pending</span></td><td class="mono">2003</td><td>network-3</td><td><div>srv-2004 (DB-Secondary)</div><div>srv-2005 (Cache-Node)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2003,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2003,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button><button class="iconbtn" title="Remove network" data-tooltip="Remove network" onclick="openDrawer('delete',2003,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div></td></tr>
+        </tbody></table></div><div style="margin-top:16px"><div class="hint"><span data-i18n="hintText1">Manage your virtual networks and connect them to your assigned resources. Additional configuration may be required on the resource level.</span><div class="muted" style="margin-top:8px"><strong data-i18n="hintText2">Further information and step-by-step instructions can be found in our documentation.</strong></div></div></div></div></section>
+      </section>
+
+      <section id="route-product" style="display:none">
+        <div class="crumb" style="margin-top:10px"><a href="#" onclick="go('services');return false;" data-i18n="breadcrumbProducts">Products</a><span>→</span><a href="#" onclick="toast(currentLanguage === 'de' ? 'Instanzübersicht öffnen (Mock-up)' : 'Open instance overview (mock-up)');return false;" data-i18n="breadcrumbComputeInstance">Compute Instance</a><span>→</span><span data-i18n="breadcrumbInstanceDetails">Instance Details</span></div>
+        <div class="pd-head" style="margin-top:10px"><div><h1 data-i18n="instanceDetails">Instance Details</h1><div class="sub"><span data-i18n="instanceId">Instance ID</span>: <span class="mono">INST-001</span></div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn doc" onclick="toast(currentLanguage === 'de' ? 'Dokumentation öffnen (Mock-up)' : 'Open documentation (mock-up)')" data-i18n="documentation">Documentation</button><button class="btn secondary" onclick="toast(currentLanguage === 'de' ? 'Ticket erstellen (Mock-up)' : 'Create ticket (mock-up)')" data-i18n="createTicket">Create Ticket</button></div></div>
+        <div class="meta-panel"><div class="meta-grid"><div class="meta-item"><div class="meta-label" data-i18n="instanceType">Instance Type</div><div class="meta-value" data-i18n="instanceTypeValue">Compute Instance</div></div><div class="meta-item"><div class="meta-label" data-i18n="operatingSystem">Operating System</div><div class="meta-value" data-i18n="operatingSystemValue">Linux Distribution</div></div><div class="meta-item"><div class="meta-label" data-i18n="region">Region</div><div class="meta-value" data-i18n="regionValue">Region A</div></div><div class="meta-item"><div class="meta-label" data-i18n="project">Project</div><div class="meta-value mono">PRJ-431077</div></div></div></div>
+        <div class="ptabs" role="tablist" aria-label="Instance tabs"><div class="ptab active" data-ptab="info" onclick="setPTab('info')" data-i18n="tabOverview">Overview</div><div class="ptab" data-ptab="vn" onclick="setPTab('vn')" data-i18n="tabVN">Virtual Networks</div><div class="ptab" data-ptab="access" onclick="setPTab('access')" data-i18n="tabAccess">Access</div><div class="ptab" data-ptab="monitoring" onclick="setPTab('monitoring')" data-i18n="tabMonitoring">Monitoring</div><div class="ptab" data-ptab="usage" onclick="setPTab('usage')" data-i18n="tabUsage">Usage</div><div class="ptab" data-ptab="log" onclick="setPTab('log')" data-i18n="tabLogs">Logs</div><div class="ptab" data-ptab="tickets" onclick="setPTab('tickets')" data-i18n="tabTickets">Tickets</div></div>
+        <div class="ptabpane show" id="ptab-info"><section class="card"><div class="cardhead"><h2 data-i18n="tabOverview">Overview</h2></div><div class="cardbody muted" data-i18n="placeholderOverview">Placeholder content for the "Overview" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-access"><section class="card"><div class="cardhead"><h2 data-i18n="tabAccess">Access</h2></div><div class="cardbody muted" data-i18n="placeholderAccess">Placeholder content for the "Access" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-monitoring"><section class="card"><div class="cardhead"><h2 data-i18n="tabMonitoring">Monitoring</h2></div><div class="cardbody muted" data-i18n="placeholderMonitoring">Placeholder content for the "Monitoring" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-usage"><section class="card"><div class="cardhead"><h2 data-i18n="tabUsage">Usage</h2></div><div class="cardbody muted" data-i18n="placeholderUsage">Placeholder content for the "Usage" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-log"><section class="card"><div class="cardhead"><h2 data-i18n="tabLogs">Logs</h2></div><div class="cardbody muted" data-i18n="placeholderLogs">Placeholder content for the "Logs" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-tickets"><section class="card"><div class="cardhead"><h2 data-i18n="tabTickets">Tickets</h2></div><div class="cardbody muted" data-i18n="placeholderTickets">Placeholder content for the "Tickets" tab.</div></section></div>
+        <div class="ptabpane" id="ptab-vn"><section class="card"><div class="cardhead" style="align-items:flex-start"><div><h2 data-i18n="tabVN">Virtual Networks</h2><div class="muted" style="font-size:12px;margin-top:4px" data-i18n="vnOverviewInInstance">Overview of assigned virtual networks.</div></div></div><div class="cardbody"><div class="filters"><div class="qf-wrap"><span class="qf-label" data-i18n="status">Status</span><div class="qf" role="tablist" aria-label="Status Quickfilter (instance detail)"><button type="button" class="active" data-st="" onclick="setStatusA(this)" data-i18n="all">All</button><button type="button" data-st="active" onclick="setStatusA(this)" data-i18n="active">Active</button><button type="button" data-st="pending" onclick="setStatusA(this)" data-i18n="pending">Pending</button></div></div><div class="field"><span class="label-inline" data-i18n="search">Search</span><input id="qA" placeholder="e.g. 2000 or network-1" oninput="applyFilterA()"/></div></div><div><table><thead><tr><th style="width:170px"><span class="sort"><span data-i18n="status">Status</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:110px"><span class="sort">VLAN ID <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th><span class="sort"><span data-i18n="description">Description</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:280px"><span class="sort"><span data-i18n="assignedResources">Assigned Resources</span> <span class="arrows"><span>▲</span><span>▼</span></span></span></th><th style="width:140px"><span class="sort" data-i18n="actions">Actions</span></th></tr></thead><tbody id="rowsA">
+        <tr data-vlan="2000" data-st="active" data-text="active 2000 network-1 srv-2001 app-server srv-2002 db-primary"><td><span class="pill active" title="Network is active">Active</span></td><td class="mono">2000</td><td>network-1</td><td><div>srv-2001 (App-Server)</div><div>srv-2002 (DB-Primary)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2000,'active')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2000,'active')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button></div></td></tr>
+        <tr data-vlan="2003" data-st="pending" data-text="pending 2003 network-3 srv-2004 db-secondary srv-2005 cache-node"><td><span class="pill pending" title="Applying changes to network">Pending</span></td><td class="mono">2003</td><td>network-3</td><td><div>srv-2004 (DB-Secondary)</div><div>srv-2005 (Cache-Node)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2003,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2003,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button></div></td></tr>
+        <tr data-vlan="2004" data-st="pending" data-text="pending 2004 network-2 srv-2003 web-node"><td><span class="pill pending" title="Applying changes to network">Pending</span></td><td class="mono">2004</td><td>network-2</td><td><div>srv-2003 (Web-Node)</div></td><td><div class="row-actions"><button class="iconbtn" title="View network" data-tooltip="View network" onclick="openDrawer('view',2004,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button><button class="iconbtn" title="Edit network" data-tooltip="Edit network" onclick="openDrawer('edit',2004,'pending')"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button></div></td></tr>
+        </tbody></table></div><div style="margin-top:16px"><div class="hint"><span data-i18n="hintText3">Assigned virtual networks may require additional instance-level configuration.</span><div class="muted" style="margin-top:8px"><strong data-i18n="hintText2">Further information and step-by-step instructions can be found in our documentation.</strong></div></div></div></div></section></div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-label="Virtual network details"><div class="drawerhead"><div><h3 id="dTitle">VLAN 2000 • Virtual Network</h3><div class="drawerhead-meta"><span class="pill active" id="dStatusChip" title="Network is active">Active</span></div></div><button class="xbtn" onclick="closeDrawer()" aria-label="Close" title="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="drawerbody"><div><div class="field-title" id="descLabel" data-i18n="description">Description</div><textarea id="dDesc"></textarea><div class="muted" id="descNote" style="font-size:12px;margin-top:6px"></div></div><div class="divider"></div><div><div class="section-head"><div class="section-head-title" data-i18n="connectedResources">Connected Resources</div><button class="btn text" id="advancedConfigBtn" title="Advanced configuration" onclick="toast(currentLanguage === 'de' ? 'Erweiterte Konfiguration öffnen (Mock-up)' : 'Open advanced configuration (mock-up)')"><svg class="icon" viewBox="0 0 24 24"><path d="M14 17H5"/><path d="M19 7h-9"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg><span data-i18n="advancedConfiguration">Advanced configuration</span></button></div><div id="linkedProducts"></div></div><div class="divider"></div><div id="editArea" style="display:none"><div class="hint"><span data-i18n="editHint1">Changes to a network are processed after saving. During this time, the status will be set to Pending. Once complete, the status will return to Active.</span><div class="muted" style="margin-top:8px" data-i18n="editHint2">Changes will be applied to assigned resources.</div></div><div class="divider"></div><div class="edit-config"><div class="add-panel"><div class="add-panel-head"><h4 data-i18n="add">Add</h4></div><div class="resource-dropdown"><button class="resource-dropdown-trigger" onclick="toggleResourceDropdown()" type="button" title="Select resources"><span data-i18n="selectResources">Select resources</span><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="m6 9 6 6 6-6"/></svg></button><div class="resource-dropdown-panel" id="resourceDropdown"><input class="resource-search" id="resourceSearch" placeholder="Search resources" oninput="filterResourceOptions()"/><div class="resource-options" id="resourceOptions">
+    <label class="resource-option" data-name="srv-2001" data-text="srv-2001 app-server compute instance inst-001"><span class="resource-option-main"><input type="checkbox" value="srv-2001|App-Server|Compute Instance|INST-001"><span class="resource-option-copy"><span class="resource-option-title">srv-2001 <span class="muted">• App-Server</span></span><span class="resource-option-sub">Compute Instance • INST-001</span></span></span><span class="resource-state"></span></label>
+    <label class="resource-option" data-name="srv-2002" data-text="srv-2002 db-primary compute instance inst-001"><span class="resource-option-main"><input type="checkbox" value="srv-2002|DB-Primary|Compute Instance|INST-001"><span class="resource-option-copy"><span class="resource-option-title">srv-2002 <span class="muted">• DB-Primary</span></span><span class="resource-option-sub">Compute Instance • INST-001</span></span></span><span class="resource-state"></span></label>
+    <label class="resource-option" data-name="srv-2003" data-text="srv-2003 web-node compute instance inst-001"><span class="resource-option-main"><input type="checkbox" value="srv-2003|Web-Node|Compute Instance|INST-001"><span class="resource-option-copy"><span class="resource-option-title">srv-2003 <span class="muted">• Web-Node</span></span><span class="resource-option-sub">Compute Instance • INST-001</span></span></span><span class="resource-state"></span></label>
+    <label class="resource-option" data-name="srv-2004" data-text="srv-2004 db-secondary compute instance inst-001"><span class="resource-option-main"><input type="checkbox" value="srv-2004|DB-Secondary|Compute Instance|INST-001"><span class="resource-option-copy"><span class="resource-option-title">srv-2004 <span class="muted">• DB-Secondary</span></span><span class="resource-option-sub">Compute Instance • INST-001</span></span></span><span class="resource-state"></span></label>
+    <label class="resource-option" data-name="srv-2005" data-text="srv-2005 cache-node compute instance inst-001"><span class="resource-option-main"><input type="checkbox" value="srv-2005|Cache-Node|Compute Instance|INST-001"><span class="resource-option-copy"><span class="resource-option-title">srv-2005 <span class="muted">• Cache-Node</span></span><span class="resource-option-sub">Compute Instance • INST-001</span></span></span><span class="resource-state"></span></label>
+    </div><div class="add-actions"><button class="btn secondary small" onclick="addSelectedResources()" data-i18n="addSelected">Add selected</button></div></div></div></div><div class="pending-review" id="pendingWrap" style="display:none"><div class="field-title" data-i18n="pendingChanges">Pending Changes</div><div class="pending-sub" data-i18n="pendingSub">These changes will be applied after saving.</div><div class="pending-list" id="pendingList"></div></div></div></div><div id="deleteArea" style="display:none"><div class="hint"><span data-i18n="deleteHint1">Removing a network will remove existing connections to assigned resources. Please review the assigned resources below before continuing.</span><div style="margin-top:10px" data-i18n="deleteHint2">Once removed, this network will be permanently removed from the list.</div></div></div></div><div class="drawerfoot" id="drawerFoot"><button class="btn secondary" onclick="closeDrawer()" data-i18n="cancel">Cancel</button><button class="btn primary" id="btnSave" onclick="saveAndDeploy()" data-i18n="save" disabled>Save</button><button class="btn danger" id="btnDeletePrimary" onclick="openDeleteConfirm()" style="display:none" data-i18n="removeNetwork">Remove Network</button></div></aside>
+
+  <div class="backdrop" id="createModal"><div class="modal"><div class="modalhead"><div><h3 data-i18n="createVirtualNetwork">Create Virtual Network</h3></div><button class="xbtn" onclick="closeCreate()" aria-label="Close" title="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div class="hint"><span data-i18n="createHint1">Virtual networks connect your instances over a private network. After creation, it may take a few minutes until the network is fully available.</span><div class="muted" style="margin-top:8px"><strong data-i18n="hintText2">Further information and step-by-step instructions can be found in our documentation.</strong></div></div><div class="divider"></div><label class="checkbox checkbox-green"><input type="checkbox" id="autoVid" checked onchange="toggleVidMode()"/> <span data-i18n="autoVlan">Assign VLAN ID automatically (default)</span></label><div class="divider"></div><div class="grid2"><div><div class="field-title">VLAN ID</div><input id="vid" class="readonly vidBig" placeholder="automatic" disabled /><div class="muted" style="font-size:12px;margin-top:10px" data-i18n="vlanRange">Range: 2000–3999. System validation applies.</div><div class="error-text" id="vidError" style="display:none;margin-top:10px" data-i18n="vlanError">VLAN ID is invalid or already assigned.</div></div><div><div class="field-title" data-i18n="description">Description</div><textarea id="desc" placeholder="e.g. network-4"></textarea></div></div></div><div class="modalfoot"><button class="btn secondary" onclick="closeCreate()" data-i18n="cancel">Cancel</button><button class="btn primary" onclick="createNow()"><span style="font-weight:800">+</span> <span data-i18n="create">Create</span></button></div></div></div>
+  <div class="backdrop" id="supportModal"><div class="modal sm"><div class="modalhead"><div><h3 data-i18n="moreThan20">Maximum Number of Networks Reached</h3></div><button class="xbtn" onclick="closeSupport()" aria-label="Close" title="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div class="hint" data-i18n="supportHint">You have reached the self-service limit. Please start the support process.</div></div><div class="modalfoot"><button class="btn secondary" onclick="closeSupport()" data-i18n="cancel">Cancel</button><button class="btn primary" onclick="toast(currentLanguage === 'de' ? 'Support-Anfrage gestartet (Mock-up)' : 'Support request started (mock-up)'); closeSupport();"><span style="font-weight:800">+</span> <span data-i18n="startRequest">Start Request</span></button></div></div></div>
+  <div class="backdrop" id="deleteConfirmModal"><div class="modal sm"><div class="modalhead"><div><h3 data-i18n="confirmDelete">Confirm Removal</h3></div><button class="xbtn" onclick="closeDeleteConfirm()" aria-label="Close" title="Close"><svg class="icon" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div style="font-size:15px;line-height:1.5" data-i18n="confirmDeleteText">Are you sure you want to remove this network?</div></div><div class="modalfoot"><button class="btn secondary" onclick="closeDeleteConfirm()" data-i18n="cancel">Cancel</button><button class="btn danger" onclick="confirmDeleteNow()" data-i18n="yesDelete">Yes, remove</button></div></div></div>
+  <div id="toast"><div><span id="toastText"></span></div></div>
+
+<script>
+  let vnCount = 5, vnMax = 20;
+  let statusFilterB = "";
+  let statusFilterA = "";
+  let currentVlan = null;
+  let currentDeleteRow = null;
+  let currentMode = 'view';
+  let pendingAdds = [];
+  let removedNames = [];
+  let currentLanguage = 'en';
+  const translations = {en:{navVirtualNetworks:'Virtual Networks',navInstanceDetails:'Instance Details',pageTitleVirtualNetworks:'Virtual Networks',pageSubVirtualNetworks:'Standalone feature • Mock-up',documentation:'Documentation',createVirtualNetwork:'Create Virtual Network',overview:'Overview',networksLabel:'Networks:',status:'Status',all:'All',active:'Active',pending:'Pending',search:'Search',description:'Description',assignedResources:'Assigned Resources',connectedResources:'Connected Resources',actions:'Actions',hintText1:'Manage your virtual networks and connect them to your assigned resources. Additional configuration may be required on the resource level.',hintText2:'Further information and step-by-step instructions can be found in our documentation.',breadcrumbProducts:'Products',breadcrumbComputeInstance:'Compute Instance',breadcrumbInstanceDetails:'Instance Details',instanceDetails:'Instance Details',instanceId:'Instance ID',createTicket:'Create Ticket',instanceType:'Instance Type',instanceTypeValue:'Compute Instance',operatingSystem:'Operating System',operatingSystemValue:'Linux Distribution',region:'Region',regionValue:'Region A',project:'Project',tabOverview:'Overview',tabVN:'Virtual Networks',tabAccess:'Access',tabMonitoring:'Monitoring',tabUsage:'Usage',tabLogs:'Logs',tabTickets:'Tickets',placeholderOverview:'Placeholder content for the "Overview" tab.',placeholderAccess:'Placeholder content for the "Access" tab.',placeholderMonitoring:'Placeholder content for the "Monitoring" tab.',placeholderUsage:'Placeholder content for the "Usage" tab.',placeholderLogs:'Placeholder content for the "Logs" tab.',placeholderTickets:'Placeholder content for the "Tickets" tab.',vnOverviewInInstance:'Overview of assigned virtual networks.',hintText3:'Assigned virtual networks may require additional instance-level configuration.',editHint1:'Changes to a network are processed after saving. During this time, the status will be set to Pending. Once complete, the status will return to Active.',editHint2:'Changes will be applied to assigned resources.',add:'Add',selectResources:'Select resources',addSelected:'Add selected',pendingChanges:'Pending Changes',pendingSub:'These changes will be applied after saving.',deleteHint1:'Removing a network will remove existing connections to assigned resources. Please review the assigned resources below before continuing.',deleteHint2:'Once removed, this network will be permanently removed from the list.',cancel:'Cancel',save:'Save',removeNetwork:'Remove Network',autoVlan:'Assign VLAN ID automatically (default)',vlanRange:'Range: 2000–3999. System validation applies.',vlanError:'VLAN ID is invalid or already assigned.',create:'Create',moreThan20:'Maximum Number of Networks Reached',supportHint:'You have reached the self-service limit. Please start the support process.',startRequest:'Start Request',confirmDelete:'Confirm Removal',confirmDeleteText:'Are you sure you want to remove this network?',yesDelete:'Yes, remove',advancedConfiguration:'Advanced configuration',createHint1:'Virtual networks connect your instances over a private network. After creation, it may take a few minutes until the network is fully available.'},de:{navVirtualNetworks:'Virtual Networks',navInstanceDetails:'Instance Details',pageTitleVirtualNetworks:'Virtual Networks',pageSubVirtualNetworks:'Eigenständiges Feature • Mock-up',documentation:'Dokumentation',createVirtualNetwork:'Virtual Network anlegen',overview:'Übersicht',networksLabel:'Networks:',status:'Status',all:'Alle',active:'Active',pending:'Pending',search:'Suche',description:'Beschreibung',assignedResources:'Zugeordnete Ressourcen',connectedResources:'Connected Resources',actions:'Aktionen',hintText1:'Verwalten Sie hier Ihre virtuellen Netzwerke und verbinden Sie sie mit Ihren zugewiesenen Ressourcen. Zusätzliche Konfigurationen können auf Ressourcenebene erforderlich sein.',hintText2:'Weitere Informationen und Schritt-für-Schritt-Anleitungen finden Sie in unserer Dokumentation.',breadcrumbProducts:'Products',breadcrumbComputeInstance:'Compute Instance',breadcrumbInstanceDetails:'Instance Details',instanceDetails:'Instance Details',instanceId:'Instance ID',createTicket:'Ticket erstellen',instanceType:'Instanztyp',instanceTypeValue:'Compute Instance',operatingSystem:'Betriebssystem',operatingSystemValue:'Linux Distribution',region:'Region',regionValue:'Region A',project:'Project',tabOverview:'Übersicht',tabVN:'Virtual Networks',tabAccess:'Zugriff',tabMonitoring:'Monitoring',tabUsage:'Nutzung',tabLogs:'Logs',tabTickets:'Tickets',placeholderOverview:'Platzhalterinhalt für den Tab „Übersicht“.',placeholderAccess:'Platzhalterinhalt für den Tab „Zugriff“.',placeholderMonitoring:'Platzhalterinhalt für den Tab „Monitoring“.',placeholderUsage:'Platzhalterinhalt für den Tab „Nutzung“.',placeholderLogs:'Platzhalterinhalt für den Tab „Logs“.',placeholderTickets:'Platzhalterinhalt für den Tab „Tickets“.',vnOverviewInInstance:'Übersicht der zugewiesenen virtuellen Netzwerke.',hintText3:'Zugewiesene virtuelle Netzwerke können zusätzliche Konfigurationen auf Instanzebene erfordern.',editHint1:'Änderungen an einem Netzwerk werden nach dem Speichern verarbeitet. Währenddessen wird der Status auf Pending gesetzt. Nach Abschluss wird der Status wieder Active.',editHint2:'Änderungen werden auf die zugewiesenen Ressourcen angewendet.',add:'Add',selectResources:'Ressourcen auswählen',addSelected:'Auswahl hinzufügen',pendingChanges:'Vorgemerkte Änderungen',pendingSub:'Diese Änderungen werden nach dem Speichern angewendet.',deleteHint1:'Beim Entfernen eines Netzwerks werden bestehende Verbindungen zu zugewiesenen Ressourcen aufgehoben. Bitte prüfen Sie die zugewiesenen Ressourcen unten, bevor Sie fortfahren.',deleteHint2:'Nach dem Entfernen wird dieses Netzwerk dauerhaft aus der Liste entfernt.',cancel:'Abbrechen',save:'Speichern',removeNetwork:'Netzwerk entfernen',autoVlan:'VLAN-ID automatisch vergeben (Standard)',vlanRange:'Bereich: 2000–3999. Systemvalidierung gilt.',vlanError:'Die VLAN-ID ist ungültig oder bereits vergeben.',create:'Anlegen',moreThan20:'Maximale Anzahl an Netzwerken erreicht',supportHint:'Sie haben das Self-Service-Limit erreicht. Bitte starten Sie den Support-Prozess.',startRequest:'Anfrage starten',confirmDelete:'Entfernen bestätigen',confirmDeleteText:'Möchten Sie dieses Netzwerk wirklich entfernen?',yesDelete:'Ja, entfernen',advancedConfiguration:'Advanced configuration',createHint1:'Virtuelle Netzwerke verbinden Ihre Instanzen über ein privates Netzwerk. Nach dem Anlegen kann es einige Minuten dauern, bis das Netzwerk vollständig verfügbar ist.'}};
+  const drawer=document.getElementById('drawer'),editArea=document.getElementById('editArea'),deleteArea=document.getElementById('deleteArea'),btnSave=document.getElementById('btnSave'),btnDeletePrimary=document.getElementById('btnDeletePrimary'),desc=document.getElementById('dDesc');
+  function hasPendingChanges(){return pendingAdds.length>0||removedNames.length>0}function updateSaveState(){btnSave.disabled=!hasPendingChanges()}
+  function setLanguage(lang){currentLanguage=lang;document.getElementById('lang-de').classList.toggle('active',lang==='de');document.getElementById('lang-en').classList.toggle('active',lang==='en');document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key])el.textContent=translations[lang][key]});document.getElementById('qB').placeholder=lang==='de'?'z. B. 2000 oder network-1':'e.g. 2000 or network-1';document.getElementById('qA').placeholder=lang==='de'?'z. B. 2000 oder network-1':'e.g. 2000 or network-1';document.getElementById('desc').placeholder=lang==='de'?'z. B. network-4':'e.g. network-4';document.getElementById('vid').placeholder=lang==='de'?'automatisch':'automatic';document.getElementById('resourceSearch').placeholder=lang==='de'?'Ressourcen suchen':'Search resources'}
+  function toggleThemeSwitch(){document.body.classList.toggle('dark');const isDark=document.body.classList.contains('dark');document.getElementById('themeToggle').checked=isDark}
+  function go(route){document.getElementById('route-services').style.display=(route==='services')?'':'none';document.getElementById('route-product').style.display=(route==='product')?'':'none';document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('data-route')===route));closeDrawer();closeCreate();closeSupport();closeDeleteConfirm()}
+  function setPTab(which){document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));const t=document.querySelector(`.ptab[data-ptab="${which}"]`);if(t)t.classList.add('active');['info','vn','access','monitoring','usage','log','tickets'].forEach(id=>{const pane=document.getElementById('ptab-'+id);if(pane)pane.classList.toggle('show',id===which)});if(which==='vn')applyFilterA()}
+  function applyFilterB(){const qRaw=(document.getElementById('qB').value||''),q=qRaw.toLowerCase().trim();document.querySelectorAll('#rowsB tr').forEach(tr=>{const text=(tr.getAttribute('data-text')||'').toLowerCase(),tSt=tr.getAttribute('data-st')||'',okQ=!q||text.includes(q),okS=!statusFilterB||tSt===statusFilterB;tr.style.display=(okQ&&okS)?'':'none'});highlightTable('rowsB',qRaw)}
+  function setStatusB(btn){document.querySelectorAll('#route-services .qf button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');statusFilterB=btn.getAttribute('data-st')||"";applyFilterB()}
+  function applyFilterA(){const qRaw=(document.getElementById('qA').value||''),q=qRaw.toLowerCase().trim();document.querySelectorAll('#rowsA tr').forEach(tr=>{const text=(tr.getAttribute('data-text')||'').toLowerCase(),tSt=tr.getAttribute('data-st')||'',okQ=!q||text.includes(q),okS=!statusFilterA||tSt===statusFilterA;tr.style.display=(okQ&&okS)?'':'none'});highlightTable('rowsA',qRaw)}
+  function setStatusA(btn){document.querySelectorAll('#ptab-vn .qf button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');statusFilterA=btn.getAttribute('data-st')||"";applyFilterA()}
+  function openCreateOrSupport(){if(vnCount>=vnMax){document.getElementById('supportModal').classList.add('show')}else{document.getElementById('createModal').classList.add('show');document.getElementById('autoVid').checked=true;toggleVidMode();document.getElementById('vidError').style.display='none';document.getElementById('desc').value=''}}
+  function closeCreate(){document.getElementById('createModal').classList.remove('show')}function closeSupport(){document.getElementById('supportModal').classList.remove('show')}
+  function toggleVidMode(){const auto=document.getElementById('autoVid').checked,vid=document.getElementById('vid');if(auto){vid.value='';vid.placeholder=currentLanguage==='de'?'automatisch':'automatic';vid.disabled=true;vid.classList.add('readonly');document.getElementById('vidError').style.display='none'}else{vid.disabled=false;vid.classList.remove('readonly');vid.placeholder=currentLanguage==='de'?'z. B. 2007':'e.g. 2007'}}
+  function createNow(){
+    const auto=document.getElementById('autoVid').checked;
+    const vidInput=document.getElementById('vid');
+    const descInput=document.getElementById('desc');
+    const err=document.getElementById('vidError');
+    const description=(descInput.value||'').trim()||'new-network';
+    let newVlan;
+
+    const existingVlans=Array.from(document.querySelectorAll('#rowsB tr'))
+      .map(row=>Number(row.getAttribute('data-vlan')))
+      .filter(Number.isInteger);
+
+    if(auto){
+      newVlan=2000;
+      while(existingVlans.includes(newVlan)&&newVlan<=3999){newVlan+=1}
+    }else{
+      const vidValue=Number((vidInput.value||'').trim());
+      const inRange=Number.isInteger(vidValue)&&vidValue>=2000&&vidValue<=3999;
+      const exists=existingVlans.includes(vidValue);
+      if(!inRange||exists){
+        err.style.display='block';
+        toast(currentLanguage==='de'?'Systemvalidierung fehlgeschlagen (Mock-up)':'System validation failed (mock-up)');
+        return;
+      }
+      newVlan=vidValue;
+    }
+
+    if(newVlan>3999){
+      err.style.display='block';
+      toast(currentLanguage==='de'?'Keine freie VLAN-ID verfügbar (Mock-up)':'No available VLAN ID (mock-up)');
+      return;
+    }
+
+    err.style.display='none';
+
+    const viewTitle=currentLanguage==='de'?'Netzwerk anzeigen':'View network';
+    const editTitle=currentLanguage==='de'?'Netzwerk bearbeiten':'Edit network';
+    const removeTitle=currentLanguage==='de'?'Netzwerk entfernen':'Remove network';
+
+    const tr=document.createElement('tr');
+    tr.setAttribute('data-vlan',String(newVlan));
+    tr.setAttribute('data-st','pending');
+    tr.setAttribute('data-text',`pending ${newVlan} ${description}`.toLowerCase());
+    tr.innerHTML=`
+      <td><span class="pill pending" title="Applying changes to network">Pending</span></td>
+      <td class="mono">${newVlan}</td>
+      <td>${description}</td>
+      <td>—</td>
+      <td>
+        <div class="row-actions">
+          <button class="iconbtn disabled-action" title="Available when active" data-tooltip="Available when active" onclick="return false;"><svg class="icon" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <button class="iconbtn disabled-action" title="Available when active" data-tooltip="Available when active" onclick="return false;"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>
+          <button class="iconbtn disabled-action" title="Available when active" data-tooltip="Available when active" onclick="return false;"><svg class="icon" viewBox="0 0 24 24"><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button>
+        </div>
+      </td>`;
+
+    document.getElementById('rowsB').prepend(tr);
+    vnCount+=1;
+    document.getElementById('quotaText').textContent=vnCount+' / '+vnMax;
+    closeCreate();
+    applyFilterB();
+    toast(currentLanguage==='de'?'Virtual Network angelegt. Bereitstellung läuft.':'Virtual network created. Deployment in progress.');
+    setTimeout(()=>{
+      setNetworkStatus(newVlan,'active');
+      enableCreatedRowActions(newVlan);
+    },3000);
+  }
+  function enableCreatedRowActions(vlanId){
+    const row=document.querySelector(`#rowsB tr[data-vlan="${vlanId}"]`);
+    if(!row)return;
+    const actions=row.querySelectorAll('.iconbtn');
+    const configs=[
+      {label:'View network',handler:`openDrawer('view',${vlanId},'active')`},
+      {label:'Edit network',handler:`openDrawer('edit',${vlanId},'active')`},
+      {label:'Remove network',handler:`openDrawer('delete',${vlanId},'active')`}
+    ];
+    actions.forEach((btn,idx)=>{
+      btn.classList.remove('disabled-action');
+      btn.setAttribute('title',configs[idx].label);
+      btn.setAttribute('data-tooltip',configs[idx].label);
+      btn.setAttribute('onclick',configs[idx].handler);
+    });
+  }
+  function openDrawer(mode,vlanId,status){currentMode=mode;currentVlan=vlanId;currentDeleteRow=findRowForVlan(vlanId);pendingAdds=[];removedNames=[];drawer.classList.add('show');document.getElementById('dTitle').textContent='VLAN '+vlanId+' • Virtual Network';const chip=document.getElementById('dStatusChip');chip.textContent=status==='active'?'Active':'Pending';chip.className='pill '+(status==='active'?'active':'pending');chip.title=status==='active'?'Network is active':'Applying changes to network';const rowForDescription=document.querySelector(`#rowsB tr[data-vlan="${vlanId}"]`);const rowDescription=rowForDescription?rowForDescription.children[2].textContent.trim():'';desc.value=rowDescription||((vlanId===2003)?'network-3':(vlanId===2004?'network-2':'network-1')); editArea.style.display=(mode==='edit')?'block':'none';deleteArea.style.display=(mode==='delete')?'block':'none';document.getElementById('advancedConfigBtn').style.display=(mode==='edit')?'inline-flex':'none';const editable=(mode==='edit');desc.disabled=!editable;desc.classList.toggle('readonly',!editable);document.getElementById('descNote').textContent=editable?(currentLanguage==='de'?'Speichern setzt den Status auf Pending. Änderungen werden auf zugewiesene Ressourcen angewendet.':'Saving will set the status to Pending. Changes will be applied to assigned resources.'):'';btnSave.style.display=(mode==='edit')?'inline-flex':'none';btnDeletePrimary.style.display=(mode==='delete')?'inline-flex':'none';resetAddSelection();renderLinkedProducts();renderPendingAdds();updateSaveState()}
+  function closeDrawer(){drawer.classList.remove('show')}function findRowForVlan(vlanId){return Array.from(document.querySelectorAll('#rowsB tr')).find(tr=>tr.getAttribute('data-vlan')===String(vlanId))||null}
+  function getResourcesForCurrentVlan(){if(currentVlan===2003)return[{name:'srv-2004',alias:'DB-Secondary',resource:'Compute Instance',instanceId:'INST-001'},{name:'srv-2005',alias:'Cache-Node',resource:'Compute Instance',instanceId:'INST-001'}];if(currentVlan===2004)return[{name:'srv-2003',alias:'Web-Node',resource:'Compute Instance',instanceId:'INST-001'}];if(currentVlan===2000)return[{name:'srv-2001',alias:'App-Server',resource:'Compute Instance',instanceId:'INST-001'},{name:'srv-2002',alias:'DB-Primary',resource:'Compute Instance',instanceId:'INST-001'}];return[]}
+  function renderLinkedProducts(){const lp=document.getElementById('linkedProducts');lp.innerHTML='';const resources=getResourcesForCurrentVlan().filter(r=>!removedNames.includes(r.name));if(resources.length===0){lp.innerHTML=`<div class="muted">${currentLanguage==='de'?'Keine verbundenen Ressourcen':'No connected resources'}</div>`;return}const list=document.createElement('div');list.className='lp-list';resources.forEach(r=>{const item=document.createElement('div');item.className='lp-item';const main=document.createElement('div');main.className='lp-main';main.innerHTML=`<a href="#" onclick="openProduct('${r.name}'); return false;"><div class="lp-title">${currentLanguage==='de'?'Name':'Name'}: <span class="mono">${r.name}</span> <span class="muted">• Alias: ${r.alias}</span></div><div class="lp-sub">${currentLanguage==='de'?'Ressource':'Resource'}: ${r.resource}<br/>${currentLanguage==='de'?'Instanz-ID':'Instance ID'}: <span class="mono">${r.instanceId}</span></div></a>`;item.appendChild(main);if(currentMode==='edit'){const actions=document.createElement('div');actions.className='lp-actions';actions.innerHTML=`<button class="iconbtn" title="Remove resource connection" data-tooltip="Remove resource connection" onclick="markRemoveProduct('${r.name}')"><svg class="icon" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 12h8"></path></svg></button>`;item.appendChild(actions)}list.appendChild(item)});lp.appendChild(list);renderResourceOptionStates()}
+  function markRemoveProduct(name){if(!removedNames.includes(name)){removedNames.push(name);renderLinkedProducts();renderPendingAdds();renderResourceOptionStates();updateSaveState();toast(currentLanguage==='de'?'Verbindung zum Entfernen vorgemerkt (Mock-up)':'Connection marked for removal (mock-up)')}}
+  function resetAddSelection(){const search=document.getElementById('resourceSearch'),dropdown=document.getElementById('resourceDropdown');if(search)search.value='';if(dropdown)dropdown.classList.remove('show');document.querySelectorAll('#resourceOptions input[type="checkbox"]').forEach(cb=>cb.checked=false);filterResourceOptions();renderResourceOptionStates()}
+  function toggleResourceDropdown(){const dropdown=document.getElementById('resourceDropdown'),search=document.getElementById('resourceSearch'),options=document.getElementById('resourceOptions');dropdown.classList.toggle('show');if(dropdown.classList.contains('show')){renderResourceOptionStates();options.scrollTop=0;setTimeout(()=>search.focus(),50)}}
+  function filterResourceOptions(){const q=(document.getElementById('resourceSearch')?.value||'').toLowerCase().trim();document.querySelectorAll('#resourceOptions .resource-option').forEach(option=>{const text=(option.getAttribute('data-text')||'').toLowerCase();option.style.display=(!q||text.includes(q))?'':'none'})}
+  function renderResourceOptionStates(){const connected=getResourcesForCurrentVlan().map(r=>r.name),pendingAddNames=pendingAdds.map(p=>p.name),pendingRemoveNames=removedNames;document.querySelectorAll('#resourceOptions .resource-option').forEach(option=>{const name=option.getAttribute('data-name'),checkbox=option.querySelector('input[type="checkbox"]'),state=option.querySelector('.resource-state');checkbox.disabled=false;option.classList.remove('disabled');state.textContent='';const isConnected=connected.includes(name)&&!pendingRemoveNames.includes(name),isPendingAdd=pendingAddNames.includes(name),isPendingRemove=pendingRemoveNames.includes(name);if(isConnected){checkbox.disabled=true;checkbox.checked=false;option.classList.add('disabled');state.textContent=currentLanguage==='de'?'Bereits verbunden':'Already connected'}else if(isPendingAdd){checkbox.disabled=true;checkbox.checked=false;option.classList.add('disabled');state.textContent=currentLanguage==='de'?'Zum Hinzufügen vorgemerkt':'Pending add'}else if(isPendingRemove){checkbox.disabled=true;checkbox.checked=false;option.classList.add('disabled');state.textContent=currentLanguage==='de'?'Zum Entfernen vorgemerkt':'Pending remove'}})}
+  function addSelectedResources(){const selected=Array.from(document.querySelectorAll('#resourceOptions input[type="checkbox"]:checked'));if(selected.length===0){toast(currentLanguage==='de'?'Bitte zuerst eine Ressource auswählen':'Please select a resource first');return}let added=0;selected.forEach(cb=>{const [name,alias,resource,instanceId]=cb.value.split('|'),alreadyPending=pendingAdds.find(p=>p.name===name),alreadyConnected=getResourcesForCurrentVlan().find(r=>r.name===name)&&!removedNames.includes(name),pendingRemove=removedNames.includes(name);if(!alreadyPending&&!alreadyConnected&&!pendingRemove){pendingAdds.push({name,alias,resource,instanceId});added+=1}});selected.forEach(cb=>cb.checked=false);document.getElementById('resourceDropdown').classList.remove('show');renderPendingAdds();renderResourceOptionStates();updateSaveState();toast(added===0?(currentLanguage==='de'?'Keine neue Ressource hinzugefügt':'Already connected or pending'):(currentLanguage==='de'?'Ausgewählte Ressourcen vorgemerkt (Mock-up)':'Selected resources added to pending changes'))}
+  function renderPendingAdds(){const wrap=document.getElementById('pendingWrap'),list=document.getElementById('pendingList');if(!wrap||!list)return;list.innerHTML='';const pendingItems=[];pendingAdds.forEach((p,idx)=>pendingItems.push({type:'add',idx,name:p.name,alias:p.alias,resource:p.resource,instanceId:p.instanceId}));removedNames.forEach((name,idx)=>{const original=getResourcesForCurrentVlan().find(r=>r.name===name);if(original)pendingItems.push({type:'remove',idx,name:original.name,alias:original.alias,resource:original.resource,instanceId:original.instanceId})});if(pendingItems.length===0){wrap.style.display='none';updateSaveState();return}wrap.style.display='';pendingItems.forEach(item=>{const row=document.createElement('div');row.className='pending-item';const label=item.type==='add'?`<span class="change-type add">+ ${currentLanguage==='de'?'Hinzufügen':'Add'}</span>`:`<span class="change-type remove">− ${currentLanguage==='de'?'Entfernen':'Remove'}</span>`;row.innerHTML=`<div><div style="margin-bottom:8px">${label}</div><div class="lp-title">${currentLanguage==='de'?'Name':'Name'}: <span class="mono">${item.name}</span> <span class="muted">• Alias: ${item.alias}</span></div><div class="lp-sub">${currentLanguage==='de'?'Ressource':'Resource'}: ${item.resource}<br/>${currentLanguage==='de'?'Instanz-ID':'Instance ID'}: <span class="mono">${item.instanceId}</span></div></div>`;const dismiss=document.createElement('button');dismiss.className='pending-dismiss';dismiss.title=currentLanguage==='de'?'Vormerkung entfernen':'Remove marker';dismiss.innerHTML='&times;';dismiss.onclick=()=>{if(item.type==='add')removePendingAdd(item.idx);else undoPendingRemove(item.name)};row.appendChild(dismiss);list.appendChild(row)});updateSaveState()}
+  function removePendingAdd(idx){pendingAdds.splice(idx,1);renderPendingAdds();renderResourceOptionStates();updateSaveState();toast(currentLanguage==='de'?'Hinzufügen-Markierung entfernt (Mock-up)':'Add marker removed (mock-up)')}
+  function undoPendingRemove(name){removedNames=removedNames.filter(n=>n!==name);renderLinkedProducts();renderPendingAdds();renderResourceOptionStates();updateSaveState();toast(currentLanguage==='de'?'Entfernen-Markierung entfernt (Mock-up)':'Remove marker removed (mock-up)')}
+  function setNetworkStatus(vlanId,status){document.querySelectorAll(`tr[data-vlan="${vlanId}"]`).forEach(row=>{row.setAttribute('data-st',status);const text=(row.getAttribute('data-text')||'').replace(/\bactive\b/g,status).replace(/\bpending\b/g,status);row.setAttribute('data-text',text);const firstCell=row.querySelector('td:first-child'),label=status==='active'?'Active':'Pending',cls=status==='active'?'active':'pending',title=status==='active'?'Network is active':'Applying changes to network';firstCell.innerHTML=`<span class="pill ${cls}" title="${title}">${label}</span>`});applyFilterB();applyFilterA()}
+  function saveAndDeploy(){if(!hasPendingChanges()){updateSaveState();return}const vlanToUpdate=currentVlan;setNetworkStatus(vlanToUpdate,'pending');pendingAdds=[];removedNames=[];renderPendingAdds();updateSaveState();closeDrawer();toast(currentLanguage==='de'?'Änderungen werden angewendet. Netzwerk-Update läuft.':'Changes are being applied. Network update in progress.');setTimeout(()=>setNetworkStatus(vlanToUpdate,'active'),3000)}
+  function openDeleteConfirm(){document.getElementById('deleteConfirmModal').classList.add('show')}function closeDeleteConfirm(){document.getElementById('deleteConfirmModal').classList.remove('show')}
+  function confirmDeleteNow(){closeDeleteConfirm();if(currentDeleteRow)currentDeleteRow.remove();closeDrawer();toast(currentLanguage==='de'?'Netzwerk entfernt (Mock-up)':'Network removed (mock-up)')}
+  function openProduct(name){go('product');setPTab('vn');toast(currentLanguage==='de'?`Instanzdetails öffnen (Mock-up): ${name}`:`Open instance details (mock-up): ${name}`)}
+  function escapeRegExp(str){return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+  function stripHighlightsInTbody(tbody){tbody.querySelectorAll('td').forEach(td=>{if(td.querySelector('.row-actions'))return;if(td.dataset&&td.dataset.orig!=null)td.innerHTML=td.dataset.orig})}
+  function applyHighlightsInTbody(tbody,query){const q=(query||'').trim();if(!q)return;const re=new RegExp(escapeRegExp(q),'ig');tbody.querySelectorAll('tr').forEach(tr=>{if(tr.style.display==='none')return;tr.querySelectorAll('td').forEach(td=>{if(td.querySelector('.row-actions'))return;if(td.dataset.orig==null)td.dataset.orig=td.innerHTML;else td.innerHTML=td.dataset.orig;td.innerHTML=td.innerHTML.replace(re,m=>`<span class="hl">${m}</span>`)})})}
+  function highlightTable(tbodyId,query){const tbody=document.getElementById(tbodyId);if(!tbody)return;stripHighlightsInTbody(tbody);applyHighlightsInTbody(tbody,query)}
+  let toastTimer;function toast(msg){const el=document.getElementById('toast');document.getElementById('toastText').textContent=msg;el.style.display='flex';clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.style.display='none',2800)}
+  setTimeout(()=>{applyFilterB();setLanguage('en')},0);
+</script>
+</body>
+</html>

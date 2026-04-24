@@ -1,34 +1,28 @@
-# Customer Portal Prototype
+# Customer Portal – Product Mockups
 
-## Overview
-
-This repository contains mockups for a customer-facing portal.
-
-The focus is on managing customers, products and related features in a clear and structured way.
-
-## Scope
-
-This repository contains selected mockups for a customer-facing portal.
-
-The current focus is on core portal structures, product-related views and selected feature flows.
-
-The scope will be refined as the prototype evolves.
-
-## Approach
-
-The first version focuses on structure and functionality without applying a visual design system.
-
-Future iterations will introduce a consistent design system to improve usability and visual clarity.
+This repository contains product-oriented mockups for a customer portal, focusing on system structure, feature design, and iterative development.
 
 ## Structure
 
-* `/mockups/unbranded` → initial functional versions
-* `/mockups/design-system` → refined versions (planned)
+The mockups are organized into two stages:
 
-## Data Note
+- **Unbranded**  
+  Focus on product logic, structure, and feature flows without visual design constraints.
 
-All data shown in these mockups is anonymized and does not represent real customers or systems.
+- **Design System**  
+  The same features translated into a consistent design system, including layout, interaction patterns, and visual identity.
 
-## Status
+## Current Features
 
-Early-stage prototype repository. Structure and scope are continuously refined.
+- Virtual Network Management  
+  Includes both an unbranded version and a design system version to illustrate the transition from concept to system integration.
+
+## Approach
+
+The goal is to document how product features evolve:
+
+- from initial structure  
+- through refinement of interactions  
+- to integration into a consistent system  
+
+Further features and iterations will be added over time.

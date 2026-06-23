@@ -25,15 +25,28 @@ The mockups are organized into two stages:
 
 ## Current Features
 
-- Virtual Network Management  
-  Includes both an unbranded version and a design system version to illustrate the transition from concept to system integration.
+## Current Features
 
-## Approach
+| Feature | Status | Description |
+|----------|----------|----------|
+| Virtual Network Management | Available | Management and configuration of virtual network environments within the customer portal. |
+| API Management | In Preparation | API management and access control capabilities for platform customers. |
+| eCommerce Checkout | In Preparation | Simplified product ordering and customer onboarding experience. |
+| Bulk User Operations | In Preparation | Administrative bulk actions for customer user management. |
+| Customer MFA Policies | In Preparation | Customer-level security policies for mandatory MFA and passkey adoption. |
+| User & Role Management | Concept | Redesign of user administration, role management and permission handling. |
 
-The goal is to document how product features evolve:
+## Development Approach
 
-- from initial structure  
-- through refinement of interactions  
-- to integration into a consistent system  
+Each feature is documented across multiple stages:
+
+1. Unbranded Prototype
+   - Focus on product logic, workflows and information architecture.
+
+2. Design System Integration
+   - Translation into a consistent design language and component structure.
+
+3. Product Vision (where applicable)
+   - Exploration of future enhancements and long-term product evolution.
 
 Further features and iterations will be added over time.

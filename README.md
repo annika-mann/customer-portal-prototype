@@ -2,6 +2,17 @@
 
 This repository contains product-oriented mockups for a customer portal, focusing on system structure, feature design, and iterative development.
 
+## Portfolio Context
+
+This repository is part of a product management portfolio.  
+It documents how customer-facing platform features evolve from an initial product concept into structured, system-oriented solutions.
+
+The focus is not visual design alone, but product thinking:
+- understanding user and business needs
+- structuring feature flows
+- translating requirements into usable interfaces
+- preparing features for implementation and future iteration
+
 ## Structure
 
 The mockups are organized into two stages:

@@ -25,8 +25,6 @@ The mockups are organized into two stages:
 
 ## Current Features
 
-## Current Features
-
 | Feature | Status | Description |
 |----------|----------|----------|
 | Virtual Network Management | Available | Management and configuration of virtual network environments within the customer portal. |

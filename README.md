@@ -28,8 +28,8 @@ The mockups are organized into two stages:
 | Feature | Status | Description |
 |----------|----------|----------|
 | Virtual Network Management | Available | Management and configuration of virtual network environments within the customer portal. |
-| API Management | In Preparation | API management and access control capabilities for platform customers. |
-| eCommerce Checkout | In Preparation | Simplified product ordering and customer onboarding experience. |
+| API Management | Available | API management and access control capabilities for platform customers. |
+| eCommerce Checkout | Available | Simplified product ordering and customer onboarding experience. |
 | Bulk User Operations | In Preparation | Administrative bulk actions for customer user management. |
 | Customer MFA Policies | In Preparation | Customer-level security policies for mandatory MFA and passkey adoption. |
 | User & Role Management | Concept | Redesign of user administration, role management and permission handling. |

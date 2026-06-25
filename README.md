@@ -25,8 +25,8 @@ The mockups are organized into two stages:
 
 ## Current Features
 
-| Feature | Status | Description |
-|----------|----------|----------|
+| Feature | Status | Description | Mock-up |
+|----------|----------|----------|----------|
 | Virtual Network Management | Available | Self-service management of virtual networks and assigned resources within a customer portal. | [Open unbranded mock-up](features/virtual-network-management/virtual-network-management-unbranded.html) |
 | API Management | Available | API activation, key lifecycle, documentation, request transparency and access restrictions for platform customers. | [Open unbranded mock-up](features/api-management/api-management-unbranded.html) |
 | eCommerce Checkout | Available | Commerce-first B2B SaaS ordering flow with configuration, checkout, payment verification, account activation and order status. | [Open unbranded mock-up](features/commerce-checkout/commerce-checkout-unbranded.html) |

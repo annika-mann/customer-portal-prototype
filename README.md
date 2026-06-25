@@ -25,8 +25,6 @@ The mockups are organized into two stages:
 
 ## Current Features
 
-## Current Features
-
 | Feature                    | Status         | Description                                                                                                                    | Unbranded                                                                             | Design System  | Product Vision |
 | -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | -------------- | -------------- |
 | Virtual Network Management | Available      | Self-service management of virtual networks and assigned resources within a customer portal.                                   | [Open](features/virtual-network-management/virtual-network-management-unbranded.html) | [Open](features/virtual-network-management/virtual-network-management-design-system.html) | —              |

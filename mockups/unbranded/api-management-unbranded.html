@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Customer Portal – API Management – Portfolio Mock-up</title>
+<style>
+:root{--brand-primary:#2563EB;--brand-accent:#2a918a;--ink:#0F172A;--muted:#64748B;--line:#E2E8F0;--bg:#fff;--bg2:#F8FAFC;--success:#16A34A;--danger:#DC2626;--warning:#F59E0B;--shadow:0 10px 25px rgba(15,23,42,.06);--radius:16px;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+*{box-sizing:border-box}body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg)}a{color:var(--brand-primary);text-decoration:none}a:hover{text-decoration:underline}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}@media(max-width:980px){.layout{grid-template-columns:1fr}.sidebar{display:none}}
+.sidebar{border-right:1px solid var(--line);padding:18px 14px;background:linear-gradient(180deg,#fff,#fbfcff)}
+.brand{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px}.logo{width:40px;height:40px;border-radius:14px;background:rgba(37,99,235,.12);display:flex;align-items:center;justify-content:center;font-weight:1100;color:var(--brand-primary)}
+.nav{margin-top:12px;display:flex;flex-direction:column;gap:6px}.nav a{padding:10px;border-radius:14px;font-weight:1100;color:var(--muted);display:flex;align-items:center;gap:10px;justify-content:space-between}.nav a.active{background:rgba(37,99,235,.10);color:var(--ink)}.nav a:hover{background:rgba(37,99,235,.06);text-decoration:none}
+.main{padding:18px 22px}.toprow{display:flex;gap:14px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;background:#fff;padding:14px 0 10px;border-bottom:1px solid var(--line)}.user{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:1100}.dot{width:10px;height:10px;border-radius:99px;background:var(--brand-primary)}
+h1{margin:12px 0 2px;font-size:30px;letter-spacing:-.02em}h2,h3{margin:0;font-size:16px}.sub{color:var(--muted);font-size:13px;line-height:1.45}.muted{color:var(--muted)}.mono{font-family:var(--mono);font-size:12px}.divider{height:1px;background:var(--line);margin:14px 0}
+.btn{border-radius:999px;border:2px solid var(--line);background:#fff;padding:10px 14px;font-weight:1100;font-size:14px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:.15s transform,.15s border-color;color:#111827;font-family:var(--sans);white-space:nowrap}.btn:hover{transform:translateY(-1px);border-color:#d7dbe5}.btn:active{transform:translateY(0)}.btn.primary{border-color:#2a918a;color:#2a918a;background:#fff}.btn.primary:hover{background:rgba(42,145,138,.06)}.btn.neutral,.btn.black{border-color:#111827;color:#111827;background:#fff}.btn.neutral:hover,.btn.black:hover{background:rgba(17,24,39,.04)}.btn.danger{border-color:rgba(220,38,38,.18);color:#b42318;background:rgba(220,38,38,.08)}.btn.small{padding:8px 12px;font-size:13px}.btn.text{border:none;background:transparent;padding:0;font-size:13px;color:#111827;border-radius:0}.btn.text:hover{transform:none;background:transparent;text-decoration:underline}
+.route{display:none}.route.show{display:block}.card{border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);overflow:hidden;margin-top:18px}.cardhead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,#fff,#fbfcff)}.cardbody{padding:14px 16px}
+.hint{padding:12px;border-radius:14px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);font-size:13px;line-height:1.45;color:#1E3A8A}.hint.warning{background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.25);color:#92400E}.hint.success{background:rgba(22,163,74,.10);border-color:rgba(22,163,74,.22);color:#166534}.hint.danger{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.18);color:#b42318}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.18);font-size:12px;font-weight:1100;white-space:nowrap;color:#1E3A8A}.pill.ok{background:rgba(22,163,74,.10);border-color:rgba(22,163,74,.22);color:#166534}.pill.pending{background:rgba(37,99,235,.10);border-color:rgba(37,99,235,.22);color:#1E3A8A}.pill.warn{background:rgba(245,158,11,.10);border-color:rgba(245,158,11,.25);color:#92400E}.pill.danger{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.18);color:#b42318}.pill.neutral{background:#F8FAFC;border-color:var(--line);color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}@media(max-width:1000px){.grid2,.grid3,.grid4{grid-template-columns:1fr}.toprow{align-items:flex-start;flex-direction:column}}
+.filters{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;justify-content:space-between;margin-top:12px}.inline-field{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.inline-label{font-size:12px;font-weight:1100;color:var(--muted);white-space:nowrap}.label{display:block;font-size:12px;font-weight:1100;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+input,select,textarea{border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px;outline:none;background:#fff;font-family:var(--sans);color:var(--ink)}input,select{min-width:320px}select{padding-right:56px;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23111827' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 18px center;background-size:16px}textarea{width:100%;min-height:92px;resize:vertical}
+.qf-wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.qf-label{font-size:12px;font-weight:1100;color:var(--muted)}.qf{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff}.qf button{border:none;background:transparent;cursor:pointer;padding:10px 14px;font-weight:1100;color:#6b7280;font-size:14px;font-family:var(--sans)}.qf button.active{background:rgba(37,99,235,.10);color:var(--brand-primary)}
+table{width:100%;border-collapse:collapse;font-size:14px;font-family:var(--sans)}th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}th{color:var(--brand-primary);font-size:13px;font-weight:1100;white-space:nowrap}tr:hover td{background:rgba(37,99,235,.03)}.tablewrap{overflow:auto}.row-actions{display:flex;gap:14px;justify-content:flex-start;align-items:center}
+.iconbtn{border:none;background:transparent;cursor:pointer;padding:6px;border-radius:10px;color:#111827;font-family:var(--sans);font-size:14px;line-height:1}.iconbtn:hover{background:rgba(17,24,39,.04);color:var(--brand-primary)}.icon{width:18px;height:18px;display:inline-block}.icon.stroke{stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.box{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.box h4{margin:0 0 10px;font-size:14px}.hero{display:block}.hero-icon{display:none}.metric{border:1px solid var(--line);border-radius:16px;padding:12px;background:#fff}.metric .k{font-size:12px;text-transform:uppercase;letter-spacing:.06em;font-weight:1100;color:var(--muted)}.metric .v{font-size:24px;font-weight:1100;margin-top:6px}.empty{min-height:190px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--muted);border:1px dashed rgba(37,99,235,.28);border-radius:16px;background:rgba(37,99,235,.04);padding:18px}
+.backdrop{position:fixed;inset:0;background:rgba(16,24,40,.42);display:none;align-items:center;justify-content:center;padding:18px;z-index:300}.backdrop.show{display:flex}.modal{width:min(920px,100%);background:#fff;border-radius:24px;border:1px solid var(--line);box-shadow:0 25px 60px rgba(16,24,40,.22);overflow:hidden}.modal.sm{width:min(520px,100%)}.modalhead{padding:16px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.modalhead h3{margin:0;font-size:16px}.modalbody{padding:16px 18px}.modalfoot{padding:14px 18px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap;background:linear-gradient(180deg,#fff,#fbfcff)}
+.xbtn{border:none;background:transparent;cursor:pointer;border-radius:10px;padding:8px}.xbtn:hover{background:rgba(17,24,39,.04)}.checkbox{display:flex;gap:10px;align-items:flex-start;font-weight:1100;color:#1E3A8A;accent-color:var(--brand-accent);line-height:1.4}.checkbox input{width:18px;height:18px;accent-color:var(--brand-accent);min-width:0;margin-top:2px}.lock-note{display:flex;align-items:flex-start;gap:12px;padding:14px;border:1px dashed rgba(37,99,235,.28);border-radius:16px;background:rgba(37,99,235,.04)}.doc-card{border:1px solid var(--line);border-radius:16px;padding:14px;background:#fff;display:flex;flex-direction:column;gap:12px}.doc-entry{min-height:0;justify-content:space-between;padding:12px 14px;gap:10px}.form-stack{display:grid;grid-template-columns:1fr;gap:14px}.form-field input,.form-field select{width:100%;min-width:0}.form-field .field-hint{max-width:680px}
+.switch{width:44px;height:24px;border-radius:999px;background:#CBD5E1;position:relative;cursor:pointer;display:inline-flex;align-items:center}.switch:after{content:"";width:18px;height:18px;border-radius:50%;background:#fff;position:absolute;left:3px;transition:.15s transform;box-shadow:0 2px 6px rgba(15,23,42,.18)}.switch.on{background:var(--brand-accent)}.switch.on:after{transform:translateX(20px)}
+#toast{position:fixed;bottom:18px;left:18px;right:18px;display:none;justify-content:center;z-index:500}#toast>div{background:#111827;color:#fff;padding:12px 14px;border-radius:999px;box-shadow:0 18px 40px rgba(16,24,40,.25);font-weight:1100;font-size:13px;max-width:960px;text-align:center}
+
+
+/* v2 consistency polish */
+.nav-title{margin:18px 10px 6px;font-size:11px;font-weight:1100;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.nav-parent{justify-content:space-between}
+.nav-meta{margin-left:auto;font-size:11px;font-weight:1100;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.nav-meta.ok{color:#166534}.nav-meta.warn{color:#92400E}.nav-meta.locked{color:var(--muted)}
+.nav-sub{margin:0 0 6px 14px;border-left:1px solid var(--line);padding-left:8px;display:flex;flex-direction:column;gap:4px}
+.nav-sub a{padding:8px 10px;font-size:13px;border-radius:12px;justify-content:flex-start}
+.nav-sub.locked-subnav a{color:#94A3B8}
+.nav-sub.locked-subnav a.active{color:var(--ink)}
+.nav-sub .sub-status{margin-left:auto;font-size:11px;color:#94A3B8;font-weight:800}
+.flow-note{margin-top:18px;padding:12px 10px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.flow-note ul{margin:8px 0 0 18px;padding:0;color:var(--muted);font-size:12px;line-height:1.45}
+.scenario-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.scenario-buttons .btn{padding:7px 10px;font-size:12px}
+.dev-note{padding:12px;border-radius:14px;background:#F4F7F9;border:1px solid #CBD5DC;border-left:4px solid #4B5B69;color:#3F4E5A;font-size:13px;line-height:1.45}.dev-note strong{color:#2F3A44}
+.scope-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}@media(max-width:760px){.scope-list{grid-template-columns:1fr}}
+.scope-item{border:1px solid var(--line);border-radius:14px;background:#fff;padding:10px 12px}.scope-item strong{display:block;font-size:13px;margin-bottom:4px}.scope-item span{display:block;font-size:12px;color:var(--muted);line-height:1.35}
+.status-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:1100;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.status-dot{width:9px;height:9px;border-radius:50%;background:var(--muted);display:inline-block}.status-dot.ok{background:var(--success)}.status-dot.warn{background:var(--warning)}.status-dot.info{background:var(--brand-primary)}.status-dot.danger{background:var(--danger)}
+.card-meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px;font-weight:700}
+.card-meta strong{color:var(--ink);font-weight:800}
+.banner-actions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+
+
+/* v3 final polish */
+.nav-parent{justify-content:flex-start}
+.nav-meta,.nav-sub .sub-status{display:none}
+.scenario-segmented{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg2);margin-top:10px}
+.scenario-segmented button{border:none;border-right:1px solid var(--line);background:#fff;color:var(--muted);font-family:var(--sans);font-size:12px;font-weight:800;padding:8px 6px;cursor:pointer}
+.scenario-segmented button:last-child{border-right:none}
+.scenario-segmented button.active{background:rgba(37,99,235,.10);color:var(--ink)}
+.prototype-caption{font-size:12px;color:var(--muted);line-height:1.4;margin-top:8px;font-style:italic}
+.mini-metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:18px}
+@media(max-width:1000px){.mini-metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.mini-metric-grid{grid-template-columns:1fr}}
+.mini-metric-card{border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow);padding:13px 14px;min-height:112px;display:flex;flex-direction:column;justify-content:space-between}
+.mini-metric-icon{width:30px;height:30px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;color:var(--brand-primary);background:rgba(37,99,235,.10)}
+.mini-metric-icon.ok{color:#166534;background:rgba(22,163,74,.10)}
+.mini-metric-icon.warn{color:#92400E;background:rgba(245,158,11,.12)}
+.mini-metric-icon.code{color:#4338CA;background:rgba(67,56,202,.10)}
+.mini-metric-label{font-size:11px;font-weight:1100;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.mini-metric-value{font-size:20px;font-weight:850;letter-spacing:-.02em;color:var(--ink)}
+.field-hint{font-size:12px;color:var(--muted);line-height:1.4;margin-top:7px}
+
+
+/* v4 refinement */
+.mini-metric-grid{margin-top:16px}
+.mini-metric-card{min-height:84px;padding:14px 16px;justify-content:flex-start;gap:10px}
+.mini-metric-icon{display:none!important}
+.mini-metric-label{font-size:10.5px;letter-spacing:.06em;margin-bottom:7px}
+.mini-metric-value{font-size:20px;font-weight:760;letter-spacing:-.02em;line-height:1.18}
+.overview-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(340px,.8fr);gap:18px;margin-top:18px;align-items:start}.overview-grid.initial-full{grid-template-columns:1fr}
+@media(max-width:1080px){.overview-grid{grid-template-columns:1fr}}
+.overview-mini-table td,.overview-mini-table th{padding:10px 8px}
+.entry-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+@media(max-width:760px){.entry-grid{grid-template-columns:1fr}}
+.entry-card{border:1px solid var(--line);border-radius:16px;background:#fff;padding:14px;display:flex;flex-direction:column;gap:8px}
+.entry-card h3{font-size:15px;margin:0}.entry-card .sub{min-height:38px}
+.customer-warning{padding:12px 14px;border-radius:14px;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.25);color:#92400E;font-size:13px;line-height:1.45;margin-top:14px}
+.customer-warning strong{color:#7C2D12}.customer-warning .banner-actions{margin-top:10px}.warning-link{border:0;background:transparent;padding:0;margin:10px 0 0 0;display:inline-block;font:inherit;font-weight:1100;color:#7C2D12;cursor:pointer;text-decoration:underline;text-underline-offset:2px}.warning-link::before{content:"→ ";text-decoration:none;display:inline-block;margin-right:2px}.warning-link:hover{color:#111827}#legalModalHint.customer-warning{margin-top:0}
+.dev-note{border-left-width:4px;border-radius:14px;background:#F4F7F9;border-color:#CBD5DC;border-left-color:#4B5B69;color:#3F4E5A}
+.feature-scope-card .cardbody{padding-top:14px}
+.terms-review{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.terms-row{display:grid;grid-template-columns:220px 1fr;gap:14px;align-items:start;padding:12px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.terms-row:last-child{border-bottom:none}.terms-label{color:var(--muted);font-weight:800}.terms-value{color:var(--ink);font-weight:700}.terms-check{font-size:14px;font-weight:600;color:var(--ink);align-items:flex-start}.terms-check span{line-height:1.45}.modalbody .hint{font-size:13px}.modalbody .box h4{font-size:14px}
+.create-meta{border:1px solid var(--line);border-radius:14px;background:var(--bg2);padding:10px 12px;margin-top:14px;font-size:12px;color:var(--muted);line-height:1.45}
+
+</style></head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><div class="logo">cp</div><div><div style="font-weight:1100">Customer Portal</div><div class="muted" style="font-size:12px">Prototype • API Management</div></div></div>
+  <div class="nav" id="nav">
+    <div class="nav-title">API Area</div>
+    <a href="#" data-route="overview" class="active nav-parent" onclick="go('overview');return false;">API Management</a>
+    <div class="nav-sub locked-subnav" id="apiSubnav">
+      <a href="#" data-route="keys" onclick="go('keys');return false;">API Keys</a>
+      <a href="#" data-route="security" onclick="go('security');return false;">IP Restrictions</a>
+      <a href="#" data-route="activity" onclick="go('activity');return false;">Recent API Activity</a>
+      <a href="#" data-route="docs" onclick="go('docs');return false;">Documentation</a>
+    </div>
+  </div>
+
+  <div class="flow-note">
+    <div class="muted" style="font-size:12px;font-weight:1100;letter-spacing:.06em;text-transform:uppercase">Prototype Controls</div>
+    <ul>
+      <li>Switch between activation states for review.</li>
+      <li>Subpages stay visible to show the feature concept.</li>
+    </ul>
+    <div class="divider"></div>
+    <div class="scenario-segmented" aria-label="Prototype scenario selector">
+      <button type="button" data-scenario="initial" onclick="setScenario('initial')">Initial</button>
+      <button type="button" data-scenario="active" onclick="setScenario('active')">Active</button>
+      <button type="button" data-scenario="legal" onclick="setScenario('legal')">Legal Update</button>
+    </div>
+    <div class="prototype-caption">Demo state switcher, not customer-facing.</div>
+  </div>
+</aside>
+
+<main class="main">
+<div class="toprow"><div class="sub" id="breadcrumb">API Management</div><div class="user"><span class="dot"></span><span>customer user</span><span class="pill">admin-role</span></div></div>
+
+<section id="route-overview" class="route show">
+  <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px">
+    <div><h1>API Management</h1><div class="sub">Self-service API activation, key lifecycle, documentation and request transparency.</div></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn neutral" onclick="go('docs')">Documentation</button></div>
+  </div>
+
+  <section class="card"><div class="cardhead"><h2>Overview</h2><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="pill" id="activationStatusPill">Activation required</span><span class="pill neutral" id="legalVersionPill">API Terms v1.0</span></div></div>
+    <div class="cardbody">
+      <div class="hero"><div><h2 style="font-size:20px;margin-bottom:8px">API Management Portal</h2><div class="sub" style="max-width:820px">Activate API access, manage version-bound API keys, review recent request activity and access product and technical documentation.</div></div></div>
+      <div id="activationPanel" class="lock-note" style="margin-top:14px"><div class="status-label"><span class="status-dot info"></span>Required</div><div><div style="font-weight:1100">API Management is not activated yet.</div><div class="sub" style="margin-top:4px">Users must confirm the applicable API Terms before creating API keys. Subpages remain visible for portfolio clarity, but feature pages show a locked state until activation.</div><div style="margin-top:12px"><button class="btn primary" onclick="startActivation()">Activate API Management</button></div></div></div>
+      <div id="legalUpdatePanel" class="customer-warning" style="display:none"><strong>Updated API Terms available.</strong><div style="margin-top:6px">Please confirm the updated API Terms before creating additional API keys. Existing keys remain visible. <button class="warning-link" onclick="openLegalModal('update')">Confirm updated terms</button></div></div>
+    </div></section>
+
+  <div class="mini-metric-grid" aria-label="API overview status">
+    <div class="mini-metric-card"><div class="mini-metric-label">API status</div><div class="mini-metric-value" id="metricApiStatus">Locked</div></div>
+    <div class="mini-metric-card"><div class="mini-metric-label">Active keys</div><div class="mini-metric-value" id="metricKeys">0</div></div>
+    <div class="mini-metric-card"><div class="mini-metric-label">Recent errors</div><div class="mini-metric-value" id="metricRecentErrors">–</div></div>
+    <div class="mini-metric-card"><div class="mini-metric-label">Latest version</div><div class="mini-metric-value">v2</div></div>
+  </div>
+
+  <div id="overviewInitialContent" class="overview-grid initial-full">
+    <section class="card" style="margin-top:0"><div class="cardhead"><h2>What happens after activation?</h2></div><div class="cardbody"><div class="scope-list"><div class="scope-item"><strong>Create API keys</strong><span>Name keys, select API version and define expiry.</span></div><div class="scope-item"><strong>Use documentation</strong><span>Open product documentation and technical reference.</span></div><div class="scope-item"><strong>Review activity</strong><span>See recent API requests and basic error status.</span></div><div class="scope-item"><strong>Restrict API access</strong><span>Limit API key usage to allowed IP ranges.</span></div></div></div></section>
+  </div>
+
+  <div id="overviewActiveContent" style="display:none">
+    <div class="overview-grid">
+      <section class="card" style="margin-top:0"><div class="cardhead"><h2>API Key Summary</h2><div class="card-meta"><span>Version-bound keys</span></div></div><div class="cardbody"><div class="sub" style="margin-bottom:12px">Manage API keys, version binding and expiry from one place.</div><div class="tablewrap"><table class="overview-mini-table"><thead><tr><th>Name</th><th>Version</th><th>Expiry</th><th>Status</th></tr></thead><tbody id="overviewKeyRows"></tbody></table></div><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn primary" onclick="openCreateKey()">+ Create API Key</button><button class="btn black" onclick="go('keys')">Open API Keys</button></div></div></section>
+      <section class="card" style="margin-top:0"><div class="cardhead"><h2>Recent Activity Preview</h2></div><div class="cardbody"><div class="tablewrap"><table class="overview-mini-table"><thead><tr><th>Status</th><th>Endpoint</th><th>HTTP</th></tr></thead><tbody><tr><td><span class="pill ok">Success</span></td><td>/api/v1/orders</td><td>200</td></tr><tr><td><span class="pill danger">Blocked</span></td><td>/api/v1/tickets</td><td>403</td></tr><tr><td><span class="pill warn">Limit</span></td><td>/api/v1/contracts</td><td>429</td></tr></tbody></table></div><div style="margin-top:14px"><button class="btn black" onclick="go('activity')">Open Recent Activity</button></div></div></section>
+    </div>
+    <div class="entry-grid">
+      <div class="entry-card"><h3>Product Documentation</h3><div class="sub">Use cases, lifecycle, versioning and operating model.</div><div><button class="btn black" onclick="go('docs')">Open product documentation</button></div></div>
+      <div class="entry-card"><h3>Technical Documentation (Swagger)</h3><div class="sub">Endpoint reference, authentication, errors and request/response structures.</div><div><button class="btn black" onclick="go('docs')">Open technical reference</button></div></div>
+    </div>
+  </div>
+
+  <section class="card feature-scope-card"><div class="cardhead"><h2>Feature scope</h2></div><div class="cardbody">
+    <div class="dev-note"><strong>Dev Note:</strong> This section explains portfolio scope and is not part of the customer-facing UI.</div>
+    <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Feature</th><th>Portfolio purpose</th><th>MVP status</th><th>Notes</th></tr></thead><tbody>
+      <tr><td><strong>Activation & Legal Flow</strong></td><td>Controlled API access before first key creation</td><td><span class="status-label"><span class="status-dot ok"></span>MVP</span></td><td>Terms are stored per document version.</td></tr>
+      <tr><td><strong>API Key Management</strong></td><td>Customer self-service for keys, version and expiry</td><td><span class="status-label"><span class="status-dot ok"></span>MVP</span></td><td>Secret is shown once after creation.</td></tr>
+      <tr><td><strong>Recent API Activity</strong></td><td>Reduced request transparency instead of full observability</td><td><span class="status-label"><span class="status-dot ok"></span>MVP refined</span></td><td>Simple status and error view only.</td></tr>
+      <tr><td><strong>IP Restrictions</strong></td><td>Limit API key usage to allowed IP ranges</td><td><span class="status-label"><span class="status-dot ok"></span>MVP</span></td><td>Allowed ranges can be managed per API key.</td></tr>
+    </tbody></table></div></div></section>
+</section>
+
+<section id="route-keys" class="route">
+  <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px"><div><h1>API Keys</h1><div class="sub">Create and manage API keys with version binding and expiry.</div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn primary" onclick="openCreateKey()" id="createKeyBtn">+ Create API Key</button></div></div>
+  <div id="keysLocked" class="card"><div class="cardbody"><div class="lock-note"><span class="status-label"><span class="status-dot info"></span>Locked</span><div><div style="font-weight:1100">API keys are available after activation.</div><div class="sub" style="margin-top:4px">Confirm API Terms first. This keeps the real user flow intact while keeping the portfolio navigation visible.</div><div style="margin-top:12px"><button class="btn primary" onclick="startActivation()">Go to activation</button></div></div></div></div></div>
+  <div id="keysLegalUpdatePanel" class="customer-warning" style="display:none"><strong>Updated API Terms available.</strong><div style="margin-top:6px">Please confirm the updated API Terms before creating additional API keys. Existing keys remain visible. <button class="warning-link" onclick="openLegalModal('update')">Confirm updated terms</button></div></div>
+  <div id="keySuccess" class="hint success" style="display:none;margin-top:18px"><strong>API key created.</strong><div style="margin-top:8px">API Key: <span class="mono" id="createdKeyValue">ak_live_3b36178b...</span> <button class="btn text" onclick="copyText(document.getElementById('createdKeyValue').textContent)">Copy</button></div><div style="margin-top:6px">Secret: <span class="mono" id="createdSecretValue">sk_once_7f90...</span> <button class="btn text" onclick="copyText(document.getElementById('createdSecretValue').textContent)">Copy</button></div><div class="muted" style="margin-top:8px"><strong>The secret is shown once. Store it securely.</strong></div></div>
+  <section id="keysContent" class="card"><div class="cardhead"><h2>Key Overview</h2><div class="card-meta"><span>Latest version: <strong>v2</strong></span><span>Expiry: <strong>required</strong></span></div></div><div class="cardbody"><div id="noKeys" class="empty"><div><div style="font-size:18px;font-weight:1100;margin-bottom:8px">No API keys yet</div><div class="sub" style="max-width:620px;margin:0 auto 14px">Create the first key to start using the API. The key is bound to one API version and has a defined expiry period. This is the first step after the initial terms confirmation.</div><button class="btn primary" onclick="openCreateKey()">+ Create first API Key</button></div></div><div id="keyTableWrap" class="tablewrap" style="display:none"><table><thead><tr><th>Status</th><th>Name</th><th>API Key</th><th>API Version</th><th>Expiry</th><th>Created</th><th>Last used</th><th>Actions</th></tr></thead><tbody id="keyRows"></tbody></table></div></div></section>
+</section>
+
+<section id="route-activity" class="route">
+  <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px"><div><h1>Recent API Activity</h1><div class="sub">MVP view: simple request transparency instead of full API observability.</div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn neutral" onclick="toast('Data refreshed (prototype)')">Refresh</button></div></div>
+  <section class="card"><div class="cardhead"><h2>Recent activity scope</h2><div class="card-meta"><span>Scope: <strong>MVP</strong></span></div></div><div class="cardbody"><div class="dev-note"><strong>Dev Note – MVP Scope:</strong> A fuller API Logs concept was explored to understand future needs, but the MVP was reduced to Recent API Activity. This view focuses on recent requests, basic status, endpoint, API key label and simple error visibility. Advanced filtering, request detail pages, payloads, analytics dashboards, security event analysis and operational monitoring are intentionally out of scope for the unbranded MVP.</div>
+    <div class="filters"><div class="qf-wrap"><span class="qf-label">View:</span><span id="errorSwitch" class="switch" onclick="toggleErrorsOnly()" role="switch" aria-checked="false"></span><span class="inline-label">Show errors only</span></div><div class="inline-field"><span class="inline-label">Period:</span><select onchange="toast('Period changed (prototype)')"><option>Last 24 hours</option><option>Last 7 days</option><option>Last 30 days</option></select></div></div>
+    <div class="grid3" style="margin-top:14px"><div class="metric"><div class="k">Visible entries</div><div class="v" id="activityVisible">8</div></div><div class="metric"><div class="k">Successful</div><div class="v" id="activitySuccess">5</div></div><div class="metric"><div class="k">Errors</div><div class="v" id="activityErrors">3</div></div></div>
+    <div class="tablewrap" style="margin-top:14px"><table><thead><tr><th>Status</th><th>Time</th><th>API Key</th><th>Endpoint</th><th>HTTP Status</th><th>Note</th></tr></thead><tbody id="activityRows">
+      <tr data-error="false"><td><span class="pill ok">Success</span></td><td>24 Mar 2026, 12:42</td><td><span class="mono">ak_live_3b361...</span><br/><span class="muted">Production Integration</span></td><td>/api/v1/orders</td><td><span class="pill ok">200</span></td><td>Request successful</td></tr>
+      <tr data-error="true"><td><span class="pill warn">Limit</span></td><td>24 Mar 2026, 12:40</td><td><span class="mono">ak_live_3b361...</span><br/><span class="muted">Production Integration</span></td><td>/api/v1/contracts</td><td><span class="pill warn">429</span></td><td>Rate limit exceeded</td></tr>
+      <tr data-error="true"><td><span class="pill danger">Blocked</span></td><td>24 Mar 2026, 12:38</td><td><span class="mono">ak_test_7fa82...</span><br/><span class="muted">Testing</span></td><td>/api/v1/tickets</td><td><span class="pill danger">403</span></td><td>Access not allowed</td></tr>
+      <tr data-error="false"><td><span class="pill ok">Success</span></td><td>24 Mar 2026, 11:56</td><td><span class="mono">ak_live_1aa82...</span><br/><span class="muted">Legacy Import</span></td><td>/api/v2/orders</td><td><span class="pill ok">201</span></td><td>Order created</td></tr>
+      <tr data-error="false"><td><span class="pill ok">Success</span></td><td>24 Mar 2026, 11:41</td><td><span class="mono">ak_live_3b361...</span><br/><span class="muted">Production Integration</span></td><td>/api/v1/invoices</td><td><span class="pill ok">200</span></td><td>Request successful</td></tr>
+      <tr data-error="true"><td><span class="pill danger">Expired</span></td><td>24 Mar 2026, 10:55</td><td><span class="mono">ak_test_7fa82...</span><br/><span class="muted">Testing</span></td><td>/api/v1/contracts</td><td><span class="pill danger">401</span></td><td>API key expired</td></tr>
+      <tr data-error="false"><td><span class="pill ok">Success</span></td><td>24 Mar 2026, 10:12</td><td><span class="mono">ak_live_3b361...</span><br/><span class="muted">Production Integration</span></td><td>/api/v1/contracts</td><td><span class="pill ok">200</span></td><td>Request successful</td></tr>
+      <tr data-error="false"><td><span class="pill ok">Success</span></td><td>24 Mar 2026, 09:58</td><td><span class="mono">ak_live_1aa82...</span><br/><span class="muted">Legacy Import</span></td><td>/api/v2/orders/status</td><td><span class="pill ok">200</span></td><td>Status fetched</td></tr>
+    </tbody></table></div>
+    
+  </div></section>
+</section>
+
+<section id="route-docs" class="route">
+  <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px"><div><h1>Documentation</h1><div class="sub">API-as-a-product needs product documentation, technical reference and a guided quick start.</div></div></div>
+  <div class="grid2" style="margin-top:14px">
+    <div class="entry-card doc-entry">
+      <h2>Product Documentation</h2>
+      <div class="sub">Explains supported use cases, product behavior, key lifecycle, versioning and operational expectations in customer-friendly language.</div>
+      <div><button class="btn black" onclick="toast('Open product documentation (prototype)')">Open product documentation</button></div>
+    </div>
+    <div class="entry-card doc-entry">
+      <h2>Technical Documentation (Swagger)</h2>
+      <div class="sub">Technical API reference for endpoints, request and response structures, authentication and error handling.</div>
+      <div><button class="btn black" onclick="toast('Open technical reference (prototype)')">Open technical reference</button></div>
+    </div>
+  </div>
+  <section class="card"><div class="cardhead"><h2>Quick Start Guide</h2><div class="card-meta"><span>Recommended onboarding path</span></div></div><div class="cardbody"><div class="tablewrap"><table><thead><tr><th>Step</th><th>Purpose</th><th>Example content</th></tr></thead><tbody><tr><td>1. Activate API Management</td><td>Legal and access setup</td><td>Confirm current API Terms before creating keys.</td></tr><tr><td>2. Create API Key</td><td>Technical access</td><td>Select key name, API version, environment and expiry.</td></tr><tr><td>3. Make first request</td><td>Developer onboarding</td><td>Use the key against a simple status endpoint.</td></tr><tr><td>4. Check recent activity</td><td>Troubleshooting</td><td>Review recent requests and errors.</td></tr><tr><td>5. Rotate before expiry</td><td>Operational continuity</td><td>Create a replacement key before the current key expires.</td></tr></tbody></table></div></div></section>
+</section>
+
+<section id="route-security" class="route">
+  <div style="display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px"><div><h1>IP Restrictions</h1><div class="sub">Restrict API access to allowed IP ranges per API key.</div></div><div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px"><button class="btn primary" onclick="openIpModal()">+ Add IP Range</button></div></div>
+  <div class="hint" style="margin-top:18px"><strong>IP restrictions</strong> help limit where an API key can be used from. Add one or more allowed IP ranges per key to reduce the risk of unintended access.</div>
+  <div class="grid3"><div class="card"><div class="cardbody metric"><div class="k">Keys with restriction</div><div class="v" id="restrictedMetric">1 / 3</div></div></div><div class="card"><div class="cardbody metric"><div class="k">Open keys</div><div class="v" id="openMetric">2 / 3</div></div></div><div class="card"><div class="cardbody metric"><div class="k">Blocked today</div><div class="v">2</div></div></div></div>
+  <section class="card"><div class="cardhead"><h2>Allowed IP Ranges</h2></div><div class="cardbody"><div class="tablewrap"><table><thead><tr><th>Status</th><th>API Key</th><th>Allowed IP Range</th><th>Last checked</th><th>Actions</th></tr></thead><tbody id="securityRows"></tbody></table></div></div></section>
+</section>
+
+</main></div>
+
+<div class="backdrop" id="legalModal"><div class="modal"><div class="modalhead"><h3 id="legalModalTitle">Confirm API Terms</h3><button class="xbtn" onclick="closeModal('legalModal')" aria-label="Close"><svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div id="legalModalHint" class="hint">API access is enabled only after the current API Terms have been confirmed. The confirmation is stored with user, timestamp and document version.</div><div class="divider"></div><div class="terms-review"><div class="terms-row"><div class="terms-label">Current document version</div><div class="terms-value" id="modalTermsVersion">API Terms v1.0</div></div><div class="terms-row"><div class="terms-label">Included documents</div><div class="terms-value">API Terms, Acceptable Use, Service Description, Support Terms</div></div></div><div class="divider"></div><label class="checkbox terms-check"><input type="checkbox" id="termsCheckbox"/><span>I confirm the applicable API Terms for this account and understand that API keys can be created afterwards.</span></label></div><div class="modalfoot"><button class="btn black" onclick="closeModal('legalModal')">Cancel</button><button class="btn primary" onclick="confirmTerms()">Confirm and continue</button></div></div></div>
+
+<div class="backdrop" id="createKeyModal"><div class="modal"><div class="modalhead"><h3>Create API Key</h3><button class="xbtn" onclick="closeModal('createKeyModal')" aria-label="Close"><svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div class="hint">Create one named API key. The secret will be shown once after creation.</div><div class="divider"></div><div class="form-stack">
+  <div class="form-field"><span class="label">API Key Name</span><input id="newKeyName" value="Production Integration"/><div class="field-hint">Use a clear name that describes the integration or system using this key.</div></div>
+  <div class="form-field"><span class="label">API Version</span><select id="newKeyVersion"><option value="v2">v2 (latest)</option><option value="v1">v1</option></select><div class="field-hint">The key is bound to one API version. The latest version is selected by default, while older versions remain selectable for existing integrations.</div></div>
+  <div class="form-field"><span class="label">Environment</span><select id="newKeyEnv"><option>Production</option><option>Testing</option></select><div class="field-hint">Choose whether this key is used for production traffic or testing integrations.</div></div>
+  <div class="form-field"><span class="label">Expiry</span><select id="newKeyExpiry"><option>30 days</option><option selected>90 days</option><option>180 days</option><option>1 year</option></select><div class="field-hint">A defined expiry supports key rotation and reminder handling before access is interrupted.</div></div>
+</div></div><div class="modalfoot"><button class="btn black" onclick="closeModal('createKeyModal')">Cancel</button><button class="btn primary" onclick="createKey()">+ Create</button></div></div></div>
+
+<div class="backdrop" id="ipModal"><div class="modal sm"><div class="modalhead"><h3>Add IP Range</h3><button class="xbtn" onclick="closeModal('ipModal')" aria-label="Close"><svg class="icon stroke" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div><div class="modalbody"><div class="hint">Define an allowed IP range for this API key. Requests from outside the configured range will be rejected.</div><div class="divider"></div><span class="label">Allowed IP Range</span><input id="ipRangeInput" value="192.0.2.0/24" style="width:100%;min-width:0"/></div><div class="modalfoot"><button class="btn black" onclick="closeModal('ipModal')">Cancel</button><button class="btn primary" onclick="saveIpRange()">Save IP Range</button></div></div></div>
+
+<div id="toast"><div><span id="toastText"></span></div></div>
+
+<script>
+const state={route:'overview',activated:false,legalVersion:'API Terms v1.0',latestLegalVersion:'API Terms v1.0',legalUpdateRequired:false,pendingAfterTerms:null,errorsOnly:false,keys:[],security:[{status:'active',key:'Production Integration',range:'192.0.2.0/24',checked:'Today, 12:38'},{status:'none',key:'Testing',range:'No IP restriction',checked:'Today, 11:14'},{status:'none',key:'Legacy Import',range:'No IP restriction',checked:'Today, 10:22'}]};
+const routeLabels={overview:'API Management',keys:'API Keys',activity:'Recent API Activity',docs:'Documentation',security:'IP Restrictions'};
+function go(route){state.route=route;document.querySelectorAll('.route').forEach(el=>el.classList.remove('show'));document.getElementById('route-'+route).classList.add('show');document.querySelectorAll('#nav a').forEach(a=>{a.classList.toggle('active',a.getAttribute('data-route')===route)});document.getElementById('breadcrumb').textContent=routeLabels[route]||'API Management';render();toast(routeLabels[route]||route)}
+function startActivation(){if(state.activated&&!state.legalUpdateRequired){go('keys');return}state.pendingAfterTerms='create-key';openLegalModal(state.legalUpdateRequired?'update':undefined)}
+function openLegalModal(mode){document.getElementById('termsCheckbox').checked=false;const isUpdate=mode==='update'||state.legalUpdateRequired;document.getElementById('legalModalTitle').textContent=isUpdate?'Confirm updated API Terms':'Confirm API Terms';document.getElementById('modalTermsVersion').textContent=state.latestLegalVersion;const hint=document.getElementById('legalModalHint');hint.className=isUpdate?'customer-warning':'hint';hint.innerHTML=isUpdate?'Updated API Terms are available. Confirm the current version before creating additional API keys. Existing keys remain visible.':'API access is enabled only after the current API Terms have been confirmed. The confirmation is stored with user, timestamp and document version.';document.getElementById('legalModal').classList.add('show')}
+function openCreateKey(){if(!state.activated){go('overview');toast('Please activate API Management first');return}if(state.legalUpdateRequired){state.pendingAfterTerms='create-key';openLegalModal('update');toast('Please confirm updated API Terms first');return}document.getElementById('newKeyName').value=state.keys.length?'Additional Integration':'Production Integration';document.getElementById('newKeyVersion').value='v2';document.getElementById('newKeyExpiry').value='90 days';document.getElementById('createKeyModal').classList.add('show')}
+function openIpModal(){document.getElementById('ipModal').classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function confirmTerms(){if(!document.getElementById('termsCheckbox').checked){toast('Please confirm the terms first');return}const follow=state.pendingAfterTerms;state.pendingAfterTerms=null;state.activated=true;state.legalVersion=state.latestLegalVersion;state.legalUpdateRequired=false;closeModal('legalModal');toast('API Management activated');render();if(follow==='create-key'){go('keys');return}go('overview')}
+function fakeKey(prefix){return prefix+'_'+Math.random().toString(16).slice(2,10)+Math.random().toString(16).slice(2,8)}
+function createKey(){const name=document.getElementById('newKeyName').value.trim()||'New Integration';const version=document.getElementById('newKeyVersion').value;const expiry=document.getElementById('newKeyExpiry').value;const env=document.getElementById('newKeyEnv').value;const key=fakeKey('ak_live');const secret=fakeKey('sk_once');state.keys.unshift({status:'active',name,key,version,expiry,env,created:'24 Mar 2026',lastUsed:'Never'});document.getElementById('createdKeyValue').textContent=key;document.getElementById('createdSecretValue').textContent=secret;document.getElementById('keySuccess').style.display='';closeModal('createKeyModal');toast('API key created');render()}
+function revokeKey(key){const item=state.keys.find(k=>k.key===key);if(item)item.status='revoked';toast('API key revoked');render()}
+function copyText(text){if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>toast('Copied'))}else{toast('Copied')}}
+function toggleErrorsOnly(){state.errorsOnly=!state.errorsOnly;renderActivity()}
+function renderActivity(){const sw=document.getElementById('errorSwitch');sw.classList.toggle('on',state.errorsOnly);sw.setAttribute('aria-checked',state.errorsOnly?'true':'false');const rows=[...document.querySelectorAll('#activityRows tr')];let visible=0,success=0,errors=0;rows.forEach(row=>{const isErr=row.getAttribute('data-error')==='true';const show=!state.errorsOnly||isErr;row.style.display=show?'':'none';if(show){visible+=1;if(isErr)errors+=1;else success+=1}});document.getElementById('activityVisible').textContent=visible;document.getElementById('activitySuccess').textContent=success;document.getElementById('activityErrors').textContent=errors}
+function renderKeys(){const locked=document.getElementById('keysLocked');const content=document.getElementById('keysContent');const btn=document.getElementById('createKeyBtn');const noKeys=document.getElementById('noKeys');const wrap=document.getElementById('keyTableWrap');const rows=document.getElementById('keyRows');locked.style.display=state.activated?'none':'';content.style.display=state.activated?'':'none';btn.style.display=(state.activated&&state.keys.length)?'':'none';if(!state.activated)return;noKeys.style.display=state.keys.length?'none':'flex';wrap.style.display=state.keys.length?'':'none';rows.innerHTML=state.keys.map(k=>{const statusPill=k.status==='active'?'<span class="pill ok">Active</span>':'<span class="pill neutral">Revoked</span>';const action=k.status==='active'?`<button class="btn text" onclick="revokeKey('${k.key}')">Revoke</button>`:'';return `<tr><td>${statusPill}</td><td>${k.name}</td><td><span class="mono">${k.key}</span> <button class="btn text" onclick="copyText('${k.key}')">Copy</button></td><td>${k.version}</td><td>${k.expiry}</td><td>${k.created}</td><td>${k.lastUsed}</td><td>${action}</td></tr>`}).join('')}
+function renderSecurity(){const rows=document.getElementById('securityRows');rows.innerHTML=state.security.map((item,idx)=>{const status=item.status==='active'?'<span class="pill ok">Active</span>':'<span class="pill neutral">No restriction</span>';return `<tr><td>${status}</td><td>${item.key}</td><td>${item.range}</td><td>${item.checked}</td><td><div class="row-actions"><button class="iconbtn" title="Edit" onclick="openIpModal()"><svg class="icon stroke" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></button>${item.status==='active'?`<button class="iconbtn" title="Remove" onclick="removeIp(${idx})"><svg class="icon stroke" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 16h10l1-16"/></svg></button>`:''}</div></td></tr>`}).join('');const active=state.security.filter(s=>s.status==='active').length;const open=state.security.filter(s=>s.status!=='active').length;document.getElementById('restrictedMetric').textContent=`${active} / ${state.security.length}`;document.getElementById('openMetric').textContent=`${open} / ${state.security.length}`}
+function saveIpRange(){state.security[1].status='active';state.security[1].range=document.getElementById('ipRangeInput').value||'198.51.100.0/24';state.security[1].checked='Now';closeModal('ipModal');toast('IP range saved (prototype)');render()}
+function removeIp(idx){state.security[idx].status='none';state.security[idx].range='No IP restriction';state.security[idx].checked='Now';toast('IP restriction removed (prototype)');render()}
+function setScenario(which){document.getElementById('keySuccess').style.display='none';if(which==='initial'){state.activated=false;state.legalUpdateRequired=false;state.legalVersion='API Terms v1.0';state.latestLegalVersion='API Terms v1.0';state.keys=[];go('overview');return}if(which==='active'){state.activated=true;state.legalUpdateRequired=false;state.legalVersion='API Terms v1.0';state.latestLegalVersion='API Terms v1.0';state.keys=[{status:'active',name:'Production Integration',key:'ak_live_3b36178b4dafe9',version:'v1',expiry:'90 days',created:'24 Mar 2026',lastUsed:'Today, 12:42'},{status:'active',name:'Legacy Import',key:'ak_live_1aa82e991cd449',version:'v2',expiry:'180 days',created:'03 Mar 2026',lastUsed:'Today, 09:58'},{status:'revoked',name:'Testing',key:'ak_test_7fa82e991cd449',version:'v1',expiry:'Expired',created:'23 Sep 2025',lastUsed:'18 Mar 2026'}];go('overview');return}if(which==='legal'){state.activated=true;state.legalVersion='API Terms v1.0';state.latestLegalVersion='API Terms v1.1';state.legalUpdateRequired=true;state.keys=[{status:'active',name:'Production Integration',key:'ak_live_3b36178b4dafe9',version:'v1',expiry:'90 days',created:'24 Mar 2026',lastUsed:'Today, 12:42'},{status:'active',name:'Legacy Import',key:'ak_live_1aa82e991cd449',version:'v1',expiry:'180 days',created:'03 Mar 2026',lastUsed:'Today, 09:58'}];go('overview')}}
+
+function renderOverview(){
+  const initial=document.getElementById('overviewInitialContent');
+  const active=document.getElementById('overviewActiveContent');
+  if(initial) initial.style.display=state.activated?'none':'';
+  if(active) active.style.display=state.activated?'':'none';
+  const rows=document.getElementById('overviewKeyRows');
+  if(rows){
+    const activeKeys=state.keys.filter(k=>k.status==='active').slice(0,3);
+    if(!activeKeys.length){
+      rows.innerHTML='<tr><td colspan="4" class="muted">No active API keys yet.</td></tr>';
+    } else {
+      rows.innerHTML=activeKeys.map(k=>`<tr><td><strong>${k.name}</strong></td><td>${k.version}</td><td>${k.expiry}</td><td><span class="pill ok">Active</span></td></tr>`).join('');
+    }
+  }
+}
+
+function render(){document.getElementById('apiSubnav').classList.toggle('locked-subnav', !state.activated);document.getElementById('activationStatusPill').textContent=state.activated?(state.legalUpdateRequired?'Legal update required':'Activated'):'Activation required';document.getElementById('activationStatusPill').className='pill '+(state.activated?(state.legalUpdateRequired?'warn':'ok'):'pending');document.getElementById('legalVersionPill').textContent=state.legalVersion;document.getElementById('metricApiStatus').textContent=state.activated?(state.legalUpdateRequired?'Update required':'Active'):'Locked';document.getElementById('metricKeys').textContent=state.keys.filter(k=>k.status==='active').length;const err=document.getElementById('metricRecentErrors');if(err)err.textContent=state.activated?'3':'–';document.getElementById('activationPanel').style.display=state.activated?'none':'';document.getElementById('legalUpdatePanel').style.display=state.legalUpdateRequired?'':'none';const keysLegal=document.getElementById('keysLegalUpdatePanel');if(keysLegal)keysLegal.style.display=(state.activated&&state.legalUpdateRequired)?'':'none';document.querySelectorAll('.scenario-segmented button').forEach(btn=>{const active=(btn.dataset.scenario==='initial'&&!state.activated&&!state.legalUpdateRequired)||(btn.dataset.scenario==='active'&&state.activated&&!state.legalUpdateRequired)||(btn.dataset.scenario==='legal'&&state.activated&&state.legalUpdateRequired);btn.classList.toggle('active',active)});renderOverview();renderKeys();renderActivity();renderSecurity()}
+let toastTimer;function toast(msg){const el=document.getElementById('toast');document.getElementById('toastText').textContent=msg;el.style.display='flex';clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.style.display='none',2000)}
+render();
+</script>
+</body></html>

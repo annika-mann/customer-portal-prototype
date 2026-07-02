@@ -59,3 +59,7 @@ Each feature is documented across multiple stages:
    - Exploration of future enhancements and long-term product evolution.
 
 Further features and iterations will be added over time.
+
+## Notes
+
+All data is anonymized and fictional. The prototypes are portfolio artifacts and do not contain production data, proprietary customer information or real internal system access.

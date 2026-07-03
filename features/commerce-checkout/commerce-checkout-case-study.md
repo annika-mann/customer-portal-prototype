@@ -133,4 +133,27 @@ The flow depends on multiple systems or services, such as customer account creat
 
 ## Goals, Signals & Metrics
 
+The prototype is framed around product outcomes rather than screens alone. The goal is to improve the first purchase journey while keeping the flow reliable, compliant and suitable for B2B SaaS requirements.
+
+| Goal | Signals | Potential Metrics |
+|---|---|---|
+| Reduce friction for new customers | Customers can configure, review and complete an order without going through a long separate registration process first. | Checkout completion rate, drop-off rate per step, time to complete first order, abandoned checkout rate |
+| Create a more modern B2B checkout experience | Account, company, billing and payment data are collected in one structured journey instead of several disconnected forms. | Number of visible customer steps, form completion time, support requests during checkout, customer feedback on checkout clarity |
+| Support both guest and existing customer journeys | New customers can enter through a commerce-first flow, while existing customers can reuse known account and company data for additional orders. | Share of orders from new vs. existing customers, repeat order completion rate, amount of prefilled data reused, logged-in checkout completion rate |
+| Keep operational and compliance requirements in the background | Duplicate checks, fraud signals, compliance review and payment risk handling can run without making the customer journey unnecessarily complex. | Number of orders requiring manual review, duplicate account detection rate, fraud/compliance review time, blocked or delayed order rate |
+| Improve order transparency after checkout | Customers receive clear success, pending or order status communication after payment authorization and verification. | Order status page usage, number of “what happens next” support requests, provisioning status visibility, time from checkout to activation |
+| Make the flow easier to review and hand over | Product, design, development and operations can discuss the same end-to-end journey, including edge cases and system dependencies. | Number of clarified requirements before development, reduced rework during implementation, number of documented edge cases, stakeholder review feedback |
+
+These metrics are intentionally defined as potential indicators. The prototype does not measure them directly, but uses them to frame what a successful implementation would need to improve: customer completion, flow clarity, operational reliability and handover quality.
+
 ## Next Iterations
+
+Future iterations could extend the prototype in two stages:
+
+1. **Branded customer portal integration**  
+   A branded version could show how guest users and logged-in customers enter the commerce flow from realistic customer portal start pages. The focus would be on portal entry points, navigation, visual alignment and the first distinction between new and existing customer journeys.
+
+2. **Product vision for logged-in commerce and lifecycle management**  
+   A later product vision could explore how commerce evolves inside the customer portal after the first order. This could include a personalized dashboard, active products, order and provisioning status, reused customer data, product-specific order wizards and lifecycle actions such as upgrades, changes or cancellations.
+
+These iterations would move the prototype from an integrated first-purchase checkout toward a broader customer portal commerce experience.

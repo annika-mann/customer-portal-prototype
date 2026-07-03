@@ -1889,63 +1889,1574 @@
       line-height:1;
     }
 
+
+    /* Final navigation + case overview alignment */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px;
+      border-radius:14px;
+      margin-bottom:28px;
+      color:var(--ink);
+    }
+    .brand .logo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      background:rgba(37,99,235,.12);
+      color:var(--brand-primary);
+      font-weight:800;
+      font-size:15px;
+      line-height:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-transform:lowercase;
+      flex:0 0 auto;
+    }
+    .brand-title{
+      font-size:14px;
+      line-height:1.2;
+      font-weight:800;
+      color:var(--ink);
+    }
+    .brand-subtitle{
+      display:block;
+      max-width:150px;
+      font-size:12px;
+      line-height:1.25;
+      font-weight:600;
+      color:var(--muted);
+      white-space:normal;
+    }
+    .nav{
+      margin-top:0;
+      display:flex;
+      flex-direction:column;
+      gap:0;
+    }
+    .nav-group{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .nav-title{
+      margin:20px 10px 8px;
+      font-size:12px;
+      font-weight:800;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.16em;
+    }
+    .nav-title-secondary{
+      margin-top:18px;
+    }
+    .nav a{
+      text-decoration:none;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      border-radius:999px;
+      transition:.15s background,.15s color,.15s border-color;
+    }
+    .nav a:hover{
+      background:rgba(37,99,235,.06);
+      color:var(--ink);
+      text-decoration:none;
+    }
+    .nav a.active{
+      background:rgba(37,99,235,.10);
+      color:var(--ink);
+    }
+    .nav-customer > a{
+      padding:10px 20px;
+      font-size:16px;
+      line-height:1.15;
+      font-weight:700;
+      letter-spacing:-.01em;
+      min-height:38px;
+    }
+    .nav-sub-customer{
+      margin:6px 0 10px 28px;
+      border-left:1px solid var(--line);
+      padding-left:18px;
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+    }
+    .nav-sub-customer a{
+      padding:8px 14px;
+      font-size:13.5px;
+      line-height:1.2;
+      font-weight:600;
+      border-radius:999px;
+      color:var(--muted);
+      min-height:32px;
+    }
+    .case-notes{
+      margin:20px 0 4px;
+      padding:12px 10px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+    }
+    .flow-note-title{
+      font-size:12px;
+      font-weight:800;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .flow-note ul{
+      margin:8px 0 0 18px;
+      padding:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.45;
+    }
+    .nav-helper{
+      margin-top:4px;
+    }
+    .nav-helper a{
+      padding:7px 10px;
+      font-size:12.5px;
+      line-height:1.25;
+      font-weight:600;
+      border-radius:10px;
+      min-height:30px;
+      color:#73839a;
+    }
+    .nav-helper a.active{
+      background:rgba(37,99,235,.07);
+      color:var(--ink);
+    }
+    .topbar-left{
+      display:flex;
+      align-items:center;
+      min-width:0;
+    }
+    .breadcrumb{
+      color:var(--muted);
+      font-size:13px;
+      font-weight:600;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .hero-split{
+      display:grid;
+      grid-template-columns:minmax(0,1.4fr) minmax(300px,.7fr);
+      gap:18px;
+      align-items:stretch;
+      margin-top:8px;
+    }
+    .hero-panel,
+    .hero-side{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:linear-gradient(180deg,#fff,#fbfcff);
+      box-shadow:var(--shadow);
+      padding:28px;
+    }
+    .hero-panel h1{
+      font-size:36px;
+      line-height:1.08;
+      letter-spacing:-.03em;
+      margin:8px 0 14px;
+      max-width:760px;
+    }
+    .case-lead{
+      max-width:790px;
+      font-size:15px;
+      line-height:1.55;
+    }
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .mini-metric{
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      align-items:flex-start;
+      border-top:1px solid var(--line);
+      padding:11px 0;
+      font-size:13px;
+    }
+    .mini-metric:first-of-type{
+      margin-top:6px;
+    }
+    .mini-metric span{
+      color:var(--muted);
+      font-weight:650;
+    }
+    .mini-metric strong{
+      color:var(--ink);
+      font-weight:750;
+      text-align:right;
+    }
+    .hint.compact-hint{
+      padding:12px;
+      border-radius:16px;
+      background:rgba(37,99,235,.07);
+      border:1px solid rgba(37,99,235,.16);
+      color:#1E3A8A;
+      font-size:13px;
+      line-height:1.45;
+    }
+    .portfolio-card{
+      padding:0;
+      overflow:hidden;
+      margin-top:18px;
+    }
+    .cardhead{
+      padding:14px 16px;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      background:linear-gradient(180deg,#fff,#fbfcff);
+    }
+    .cardhead h2{
+      margin:0;
+      font-size:16px;
+    }
+    .cardbody{
+      padding:14px 16px;
+    }
+    .journey-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:14px;
+    }
+    .box{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+      padding:14px;
+    }
+    .box h3{
+      margin:0 0 6px;
+      font-size:14px;
+    }
+    .box p{
+      font-size:13px;
+      line-height:1.45;
+    }
+    @media(max-width:1100px){
+      .hero-split{grid-template-columns:1fr}
+      .journey-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:700px){
+      .journey-grid{grid-template-columns:1fr}
+    }
+
+
+    /* Pass 3.1 – match previous working version typography weights */
+    .sidebar{
+      padding:18px 14px;
+    }
+    .brand{
+      align-items:center;
+      gap:10px;
+      padding:10px;
+      margin-bottom:34px;
+      line-height:1.22;
+      font-weight:400;
+    }
+    .logo{
+      width:40px;
+      height:40px;
+      border-radius:14px;
+      font-size:18px;
+      font-weight:500;
+      letter-spacing:0;
+    }
+    .brand-title{
+      font-size:16px;
+      line-height:1.2;
+      font-weight:500;
+      color:var(--ink);
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:13px;
+      line-height:1.2;
+      font-weight:400;
+      color:var(--muted);
+      letter-spacing:0;
+    }
+    .nav{
+      gap:4px;
+    }
+    .nav-title{
+      margin:18px 10px 10px;
+      font-size:12px;
+      line-height:1.2;
+      font-weight:500;
+      letter-spacing:.16em;
+      color:var(--muted);
+      text-transform:uppercase;
+    }
+    .nav-customer > a{
+      padding:11px 14px;
+      font-size:17px;
+      line-height:1.2;
+      font-weight:400;
+      border-radius:18px;
+      color:var(--muted);
+    }
+    .nav-customer > a.active{
+      font-weight:400;
+      color:var(--ink);
+      background:rgba(37,99,235,.10);
+    }
+    .nav-customer > a:hover{
+      color:var(--ink);
+    }
+    .nav-sub-customer{
+      margin:8px 0 12px 18px;
+      padding-left:18px;
+      gap:4px;
+    }
+    .nav-sub-customer a{
+      padding:8px 14px;
+      font-size:14px;
+      line-height:1.25;
+      font-weight:400;
+      border-radius:16px;
+      min-height:30px;
+      color:var(--muted);
+    }
+    .nav-sub-customer a.active{
+      font-weight:400;
+      color:var(--muted);
+      background:rgba(37,99,235,.07);
+    }
+    .case-notes{
+      margin:20px 0 8px;
+      padding:12px 10px;
+      border-radius:16px;
+    }
+    .flow-note-title{
+      font-size:11px;
+      line-height:1.2;
+      font-weight:500;
+      letter-spacing:.16em;
+    }
+    .flow-note ul{
+      font-size:12px;
+      line-height:1.45;
+      font-weight:400;
+    }
+    .nav-helper .nav-title{
+      margin-top:18px;
+      font-size:11px;
+      font-weight:500;
+      letter-spacing:.14em;
+    }
+    .nav-helper a{
+      padding:7px 10px;
+      font-size:12.5px;
+      line-height:1.25;
+      font-weight:400;
+      border-radius:10px;
+      min-height:30px;
+      color:#73839a;
+    }
+    .nav-helper a.active{
+      font-weight:400;
+      color:var(--ink);
+      background:rgba(37,99,235,.07);
+    }
+    .topbar{
+      justify-content:flex-end;
+      min-height:58px;
+      height:auto;
+      padding:14px 0 10px;
+    }
+    .topbar-left,
+    .breadcrumb{
+      display:none !important;
+    }
+    .user,
+    .top-actions.user{
+      font-size:14px;
+      font-weight:400;
+      color:var(--muted);
+    }
+    .pill{
+      font-size:12px;
+      font-weight:400;
+      color:#1E3A8A;
+    }
+    .btn,
+    button,
+    .btn.primary,
+    .btn.secondary,
+    .btn.simulation,
+    .contract-link,
+    .edit-text-link,
+    .prototype-info-link{
+      font-weight:400 !important;
+    }
+    .btn{
+      border-width:2px;
+      padding:10px 14px;
+      font-size:14px;
+    }
+    .btn.primary{
+      color:#2a918a;
+      border-color:#2a918a;
+    }
+    .hero-panel h1{
+      font-weight:700;
+    }
+    .hero-panel,
+    .hero-side{
+      font-weight:400;
+    }
+    .hero-side .eyebrow,
+    .cardhead h2,
+    .box h3,
+    .mini-metric span,
+    .mini-metric strong,
+    .hint.compact-hint strong{
+      font-weight:400;
+    }
+    .mini-metric{
+      font-size:13px;
+      font-weight:400;
+    }
+    .mini-metric strong{
+      color:var(--ink);
+    }
+    .hint.compact-hint{
+      font-weight:400;
+    }
+    .eyebrow{
+      font-weight:500;
+    }
+
+
+    /* Pass 3.2 – final nav/header size calibration */
+    .brand{
+      gap:9px;
+      padding:9px 10px;
+      margin-bottom:34px;
+    }
+    .logo{
+      width:38px !important;
+      height:38px !important;
+      border-radius:14px;
+      font-size:16px !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+      line-height:1 !important;
+    }
+    .brand-title{
+      font-size:15px !important;
+      line-height:1.18 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12.5px !important;
+      line-height:1.18 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .nav-title{
+      font-size:11.5px !important;
+      font-weight:400 !important;
+      letter-spacing:.17em !important;
+      margin:18px 10px 9px;
+    }
+    .nav-customer > a{
+      font-size:16px !important;
+      line-height:1.18 !important;
+      font-weight:400 !important;
+      padding:10px 14px;
+    }
+    .nav-customer > a.active{
+      font-weight:400 !important;
+    }
+    .nav-sub-customer{
+      margin:7px 0 11px 18px;
+      padding-left:16px;
+    }
+    .nav-sub-customer a{
+      font-size:13.5px !important;
+      line-height:1.22 !important;
+      font-weight:400 !important;
+      padding:7px 14px;
+      min-height:29px;
+    }
+    .nav-helper a{
+      font-size:12px !important;
+      font-weight:400 !important;
+    }
+    .user,
+    .top-actions.user{
+      font-size:16px !important;
+      line-height:1.1 !important;
+      font-weight:400 !important;
+      gap:11px;
+    }
+    .top-actions.user .dot,
+    .user .dot{
+      width:9px;
+      height:9px;
+    }
+    .pill,
+    .top-actions.user .pill,
+    .user .pill{
+      font-size:14px !important;
+      line-height:1.1 !important;
+      font-weight:400 !important;
+      padding:6px 12px;
+    }
+
+
+    /* Pass 3.3 – final spacing and start-screen reference alignment */
+    .main{
+      padding:18px 22px 32px !important;
+    }
+    .topbar{
+      min-height:58px !important;
+      padding:14px 0 10px !important;
+      border-bottom:1px solid var(--line) !important;
+    }
+    .content{
+      padding:18px 0 44px !important;
+    }
+    .brand{
+      margin-bottom:18px !important;
+      padding:10px !important;
+      gap:10px !important;
+    }
+    .logo{
+      width:40px !important;
+      height:40px !important;
+      border-radius:14px !important;
+      font-size:16px !important;
+      font-weight:400 !important;
+    }
+    .brand-title{
+      font-size:15px !important;
+      line-height:1.16 !important;
+      font-weight:400 !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12.5px !important;
+      line-height:1.16 !important;
+      font-weight:400 !important;
+    }
+    .nav-title{
+      margin:12px 10px 9px !important;
+      font-size:11.5px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      letter-spacing:.17em !important;
+    }
+    .nav-customer > a{
+      font-size:16px !important;
+      font-weight:400 !important;
+      line-height:1.18 !important;
+      padding:10px 14px !important;
+      border-radius:18px !important;
+    }
+    .nav-sub-customer{
+      margin:8px 0 12px 18px !important;
+      padding-left:16px !important;
+      gap:4px !important;
+    }
+    .nav-sub-customer a{
+      font-size:13.5px !important;
+      line-height:1.22 !important;
+      font-weight:400 !important;
+      padding:7px 14px !important;
+    }
+    .case-notes{
+      margin:18px 0 8px !important;
+    }
+    .hero-split{
+      grid-template-columns:minmax(0,1fr) 360px !important;
+      gap:18px !important;
+      align-items:stretch !important;
+      margin-top:18px !important;
+    }
+    .hero-panel{
+      padding:22px !important;
+      background:linear-gradient(135deg,#fff,#F8FAFC) !important;
+    }
+    .hero-panel h1{
+      font-size:36px !important;
+      line-height:1.05 !important;
+      margin-top:6px !important;
+      margin-bottom:14px !important;
+      font-weight:700 !important;
+    }
+    .case-lead{
+      font-size:15px !important;
+      line-height:1.55 !important;
+    }
+    .hero-side{
+      background:#fff !important;
+      padding:20px !important;
+      gap:16px !important;
+      justify-content:space-between !important;
+    }
+    .hero-side .eyebrow{
+      font-weight:400 !important;
+      font-size:12px !important;
+      letter-spacing:.08em !important;
+      color:var(--muted) !important;
+    }
+    .mini-metric{
+      display:flex !important;
+      justify-content:space-between !important;
+      gap:12px !important;
+      padding:10px 0 !important;
+      border-top:0 !important;
+      border-bottom:1px solid var(--line) !important;
+      font-size:13px !important;
+      font-weight:400 !important;
+    }
+    .mini-metric:first-of-type{
+      margin-top:6px !important;
+    }
+    .mini-metric:last-child{
+      border-bottom:0 !important;
+    }
+    .mini-metric span{
+      color:var(--muted) !important;
+      font-weight:400 !important;
+    }
+    .mini-metric strong{
+      color:var(--ink) !important;
+      font-weight:700 !important;
+      text-align:right !important;
+    }
+    .hint.compact-hint{
+      padding:12px !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.08) !important;
+      border:1px solid rgba(37,99,235,.18) !important;
+      color:#1E3A8A !important;
+      font-size:13px !important;
+      line-height:1.45 !important;
+    }
+    .hint.compact-hint strong{
+      font-weight:700 !important;
+    }
+    .portfolio-card{
+      margin-top:18px !important;
+      padding:0 !important;
+      overflow:hidden !important;
+    }
+    .portfolio-card .cardhead{
+      padding:14px 16px !important;
+      border-bottom:1px solid var(--line) !important;
+      background:linear-gradient(180deg,#fff,#fbfcff) !important;
+    }
+    .portfolio-card .cardhead h2{
+      margin:0 !important;
+      font-size:16px !important;
+      line-height:1.2 !important;
+      font-weight:700 !important;
+    }
+    .portfolio-card .cardbody{
+      padding:14px 16px !important;
+    }
+    .journey-grid{
+      gap:14px !important;
+    }
+    .journey-grid .box{
+      border:1px solid var(--line) !important;
+      border-radius:16px !important;
+      background:#fff !important;
+      padding:12px !important;
+    }
+    .journey-grid .box h3{
+      margin:0 0 10px !important;
+      font-size:14px !important;
+      line-height:1.2 !important;
+      font-weight:700 !important;
+    }
+    .journey-grid .box p{
+      font-size:13px !important;
+      line-height:1.45 !important;
+    }
+
+
+    /* Pass 3.4 – final micro-spacing calibration against previous working version */
+    .sidebar{
+      padding:18px 14px !important;
+    }
+    .brand{
+      gap:8px !important;
+      padding:9px 10px !important;
+      margin-bottom:12px !important;
+      align-items:flex-start !important;
+    }
+    .logo{
+      width:38px !important;
+      height:38px !important;
+      min-width:38px !important;
+      border-radius:13px !important;
+      font-size:15px !important;
+      font-weight:400 !important;
+      line-height:1 !important;
+      letter-spacing:-.02em !important;
+    }
+    .brand-title{
+      font-size:14.5px !important;
+      line-height:1.15 !important;
+      font-weight:400 !important;
+      letter-spacing:-.01em !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12.2px !important;
+      line-height:1.15 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .nav{
+      margin-top:8px !important;
+      gap:4px !important;
+    }
+    .nav-title{
+      margin:10px 10px 8px !important;
+      font-size:11px !important;
+      line-height:1.15 !important;
+      letter-spacing:.15em !important;
+      font-weight:400 !important;
+    }
+    .nav-customer > a{
+      font-size:15.5px !important;
+      line-height:1.15 !important;
+      font-weight:400 !important;
+      letter-spacing:-.01em !important;
+      padding:9px 14px !important;
+      border-radius:18px !important;
+      min-height:38px !important;
+    }
+    .nav-sub-customer{
+      margin:4px 0 8px 16px !important;
+      padding-left:12px !important;
+      gap:1px !important;
+    }
+    .nav-sub-customer a{
+      font-size:13px !important;
+      line-height:1.16 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+      padding:5px 12px !important;
+      min-height:25px !important;
+      border-radius:14px !important;
+    }
+    .case-notes{
+      margin:14px 0 8px !important;
+    }
+    .main{
+      padding:18px 22px 32px !important;
+    }
+    .topbar{
+      min-height:54px !important;
+      padding:12px 0 9px !important;
+    }
+    .content{
+      padding:8px 0 44px !important;
+    }
+    .hero-split{
+      margin-top:10px !important;
+    }
+    .user,
+    .top-actions.user{
+      font-size:14px !important;
+      line-height:1.15 !important;
+      font-weight:400 !important;
+      gap:10px !important;
+    }
+    .top-actions.user .dot,
+    .user .dot{
+      width:8px !important;
+      height:8px !important;
+    }
+    .pill,
+    .top-actions.user .pill,
+    .user .pill{
+      font-size:12.5px !important;
+      line-height:1.1 !important;
+      font-weight:400 !important;
+      padding:5px 10px !important;
+      border-radius:999px !important;
+    }
+
+
+    /* Pass 3.5 – logo and guest-mode calibration against previous working version */
+    .brand{
+      gap:10px !important;
+      padding:10px !important;
+      margin-bottom:12px !important;
+      align-items:flex-start !important;
+    }
+    .logo{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      border-radius:14px !important;
+      font-size:16px !important;
+      font-weight:400 !important;
+      line-height:1 !important;
+      letter-spacing:-.01em !important;
+    }
+    .brand-title{
+      font-size:15.5px !important;
+      line-height:1.16 !important;
+      font-weight:400 !important;
+      letter-spacing:-.01em !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:13px !important;
+      line-height:1.16 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .user,
+    .top-actions.user{
+      font-size:15.5px !important;
+      line-height:1.15 !important;
+      font-weight:400 !important;
+      gap:10px !important;
+    }
+    .top-actions.user .dot,
+    .user .dot{
+      width:9px !important;
+      height:9px !important;
+    }
+    .pill,
+    .top-actions.user .pill,
+    .user .pill{
+      font-size:13.5px !important;
+      line-height:1.1 !important;
+      font-weight:400 !important;
+      padding:6px 12px !important;
+      border-radius:999px !important;
+    }
+
+
+    /* Pass 3.6 – exact header/brand/user calibration from previous working version */
+    .sidebar{
+      border-right:1px solid var(--line) !important;
+      padding:18px 14px !important;
+      background:linear-gradient(180deg,#fff,#fbfcff) !important;
+    }
+    .brand{
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      padding:10px !important;
+      border-radius:14px !important;
+      margin:0 !important;
+      color:var(--ink) !important;
+      line-height:normal !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .logo{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--brand-primary) !important;
+      letter-spacing:0 !important;
+      text-transform:none !important;
+    }
+    .brand-title{
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--ink) !important;
+      letter-spacing:0 !important;
+      margin:0 !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12px !important;
+      line-height:normal !important;
+      font-weight:400 !important;
+      color:var(--muted) !important;
+      letter-spacing:0 !important;
+      margin:0 !important;
+    }
+    .nav{
+      margin-top:12px !important;
+    }
+    .main{
+      padding:18px 22px !important;
+    }
+    .topbar{
+      display:flex !important;
+      gap:14px !important;
+      align-items:center !important;
+      justify-content:flex-end !important;
+      position:sticky !important;
+      top:0 !important;
+      z-index:10 !important;
+      background:#fff !important;
+      padding:14px 0 10px !important;
+      border-bottom:1px solid var(--line) !important;
+      height:auto !important;
+      min-height:0 !important;
+    }
+    .user,
+    .top-actions.user{
+      display:flex !important;
+      gap:10px !important;
+      align-items:center !important;
+      color:var(--muted) !important;
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      letter-spacing:0 !important;
+    }
+    .dot,
+    .user .dot,
+    .top-actions.user .dot{
+      width:10px !important;
+      height:10px !important;
+      min-width:10px !important;
+      border-radius:99px !important;
+      background:var(--brand-primary) !important;
+      display:inline-block !important;
+    }
+    .pill,
+    .user .pill,
+    .top-actions.user .pill{
+      display:inline-flex !important;
+      align-items:center !important;
+      gap:8px !important;
+      padding:6px 10px !important;
+      border-radius:999px !important;
+      background:rgba(37,99,235,.08) !important;
+      border:1px solid rgba(37,99,235,.18) !important;
+      font-size:12px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      white-space:nowrap !important;
+      color:#1E3A8A !important;
+      letter-spacing:0 !important;
+    }
+
+
+    /* Pass 3.7 – exact spacing calibration for logo area and customer navigation */
+    .sidebar{
+      padding:18px 14px !important;
+    }
+    .brand{
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      padding:10px !important;
+      margin:0 !important;
+      border-radius:14px !important;
+      color:var(--ink) !important;
+      font-size:14px !important;
+      line-height:normal !important;
+      letter-spacing:0 !important;
+    }
+    .brand .logo,
+    .logo{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      color:var(--brand-primary) !important;
+      font-size:14px !important;
+      line-height:1 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+      text-transform:lowercase !important;
+    }
+    .brand-title{
+      font-size:14px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+      color:var(--ink) !important;
+      margin:0 !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+      color:var(--muted) !important;
+      margin:0 !important;
+    }
+    .nav{
+      margin-top:12px !important;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:0 !important;
+    }
+    .nav-group,
+    .nav-customer{
+      display:flex !important;
+      flex-direction:column !important;
+      gap:6px !important;
+      margin:0 !important;
+      padding:0 !important;
+    }
+    .nav-title,
+    .nav-customer .nav-title{
+      margin:18px 10px 6px !important;
+      font-size:11px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      color:var(--muted) !important;
+      text-transform:uppercase !important;
+      letter-spacing:.08em !important;
+    }
+    .nav-customer > a,
+    .nav a{
+      padding:10px !important;
+      border-radius:14px !important;
+      font-weight:400 !important;
+      color:var(--muted) !important;
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      font-size:14px !important;
+      line-height:1.2 !important;
+      letter-spacing:0 !important;
+      text-decoration:none !important;
+      min-height:0 !important;
+      margin:0 !important;
+    }
+    .nav-customer > a.active,
+    .nav a.active{
+      background:rgba(37,99,235,.10) !important;
+      color:var(--ink) !important;
+    }
+    .nav-customer > a:hover,
+    .nav a:hover{
+      background:rgba(37,99,235,.06) !important;
+      text-decoration:none !important;
+    }
+    .nav-sub,
+    .nav-sub-customer{
+      margin:0 0 6px 14px !important;
+      border-left:1px solid var(--line) !important;
+      padding-left:8px !important;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:4px !important;
+    }
+    .nav-sub a,
+    .nav-sub-customer a{
+      padding:8px 10px !important;
+      font-size:13px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      border-radius:12px !important;
+      letter-spacing:0 !important;
+      min-height:0 !important;
+      margin:0 !important;
+    }
+    .case-notes{
+      margin:18px 0 8px !important;
+    }
+    .topbar{
+      padding:14px 0 10px !important;
+      min-height:0 !important;
+      height:auto !important;
+      border-bottom:1px solid var(--line) !important;
+    }
+    .top-actions.user,
+    .user{
+      display:flex !important;
+      gap:10px !important;
+      align-items:center !important;
+      color:var(--muted) !important;
+      font-size:14px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .top-actions.user .dot,
+    .user .dot,
+    .dot{
+      width:10px !important;
+      height:10px !important;
+      border-radius:99px !important;
+      background:var(--brand-primary) !important;
+    }
+    .top-actions.user .pill,
+    .user .pill,
+    .pill{
+      display:inline-flex !important;
+      align-items:center !important;
+      gap:8px !important;
+      padding:6px 10px !important;
+      border-radius:999px !important;
+      background:rgba(37,99,235,.08) !important;
+      border:1px solid rgba(37,99,235,.18) !important;
+      font-size:12px !important;
+      line-height:1.2 !important;
+      font-weight:400 !important;
+      white-space:nowrap !important;
+      color:#1E3A8A !important;
+      letter-spacing:0 !important;
+    }
+
+
+    /* FINAL LOCK – Header/sidebar spacing and typography split
+       Do not edit typography inside the spacing block. */
+
+    /* FINAL LOCK A – Spacing only */
+    .sidebar{
+      padding:18px 14px !important;
+    }
+    .brand{
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      padding:10px !important;
+      margin:0 !important;
+      border-radius:14px !important;
+    }
+    .nav{
+      margin-top:12px !important;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:6px !important;
+    }
+    .nav-group,
+    .nav-customer,
+    .nav-helper{
+      display:flex !important;
+      flex-direction:column !important;
+      gap:6px !important;
+      margin:0 !important;
+      padding:0 !important;
+    }
+    .nav-title,
+    .nav-customer .nav-title,
+    .nav-helper .nav-title{
+      margin:18px 10px 6px !important;
+    }
+    .nav-title-secondary{
+      margin-top:18px !important;
+    }
+    .nav-customer > a,
+    .nav-helper > a,
+    .nav a{
+      padding:10px !important;
+      border-radius:14px !important;
+      display:flex !important;
+      align-items:center !important;
+      gap:10px !important;
+      min-height:0 !important;
+      margin:0 !important;
+    }
+    .nav-sub,
+    .nav-sub-customer{
+      margin:0 0 6px 14px !important;
+      border-left:1px solid var(--line) !important;
+      padding-left:8px !important;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:4px !important;
+    }
+    .nav-sub a,
+    .nav-sub-customer a{
+      padding:8px 10px !important;
+      border-radius:12px !important;
+      min-height:0 !important;
+      margin:0 !important;
+    }
+    .case-notes,
+    .flow-note.case-notes{
+      margin:18px 0 8px !important;
+      padding:12px 10px !important;
+      border-radius:16px !important;
+    }
+    .topbar{
+      display:flex !important;
+      gap:14px !important;
+      align-items:center !important;
+      justify-content:flex-end !important;
+      padding:14px 0 10px !important;
+      min-height:0 !important;
+      height:auto !important;
+      border-bottom:1px solid var(--line) !important;
+    }
+    .top-actions.user,
+    .user{
+      display:flex !important;
+      gap:10px !important;
+      align-items:center !important;
+    }
+    .top-actions.user .dot,
+    .user .dot,
+    .dot{
+      width:10px !important;
+      height:10px !important;
+      min-width:10px !important;
+      border-radius:99px !important;
+    }
+    .top-actions.user .pill,
+    .user .pill,
+    .pill{
+      display:inline-flex !important;
+      align-items:center !important;
+      gap:8px !important;
+      padding:6px 10px !important;
+      border-radius:999px !important;
+    }
+
+    /* FINAL LOCK B – Typography only (matched to the previous working version) */
+    .brand{
+      color:var(--ink) !important;
+      line-height:normal !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .brand .logo,
+    .logo{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      color:var(--brand-primary) !important;
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      letter-spacing:0 !important;
+      text-transform:none !important;
+    }
+    .brand-title{
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--ink) !important;
+      letter-spacing:0 !important;
+      margin:0 !important;
+    }
+    .brand-subtitle,
+    .brand .muted{
+      font-size:12px !important;
+      line-height:normal !important;
+      font-weight:400 !important;
+      color:var(--muted) !important;
+      letter-spacing:0 !important;
+      margin:0 !important;
+    }
+    .nav-title,
+    .nav-customer .nav-title,
+    .nav-helper .nav-title{
+      font-size:11px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--muted) !important;
+      text-transform:uppercase !important;
+      letter-spacing:.08em !important;
+    }
+    .nav-customer > a,
+    .nav-helper > a,
+    .nav a{
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--muted) !important;
+      letter-spacing:0 !important;
+      text-decoration:none !important;
+    }
+    .nav-customer > a.active,
+    .nav-helper > a.active,
+    .nav a.active{
+      color:var(--ink) !important;
+    }
+    .nav-sub a,
+    .nav-sub-customer a{
+      font-size:13px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--muted) !important;
+      letter-spacing:0 !important;
+      text-decoration:none !important;
+    }
+    .flow-note-title{
+      font-size:12px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      color:var(--muted) !important;
+      letter-spacing:.06em !important;
+      text-transform:uppercase !important;
+    }
+    .flow-note ul{
+      color:var(--muted) !important;
+      font-size:12px !important;
+      line-height:1.45 !important;
+      font-weight:400 !important;
+      letter-spacing:0 !important;
+    }
+    .top-actions.user,
+    .user{
+      color:var(--muted) !important;
+      font-size:16px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      letter-spacing:0 !important;
+    }
+    .top-actions.user .pill,
+    .user .pill,
+    .pill{
+      background:rgba(37,99,235,.08) !important;
+      border:1px solid rgba(37,99,235,.18) !important;
+      font-size:12px !important;
+      line-height:normal !important;
+      font-weight:1100 !important;
+      white-space:nowrap !important;
+      color:#1E3A8A !important;
+      letter-spacing:0 !important;
+    }
+
+    /* Final micro-adjustment: cp logo tile width only */
+    .sidebar .brand .logo{
+      width:38px !important;
+      min-width:38px !important;
+      max-width:38px !important;
+      height:40px !important;
+      flex:0 0 38px !important;
+      padding:0 !important;
+      box-sizing:border-box !important;
+    }
+
+
+    /* FINAL TILE LOCK – exact cp logo tile from portfolio reference */
+    .sidebar .brand .logo{
+      width:40px !important;
+      height:40px !important;
+      min-width:40px !important;
+      max-width:40px !important;
+      flex:0 0 40px !important;
+      padding:0 !important;
+      box-sizing:border-box !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+
+
+    /* FINAL CP TILE CORRECTION – match visual reference: narrow tile, same height */
+    .sidebar .brand .logo{
+      width:36px !important;
+      min-width:36px !important;
+      max-width:36px !important;
+      height:40px !important;
+      flex:0 0 36px !important;
+      padding:0 !important;
+      box-sizing:border-box !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+
+
+    /* FINAL HEADER TILE CONSISTENCY LOCK – keep cp tile fixed across portfolio mock-ups */
+    .sidebar .brand .logo{
+      width:40px !important;
+      min-width:40px !important;
+      max-width:40px !important;
+      height:40px !important;
+      flex:0 0 40px !important;
+      flex-shrink:0 !important;
+      padding:0 !important;
+      box-sizing:border-box !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+    .sidebar .brand > div:not(.logo){
+      min-width:0 !important;
+    }
+
+
+    /* Final cp tile consistency fix: narrow tile, locked against flexbox shrink/growth */
+    .brand .logo,
+    .logo{
+      width:36px !important;
+      min-width:36px !important;
+      max-width:36px !important;
+      height:40px !important;
+      flex:0 0 36px !important;
+      flex-shrink:0 !important;
+      flex-grow:0 !important;
+      padding:0 !important;
+      box-sizing:border-box !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+    }
+
+
+    /* TRUE FINAL CP TILE LOCK – dedicated id, no generic .logo cascade */
+    #commerceCpTile{
+      width:40px !important;
+      min-width:40px !important;
+      max-width:40px !important;
+      height:40px !important;
+      min-height:40px !important;
+      max-height:40px !important;
+      flex:0 0 40px !important;
+      flex-shrink:0 !important;
+      flex-grow:0 !important;
+      padding:0 !important;
+      margin:0 !important;
+      box-sizing:border-box !important;
+      border-radius:14px !important;
+      background:rgba(37,99,235,.12) !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      color:var(--brand-primary) !important;
+      font-size:16px !important;
+      font-weight:400 !important;
+      line-height:1 !important;
+      letter-spacing:0 !important;
+      text-transform:lowercase !important;
+    }
+
+
+    /* FINAL SINGLE-SELECTOR FIX: cp tile only */
+    #commerceCpTile{
+      width:40px !important;
+      min-width:40px !important;
+      max-width:40px !important;
+      height:40px !important;
+      min-height:40px !important;
+      max-height:40px !important;
+      flex:0 0 40px !important;
+      flex-shrink:0 !important;
+      flex-grow:0 !important;
+    }
+
+
+    /* FINAL SUBNAV ONLY – API Management reference match */
+    .nav-customer .nav-sub-customer{
+      margin:0 0 6px 14px !important;
+      border-left:1px solid var(--line) !important;
+      padding-left:8px !important;
+      display:flex !important;
+      flex-direction:column !important;
+      gap:4px !important;
+    }
+    .nav-customer .nav-sub-customer a{
+      padding:8px 10px !important;
+      font-size:13px !important;
+      border-radius:12px !important;
+      justify-content:flex-start !important;
+      margin:0 !important;
+      min-height:0 !important;
+    }
+    .nav-customer .nav-sub-customer a.active{
+      background:transparent !important;
+      color:var(--muted) !important;
+    }
+
   </style>
 </head>
 <body>
 <div class="app">
   <aside class="sidebar">
     <div class="brand">
-      <div class="logo">cp</div>
+      <div id="commerceCpTile" class="logo cp-tile-lock">cp</div>
       <div>
         <div class="brand-title">Customer Portal</div>
-        <div class="muted brand-subtitle">Prototype • Checkout</div>
+        <div class="muted brand-subtitle">Prototype • B2B SaaS Commerce</div>
       </div>
     </div>
 
     <div class="nav" id="nav">
-      <div class="nav-title">Commerce Area</div>
-      <a href="#" data-screen="start" class="active" onclick="show('start');return false;">Start</a>
-      <a href="#" data-screen="services" onclick="show('services');return false;">Products</a>
-      <div class="nav-sub">
-        <a href="#" data-screen="services" onclick="show('services');return false;">Open Cloud</a>
-        <a href="#" data-screen="services" onclick="show('services');return false;">Managed Kubernetes</a>
-        <a href="#" data-screen="services" onclick="show('services');return false;">Virtual Datacenter</a>
+      <div class="nav-group nav-customer">
+        <div class="nav-title">Public Area</div>
+        <a href="#" data-screen="start" class="active" onclick="show('start');return false;">Case Overview</a>
+        <a href="#" data-screen="services" onclick="show('services');return false;">Products</a>
+        <div class="nav-sub nav-sub-customer">
+          <a href="#" onclick="show('services');return false;">Open Cloud Service</a>
+          <a href="#" onclick="show('services');return false;">Managed Kubernetes</a>
+          <a href="#" onclick="show('services');return false;">Enterprise Cloud</a>
+        </div>
+        <a href="#" data-screen="faq" onclick="show('faq');return false;">FAQ</a>
       </div>
-      <a href="#" data-screen="faq" onclick="show('faq');return false;">FAQ</a>
 
-      <div class="nav-title">Checkout Flow</div>
-      <a href="#" data-screen="wizard" onclick="show('wizard');return false;">Configuration</a>
-      <a href="#" data-screen="summary" onclick="show('summary');return false;">Order Summary</a>
-      <a href="#" data-screen="account-data" onclick="show('account-data');return false;">Account &amp; Company Details</a>
-      <a href="#" data-screen="email-verify" onclick="show('email-verify');return false;">Email Verification</a>
-      <a href="#" data-screen="checkout" onclick="show('checkout');return false;">Checkout &amp; Payment</a>
-      <a href="#" data-screen="payment-auth" onclick="show('payment-auth');return false;">Payment Authentication</a>
-      <a href="#" data-screen="orderstatus" onclick="show('orderstatus');return false;">Order Status</a>
+      <div class="flow-note case-notes">
+        <div class="flow-note-title">Case Notes</div>
+        <div class="divider"></div>
+        <ul>
+          <li>Commerce-first pattern adapted for B2B SaaS</li>
+          <li>Account &amp; company validation before payment</li>
+          <li>Email verification before checkout</li>
+          <li>Order status after successful payment</li>
+        </ul>
+      </div>
 
-      <div class="nav-title">Exceptions</div>
-      <a href="#" data-screen="duplicate-blocked" onclick="show('duplicate-blocked');return false;">Duplicate Match</a>
-      <a href="#" data-screen="sanctions-technical-error" onclick="show('sanctions-technical-error');return false;">Technical Error</a>
-    </div>
+      <div class="nav-group nav-helper">
+        <div class="nav-title">Prototype Walkthrough</div>
+        <a href="#" data-screen="wizard" onclick="show('wizard');return false;">Configuration</a>
+        <a href="#" data-screen="summary" onclick="show('summary');return false;">Order Summary</a>
+        <a href="#" data-screen="account-data" onclick="show('account-data');return false;">Account &amp; Company Details</a>
+        <a href="#" data-screen="email-verify" onclick="show('email-verify');return false;">Email Verification</a>
+        <a href="#" data-screen="checkout" onclick="show('checkout');return false;">Checkout &amp; Payment</a>
+        <a href="#" data-screen="payment-auth" onclick="show('payment-auth');return false;">Payment Authentication</a>
+        <a href="#" data-screen="orderstatus" onclick="show('orderstatus');return false;">Order Status</a>
 
-    <div class="flow-note">
-      <div class="muted" style="font-size:12px;font-weight:1100;letter-spacing:.06em;text-transform:uppercase">Checkout Notes</div>
-      <ul>
-        <li>Guest users can start product configuration before sign-in.</li>
-        <li>Account, company and email verification happen before payment.</li>
-        <li>Order status becomes available after checkout completion.</li>
-      </ul>
+        <div class="nav-title nav-title-secondary">Exception States</div>
+        <a href="#" data-screen="duplicate-blocked" onclick="show('duplicate-blocked');return false;">Duplicate Match</a>
+        <a href="#" data-screen="sanctions-technical-error" onclick="show('sanctions-technical-error');return false;">Technical Error</a>
+      </div>
     </div>
   </aside>
 
   <main class="main">
     <header class="topbar">
-      <div class="topbar-left">
-        <button class="prototype-info-link" type="button" onclick="show('about-prototype')">
-          <span class="prototype-info-dot">i</span>
-          <span>About this prototype</span>
-        </button>
-        <span id="breadcrumb" style="display:none"></span>
-      </div>
       <div class="user">
         <span class="dot"></span>
         <span>guest</span>
@@ -1955,169 +3466,64 @@
 
     <div class="content">
       <section id="start" class="screen">
-        <div class="hero">
-          <div>
-            <div class="eyebrow">Customer Portal</div>
-            <h1>Cloud services for your business workloads</h1>
-            <p>Explore cloud products, configure a service as a guest and complete the order with account setup, company details, email verification, payment and transparent order status.</p>
-            <div class="button-row">
+        <div class="hero-split">
+          <div class="hero-panel">
+            <div class="eyebrow">Case Overview</div>
+            <h1>B2B SaaS commerce-first ordering flow</h1>
+            <p class="case-lead">This portfolio case shows how a familiar commerce checkout pattern can be translated into a B2B SaaS ordering workflow with account setup, company validation, email verification, contract acceptance, payment authentication and order status transparency.</p>
+            <div class="button-row" style="margin-top:22px">
               <button class="btn primary" onclick="show('services')">Explore Products</button>
               <button class="btn secondary" onclick="show('wizard')">Start Demo Order</button>
             </div>
           </div>
-          <div class="hero-logo">
-            <div class="cloudhub-word">Customer Portal</div>
-            <p>Guest mode lets new customers start an order before the customer area is available.</p>
-          </div>
-        </div>
 
-        <div class="section page-intro">
-          <div>
-            <h2>Products</h2>
-            <p>Select a cloud service and continue into the order configuration. The customer area is unlocked after account setup and successful order completion.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="card product-card">
+          <div class="hero-side">
             <div>
-              <div class="product-icon">☁</div>
-              <h3>Open Cloud</h3>
-              <p>Flexible open-source cloud infrastructure for modern workloads.</p>
+              <div class="eyebrow">Design Focus</div>
+              <div class="mini-metric"><span>Guest mode</span><strong>Public discovery</strong></div>
+              <div class="mini-metric"><span>B2B checkout</span><strong>Account &amp; company first</strong></div>
+              <div class="mini-metric"><span>Email verification</span><strong>Before checkout</strong></div>
+              <div class="mini-metric"><span>Status transparency</span><strong>After payment</strong></div>
             </div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-          <div class="card product-card">
-            <div>
-              <div class="product-icon">K</div>
-              <h3>Managed Kubernetes</h3>
-              <p>Managed Kubernetes for containerized applications.</p>
-            </div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-          <div class="card product-card">
-            <div>
-              <div class="product-icon">◎</div>
-              <h3>Virtual Datacenter</h3>
-              <p>Enterprise cloud environment based on virtual infrastructure.</p>
-            </div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-        </div>
-
-        <div class="section card flat">
-          <h2>How ordering works</h2>
-          <div class="grid-4" style="margin-top:14px">
-            <div>
-              <strong>1. Configure</strong>
-              <p>Choose product options before creating a customer account.</p>
-            </div>
-            <div>
-              <strong>2. Register &amp; verify</strong>
-              <p>Enter account and company details and verify the email address.</p>
-            </div>
-            <div>
-              <strong>3. Pay securely</strong>
-              <p>Accept contract documents and complete payment authentication.</p>
-            </div>
-            <div>
-              <strong>4. Track status</strong>
-              <p>Follow provisioning after the order has been completed.</p>
+            <div class="hint compact-hint">
+              <strong>Portfolio framing:</strong> This unbranded mock-up focuses on interaction logic, validation states and customer journey structure. Detailed case study notes can live outside the prototype.
             </div>
           </div>
         </div>
 
-        <div class="section card flat">
-          <h2>More Services</h2>
-          <div class="grid-4">
-            <div><strong>Backup</strong><p>Data protection for cloud services.</p></div>
-            <div><strong>Object Storage</strong><p>Scalable storage.</p></div>
-            <div><strong>Managed Firewall</strong><p>Infrastructure security.</p></div>
-            <div><strong>Monitoring</strong><p>Service visibility.</p></div>
+        <section class="card section portfolio-card">
+          <div class="cardhead">
+            <h2>Public customer journey</h2>
           </div>
-        </div>
-
-        <div class="section info-banner">
-          <div class="info-dot">i</div>
-          <p><strong>Prototype context:</strong> This screen is the customer-facing start page. Portfolio notes and walkthrough guidance are available separately via “About this prototype”.</p>
-        </div>
-      </section>
-
-
-      <section id="about-prototype" class="screen">
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Portfolio Case</div>
-            <h1>About this prototype</h1>
-            <p>This separate case page explains the product thinking behind the unbranded Commerce Checkout prototype. It is not part of the customer-facing portal navigation.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Design Focus</h2>
-          <div class="grid-4" style="margin-top:14px">
-            <div>
-              <strong>Guest Mode</strong>
-              <p>Public discovery and product configuration before sign-in.</p>
-            </div>
-            <div>
-              <strong>B2B Checkout</strong>
-              <p>Account and company details are collected before payment.</p>
-            </div>
-            <div>
-              <strong>Validation</strong>
-              <p>Duplicate and sanctions pre-checks protect the flow before checkout.</p>
-            </div>
-            <div>
-              <strong>Status Transparency</strong>
-              <p>Email verification, payment authentication and order status are visible states.</p>
+          <div class="cardbody">
+            <div class="journey-grid">
+              <div class="box">
+                <h3>1. Discover</h3>
+                <p>Public product cards and FAQ explain what can be ordered before login.</p>
+              </div>
+              <div class="box">
+                <h3>2. Configure</h3>
+                <p>The technical wizard collects product options before account setup.</p>
+              </div>
+              <div class="box">
+                <h3>3. Register &amp; verify</h3>
+                <p>Account, company and billing data are captured and the email address is verified before checkout.</p>
+              </div>
+              <div class="box">
+                <h3>4. Checkout &amp; track</h3>
+                <p>Contract acceptance, payment authentication and order status form one coherent completion flow.</p>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="section card">
-          <h2>Prototype navigation note</h2>
-          <div class="stepper" style="margin-top:14px">
-            <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-            <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-            <div class="step active" onclick="show('account-data')" role="button" tabindex="0">3 Account &amp; Company Details</div>
-            <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout &amp; Payment</div>
-            <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-          </div>
-          <div class="dev-note" style="margin-top:12px">
-            <strong>Prototype Note – Clickable Stepper:</strong>
-            All steps are clickable in this portfolio prototype to support quick review and walkthroughs. In production, only completed, current and previous steps should be freely accessible. Future steps require business prerequisites: email verification only after account pre-check, payment authentication only after final checkout submission, and order status only after successful completion.
-          </div>
-        </div>
-
-        <div class="section card">
-          <h2>Product framing</h2>
-          <div class="review-table" style="margin-top:14px">
-            <div class="review-row">
-              <div class="review-label">Goal</div>
-              <div class="review-value">Translate a familiar commerce checkout pattern into a B2B SaaS ordering workflow.</div>
-              <span></span>
-            </div>
-            <div class="review-row">
-              <div class="review-label">Signals</div>
-              <div class="review-value">New customers can configure a product, complete account setup, verify email, accept contracts, authenticate payment and understand order status without manual handover.</div>
-              <span></span>
-            </div>
-            <div class="review-row">
-              <div class="review-label">Potential metrics</div>
-              <div class="review-value">Checkout completion rate, validation error rate, duplicate-handling rate, payment authentication success, time to order status visibility.</div>
-              <span></span>
-            </div>
-          </div>
-        </div>
+        </section>
       </section>
 
 
       <section id="services" class="screen">
         <div class="page-intro">
           <div>
-            <div class="eyebrow">Cloud Services</div>
-            <h1>Select a Cloud Service</h1>
+            <div class="eyebrow">Products</div>
+            <h1>Select a Product</h1>
             <p>Entry point from the customer portal or directly from an optimized website product page.</p>
           </div>
         </div>
@@ -2132,7 +3538,7 @@
             <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
           </div>
           <div class="card product-card">
-            <div><div class="product-icon">◎</div><h3>Virtual Datacenter</h3><p>Enterprise cloud environment based on virtual infrastructure.</p></div>
+            <div><div class="product-icon">◎</div><h3>Enterprise Cloud</h3><p>Enterprise cloud environment based on virtual infrastructure.</p></div>
             <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
           </div>
         </div>
@@ -2154,7 +3560,7 @@
             <div class="review-table">
               <div class="review-row">
                 <div class="review-label">Do I need an account before ordering?</div>
-                <div class="review-value">No. You can complete the checkout as a guest and activate your account later by email.</div>
+                <div class="review-value">No. You can start as a guest. Account and company details are collected before payment, and the email address is verified before checkout.</div>
                 <span></span>
               </div>
               <div class="review-row">
@@ -3475,8 +4881,7 @@
 
 <script>
 const labels = {
-  "start": "Start",
-  "about-prototype": "About this prototype",
+  "start": "Case Overview",
   "services": "Products",
   "faq": "FAQ",
   "wizard": "Order Wizard",

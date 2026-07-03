@@ -15,13 +15,16 @@ The focus is not visual design alone, but product thinking:
 
 ## Structure
 
-The mockups are organized into two stages:
+The mockups are organized into three stages:
 
 - **Unbranded**  
   Focus on product logic, structure, and feature flows without visual design constraints.
 
 - **Design System**  
   The same features translated into a consistent design system, including layout, interaction patterns, and visual identity.
+
+- **Product Vision**  
+  Exploration of future enhancements for customer self-service, personalization, product lifecycle visibility, account governance and cross-product portal experiences.
 
 ## Current Features
 

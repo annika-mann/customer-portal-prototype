@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Customer Portal – B2B SaaS Commerce-First Flow – Portfolio Mock-up</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Portal – B2B SaaS Commerce-First Flow – Portfolio Mock-up</title>
+<style>
     :root{
       --ps-blue:#2563EB;
       --ps-blue-dark:#1D4ED8;
@@ -581,57 +582,57 @@
       margin-top:20px;
       align-items:start;
     }
-    .keycloak-shell{
+    .identity-provider-shell{
       max-width:560px;
       margin:0 auto;
       text-align:center;
     }
-    .keycloak-logo{
+    .identity-provider-logo{
       color:var(--ps-blue);
       font-size:42px;
       line-height:1;
       font-weight:700;
       margin-bottom:34px;
     }
-    .keycloak-sub{
+    .identity-provider-sub{
       color:var(--text);
       font-size:26px;
       letter-spacing:.08em;
       margin-bottom:28px;
     }
-    .keycloak-card{
+    .identity-provider-card{
       background:#EAF6FE;
       border-top:6px solid var(--ps-blue);
       padding:28px 42px;
       text-align:left;
       box-shadow:var(--shadow);
     }
-    .keycloak-title{
+    .identity-provider-title{
       text-align:center;
       font-size:26px;
       margin:10px 0 28px;
       font-weight:400;
     }
-    .keycloak-lang{
+    .identity-provider-lang{
       display:flex;
       justify-content:flex-end;
       margin-bottom:8px;
     }
-    .keycloak-lang select{
+    .identity-provider-lang select{
       max-width:150px;
       background:#fff;
     }
-    .keycloak-card label{
+    .identity-provider-card label{
       margin-top:14px;
       font-weight:400;
     }
-    .keycloak-card input,
-    .keycloak-card select{
+    .identity-provider-card input,
+    .identity-provider-card select{
       border-radius:0;
       border:1px solid #D1D5DB;
       background:#fff;
     }
-    .keycloak-button{
+    .identity-provider-button{
       width:100%;
       margin-top:20px;
       height:42px;
@@ -747,7 +748,7 @@
       padding:22px;
       text-align:left;
     }
-    .cloudhub-word{
+    .portal-word{
       font-size:30px;
       font-weight:700;
       color:var(--ps-blue);
@@ -1001,20 +1002,20 @@
       flex:0 0 auto;
       font-size:13px;
     }
-    .mollie-inline-errors{
+    .payment-provider-inline-errors{
       display:none;
       margin-top:14px;
     }
-    .mollie-inline-errors.show{
+    .payment-provider-inline-errors.show{
       display:flex;
     }
-    .mollie-error-detail{
+    .payment-provider-error-detail{
       display:none;
     }
-    .payment-method.mollie-errors-active .mollie-error-detail{
+    .payment-method.payment-provider-errors-active .payment-provider-error-detail{
       display:block;
     }
-    .payment-method.mollie-errors-active input[data-mollie-error-field]{
+    .payment-method.payment-provider-errors-active input[data-payment-provider-error-field]{
       border-color:var(--red);
       background:#FFF7F5;
     }
@@ -1245,18 +1246,18 @@
 
     /* QA fix: validation states are hidden by default and only shown by simulation/error state */
     .email-validation-errors,
-    .mollie-inline-errors{
+    .payment-provider-inline-errors{
       display:none !important;
     }
     .email-validation-errors.show,
-    .mollie-inline-errors.show{
+    .payment-provider-inline-errors.show{
       display:flex !important;
     }
     .field-error-text{
       display:none;
     }
     .field-error-text.show,
-    .payment-method.mollie-errors-active .mollie-error-detail{
+    .payment-method.payment-provider-errors-active .payment-provider-error-detail{
       display:block;
     }
     .nav-item > span{
@@ -1492,7 +1493,7 @@
       border-radius:20px;
       padding:20px;
     }
-    .cloudhub-word{
+    .portal-word{
       font-size:26px;
       color:var(--brand-primary);
       font-weight:800;
@@ -3401,1499 +3402,1133 @@
       color:var(--muted) !important;
     }
 
+  
+    /* One Page Checkout flow update */
+    .prototype-controls p{margin-top:6px;font-size:13px;line-height:1.45;color:var(--muted)}
+    .checkout-main .checkout-card + .checkout-card{margin-top:18px}
+
+
+    /* V02 form polish: unified dropdown arrows and optional label alignment */
+    select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background-color:#fff;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-position:right 12px center;
+      background-size:14px 14px;
+      padding-right:38px;
+    }
+    select::-ms-expand{display:none}
+    .flag-select-toggle{
+      min-height:42px;
+      padding-right:12px;
+    }
+    .flag-caret{
+      width:14px;
+      height:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:0;
+      margin-left:auto;
+      flex:0 0 14px;
+      position:relative;
+    }
+    .flag-caret::before{
+      content:"";
+      width:7px;
+      height:7px;
+      border-right:2px solid #64748B;
+      border-bottom:2px solid #64748B;
+      transform:rotate(45deg) translateY(-2px);
+      display:block;
+    }
+    .field-label-inline{
+      display:inline-flex;
+      align-items:baseline;
+      gap:5px;
+      white-space:nowrap;
+    }
+    .label-optional{
+      font-size:10px;
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:0;
+      text-transform:none;
+    }
+    .status-pill.amber{background:var(--amber-bg);color:var(--amber);border-color:#F6D48A}
+    .verification-actions{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .table-action{
+      margin-top:8px;
+      min-height:32px;
+      padding:6px 10px;
+      font-size:12px;
+    }
+    .table td .table-action{
+      white-space:nowrap;
+    }
+
+    /* Lucide icon normalization */
+    .edit-text-link svg,
+    .eye-box svg{
+      width:18px;
+      height:18px;
+      flex:0 0 auto;
+      fill:none;
+      stroke:currentColor;
+      display:block;
+    }
+    .edit-text-link svg{
+      width:16px;
+      height:16px;
+    }
+    .eye-box{
+      padding:0;
+      line-height:1;
+    }
+
+
+    /* Eye icon spacing polish */
+    .password-wrap{
+      grid-template-columns:1fr 42px;
+      gap:6px;
+      align-items:stretch;
+    }
+    .password-wrap input{
+      border-right:1px solid var(--line);
+      border-radius:14px;
+    }
+    .eye-box{
+      width:42px;
+      min-width:42px;
+      min-height:42px;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .eye-box:hover{
+      border-color:#CBD5E1;
+      background:#F8FAFC;
+    }
+
   </style>
 </head>
 <body>
 <div class="app">
-  <aside class="sidebar">
-    <div class="brand">
-      <div id="commerceCpTile" class="logo cp-tile-lock">cp</div>
-      <div>
-        <div class="brand-title">Customer Portal</div>
-        <div class="muted brand-subtitle">Prototype • B2B SaaS Commerce</div>
-      </div>
-    </div>
+<aside class="sidebar">
+<div class="brand">
+<div class="logo cp-tile-lock" id="commerceCpTile">cp</div>
+<div>
+<div class="brand-title">Customer Portal</div>
+<div class="muted brand-subtitle">Prototype • B2B SaaS Commerce</div>
+</div>
+</div>
+<div class="nav" id="nav">
+<div class="nav-group nav-customer">
+<div class="nav-title">Public Area</div>
+<a class="active" data-screen="start" href="#" onclick="show('start');return false;">Case Overview</a>
+<a data-screen="services" href="#" onclick="show('services');return false;">Products</a>
+<div class="nav-sub nav-sub-customer">
+<a href="#" onclick="show('services');return false;">Open Cloud Service</a>
+<a href="#" onclick="show('services');return false;">Managed Kubernetes</a>
+<a href="#" onclick="show('services');return false;">Enterprise Cloud</a>
+</div>
+<a data-screen="faq" href="#" onclick="show('faq');return false;">FAQ</a>
+</div>
+<div class="flow-note case-notes">
+<div class="flow-note-title">Case Notes</div>
+<div class="divider"></div>
+<ul><li>Commerce-first pattern adapted for B2B SaaS</li><li>Order Review keeps contract documents visible before the final checkout submit</li><li>Account, company and payment details are captured in one checkout</li><li>Email verification is sent after successful checkout</li></ul>
+</div>
+<div class="nav-group nav-helper">
+<div class="nav-title">Prototype Walkthrough</div>
+<a data-screen="wizard" href="#" onclick="show('wizard');return false;">Configuration</a>
+<a data-screen="summary" href="#" onclick="show('summary');return false;">Order Review</a>
 
-    <div class="nav" id="nav">
-      <div class="nav-group nav-customer">
-        <div class="nav-title">Public Area</div>
-        <a href="#" data-screen="start" class="active" onclick="show('start');return false;">Case Overview</a>
-        <a href="#" data-screen="services" onclick="show('services');return false;">Products</a>
-        <div class="nav-sub nav-sub-customer">
-          <a href="#" onclick="show('services');return false;">Open Cloud Service</a>
-          <a href="#" onclick="show('services');return false;">Managed Kubernetes</a>
-          <a href="#" onclick="show('services');return false;">Enterprise Cloud</a>
-        </div>
-        <a href="#" data-screen="faq" onclick="show('faq');return false;">FAQ</a>
-      </div>
 
-      <div class="flow-note case-notes">
-        <div class="flow-note-title">Case Notes</div>
-        <div class="divider"></div>
-        <ul>
-          <li>Commerce-first pattern adapted for B2B SaaS</li>
-          <li>Account &amp; company validation before payment</li>
-          <li>Email verification before checkout</li>
-          <li>Order status after successful payment</li>
-        </ul>
-      </div>
-
-      <div class="nav-group nav-helper">
-        <div class="nav-title">Prototype Walkthrough</div>
-        <a href="#" data-screen="wizard" onclick="show('wizard');return false;">Configuration</a>
-        <a href="#" data-screen="summary" onclick="show('summary');return false;">Order Summary</a>
-        <a href="#" data-screen="account-data" onclick="show('account-data');return false;">Account &amp; Company Details</a>
-        <a href="#" data-screen="email-verify" onclick="show('email-verify');return false;">Email Verification</a>
-        <a href="#" data-screen="checkout" onclick="show('checkout');return false;">Checkout &amp; Payment</a>
-        <a href="#" data-screen="payment-auth" onclick="show('payment-auth');return false;">Payment Authentication</a>
-        <a href="#" data-screen="orderstatus" onclick="show('orderstatus');return false;">Order Status</a>
-
-        <div class="nav-title nav-title-secondary">Exception States</div>
-        <a href="#" data-screen="duplicate-blocked" onclick="show('duplicate-blocked');return false;">Duplicate Match</a>
-        <a href="#" data-screen="sanctions-technical-error" onclick="show('sanctions-technical-error');return false;">Technical Error</a>
-      </div>
-    </div>
-  </aside>
-
-  <main class="main">
-    <header class="topbar">
-      <div class="user">
-        <span class="dot"></span>
-        <span>guest</span>
-        <span class="pill">guest-mode</span>
-      </div>
-    </header>
-
-    <div class="content">
-      <section id="start" class="screen">
-        <div class="hero-split">
-          <div class="hero-panel">
-            <div class="eyebrow">Case Overview</div>
-            <h1>B2B SaaS commerce-first ordering flow</h1>
-            <p class="case-lead">This portfolio case shows how a familiar commerce checkout pattern can be translated into a B2B SaaS ordering workflow with account setup, company validation, email verification, contract acceptance, payment authentication and order status transparency.</p>
-            <div class="button-row" style="margin-top:22px">
-              <button class="btn primary" onclick="show('services')">Explore Products</button>
-              <button class="btn secondary" onclick="show('wizard')">Start Demo Order</button>
+<a data-screen="checkout" href="#" onclick="show('checkout');return false;">Checkout</a>
+<a data-screen="payment-auth" href="#" onclick="show('payment-auth');return false;">Payment Authentication</a>
+<a data-screen="orderstatus" href="#" onclick="show('orderstatus');return false;">Order Overview</a>
+<div class="nav-title nav-title-secondary">Exception States</div>
+<a data-screen="duplicate-blocked" href="#" onclick="show('duplicate-blocked');return false;">Duplicate Match</a>
+<a data-screen="sanctions-technical-error" href="#" onclick="show('sanctions-technical-error');return false;">Technical Error</a>
+</div>
+</div>
+</aside>
+<main class="main">
+<header class="topbar">
+<div class="user">
+<span class="dot"></span>
+<span>guest</span>
+<span class="pill">guest-mode</span>
+</div>
+</header>
+<div class="content">
+<section class="screen" id="start">
+<div class="hero-split">
+<div class="hero-panel">
+<div class="eyebrow">Case Overview</div>
+<h1>B2B SaaS commerce-first ordering flow</h1>
+<p class="case-lead">This portfolio case shows how a familiar commerce checkout pattern can be translated into a B2B SaaS ordering workflow with account setup, company validation, email verification, contract acceptance, payment authentication and order status transparency.</p>
+<div class="button-row" style="margin-top:22px">
+<button class="btn primary" onclick="show('services')">Explore Products</button>
+<button class="btn secondary" onclick="show('wizard')">Start Demo Order</button>
+</div>
+</div>
+<div class="hero-side">
+<div>
+<div class="eyebrow">Design Focus</div>
+<div class="mini-metric"><span>Guest mode</span><strong>Public discovery</strong></div>
+<div class="mini-metric"><span>B2B checkout</span><strong>Account &amp; company first</strong></div>
+<div class="mini-metric"><span>Account activation</span><strong>Post-checkout</strong></div>
+<div class="mini-metric"><span>Status transparency</span><strong>After payment</strong></div>
+</div>
+<div class="hint compact-hint">
+<strong>Portfolio framing:</strong> This unbranded mock-up focuses on interaction logic, validation states and customer journey structure. Detailed case study notes can live outside the prototype.
             </div>
-          </div>
-
-          <div class="hero-side">
-            <div>
-              <div class="eyebrow">Design Focus</div>
-              <div class="mini-metric"><span>Guest mode</span><strong>Public discovery</strong></div>
-              <div class="mini-metric"><span>B2B checkout</span><strong>Account &amp; company first</strong></div>
-              <div class="mini-metric"><span>Email verification</span><strong>Before checkout</strong></div>
-              <div class="mini-metric"><span>Status transparency</span><strong>After payment</strong></div>
-            </div>
-            <div class="hint compact-hint">
-              <strong>Portfolio framing:</strong> This unbranded mock-up focuses on interaction logic, validation states and customer journey structure. Detailed case study notes can live outside the prototype.
-            </div>
-          </div>
-        </div>
-
-        <section class="card section portfolio-card">
-          <div class="cardhead">
-            <h2>Public customer journey</h2>
-          </div>
-          <div class="cardbody">
-            <div class="journey-grid">
-              <div class="box">
-                <h3>1. Discover</h3>
-                <p>Public product cards and FAQ explain what can be ordered before login.</p>
-              </div>
-              <div class="box">
-                <h3>2. Configure</h3>
-                <p>The technical wizard collects product options before account setup.</p>
-              </div>
-              <div class="box">
-                <h3>3. Register &amp; verify</h3>
-                <p>Account, company and billing data are captured and the email address is verified before checkout.</p>
-              </div>
-              <div class="box">
-                <h3>4. Checkout &amp; track</h3>
-                <p>Contract acceptance, payment authentication and order status form one coherent completion flow.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </section>
-
-
-      <section id="services" class="screen">
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Products</div>
-            <h1>Select a Product</h1>
-            <p>Entry point from the customer portal or directly from an optimized website product page.</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <div class="card product-card">
-            <div><div class="product-icon">☁</div><h3>Open Cloud</h3><p>Configure open-source cloud infrastructure directly online.</p></div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-          <div class="card product-card">
-            <div><div class="product-icon">K</div><h3>Managed Kubernetes</h3><p>Managed Kubernetes for containerized applications.</p></div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-          <div class="card product-card">
-            <div><div class="product-icon">◎</div><h3>Enterprise Cloud</h3><p>Enterprise cloud environment based on virtual infrastructure.</p></div>
-            <div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="faq" class="screen">
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">FAQ</div>
-            <h1>Frequently Asked Questions</h1>
-            <p>Public help for guest mode before sign-in, registration, and ordering.</p>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Ordering & Registration</h2>
-          <div class="section">
-            <div class="review-table">
-              <div class="review-row">
-                <div class="review-label">Do I need an account before ordering?</div>
-                <div class="review-value">No. You can start as a guest. Account and company details are collected before payment, and the email address is verified before checkout.</div>
-                <span></span>
-              </div>
-              <div class="review-row">
-                <div class="review-label">When does payment start?</div>
-                <div class="review-value">Only after the company and billing details have passed validation, including sanctions screening.</div>
-                <span></span>
-              </div>
-              <div class="review-row">
-                <div class="review-label">Where can I see the provisioning status?</div>
-                <div class="review-value">After registration and successful checkout in the order status area of the product dashboard.</div>
-                <span></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="wizard" class="screen">
-        <div class="stepper">
-          <div class="step active" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Order Wizard</div>
-            <h1>Configure Managed Kubernetes</h1>
-            <p>The technical wizard remains before checkout. A project contract ID or billing profile is not requested in the new-customer flow.</p>
-          </div>
-        </div>
-
-        <div class="info-banner">
-          <div class="info-dot">i</div>
-          <p><strong>Guest Flow:</strong> The user configures the product without signing in. Purchase-relevant data is collected together in the checkout.</p>
-        </div>
-
-        <div class="card">
-          <h2>Configuration</h2>
-          <div class="form-grid">
-            <label>Region
-              <select><option>DE-WEST-1 · Cologne</option><option>DE-NORTH-2 · Hamburg</option></select>
-            </label>
-            <label>Service Package
+</div>
+</div>
+<section class="card section portfolio-card">
+<div class="cardhead">
+<h2>Public customer journey</h2>
+</div>
+<div class="cardbody">
+<div class="journey-grid">
+<div class="box">
+<h3>1. Discover</h3>
+<p>Public product cards and FAQ explain what can be ordered before login.</p>
+</div>
+<div class="box">
+<h3>2. Configure</h3>
+<p>The technical wizard collects product options before account setup.</p>
+</div>
+<div class="box">
+<h3>3. Complete checkout</h3>
+<p>Account, company, billing and payment details are captured in one checkout; email verification follows after successful order submission.</p>
+</div>
+<div class="box">
+<h3>4. Checkout &amp; track</h3>
+<p>Contract acceptance, payment authentication and order status form one coherent completion flow.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="screen" id="services">
+<div class="page-intro">
+<div>
+<div class="eyebrow">Products</div>
+<h1>Select a Product</h1>
+<p>Entry point from the customer portal or directly from an optimized website product page.</p>
+</div>
+</div>
+<div class="grid-3">
+<div class="card product-card">
+<div><div class="product-icon">☁</div><h3>Open Cloud</h3><p>Configure open-source cloud infrastructure directly online.</p></div>
+<div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
+</div>
+<div class="card product-card">
+<div><div class="product-icon">K</div><h3>Managed Kubernetes</h3><p>Managed Kubernetes for containerized applications.</p></div>
+<div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
+</div>
+<div class="card product-card">
+<div><div class="product-icon">◎</div><h3>Enterprise Cloud</h3><p>Enterprise cloud environment based on virtual infrastructure.</p></div>
+<div class="button-row"><button class="btn primary" onclick="show('wizard')">Configure</button></div>
+</div>
+</div>
+</section>
+<section class="screen" id="faq">
+<div class="page-intro">
+<div>
+<div class="eyebrow">FAQ</div>
+<h1>Frequently Asked Questions</h1>
+<p>Public help for guest mode before sign-in, checkout, and account activation.</p>
+</div>
+</div>
+<div class="card">
+<h2>Ordering &amp; Account Activation</h2>
+<div class="section">
+<div class="review-table">
+<div class="review-row">
+<div class="review-label">Do I need an account before ordering?</div>
+<div class="review-value">No. You can start as a guest. Account, company, billing and payment details are collected in checkout; email verification follows after successful order submission.</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">When does payment start?</div>
+<div class="review-value">Only after the company and billing details have passed validation, including sanctions screening.</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Where can I see the provisioning status?</div>
+<div class="review-value">After successful checkout, the order overview shows the current order and activation status.</div>
+<span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="screen" id="wizard">
+<div class="stepper"><div class="step active" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
+<div class="dev-note stepper-note"><strong>Dev Note – Clickable Flow:</strong> In the mock-up, all flow steps are clickable to make review and alignment faster. The target flow is Order Wizard → Order Review → Checkout → Order Success → Order Overview. Email verification is sent after successful checkout and is no longer a separate pre-payment step.</div>
+<div class="page-intro">
+<div>
+<div class="eyebrow">Order Wizard</div>
+<h1>Configure Managed Kubernetes</h1>
+<p>The technical wizard remains before checkout. A project contract ID or billing profile is not requested in the new-customer flow.</p>
+</div>
+</div>
+<div class="info-banner">
+<div class="info-dot">i</div>
+<p><strong>Guest Flow:</strong> The user configures the product without signing in. Purchase-relevant data is collected together in the checkout.</p>
+</div>
+<div class="card">
+<h2>Configuration</h2>
+<div class="form-grid">
+<label>Region
+              <select><option>Region A</option><option>Region B</option></select>
+</label>
+<label>Service Package
               <select><option>Standard</option><option>Performance</option></select>
-            </label>
-            <label>Environment Name
+</label>
+<label>Environment Name
               <input value="Production Environment"/>
-            </label>
-            <label>Network Range
+</label>
+<label>Network Range
               <input value="10.0.0.0/24"/>
-            </label>
-          </div>
-        </div>
+</label>
+</div>
+</div>
+<div class="footer-nav">
+<button class="btn" onclick="show('services')">Back</button>
+<button class="btn primary" onclick="show('summary')">Continue to Order Review</button>
+</div>
+</section>
+<section class="screen" id="summary">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step active" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
 
-        <div class="footer-nav">
-          <button class="btn" onclick="show('services')">Back</button>
-          <button class="btn primary" onclick="show('summary')">Continue to Order Summary</button>
-        </div>
-      </section>
-
-
-      <section id="summary" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step active" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Order Summary</div>
-            <h1>Review Order</h1>
-            <p>The technical configuration is summarized before checkout. After that come account creation, company details, payment, and final acceptance.</p>
-          </div>
-        </div>
-
-        <div class="checkout-shell">
-          <div class="checkout-main">
-            <div class="checkout-card">
-              <div class="checkout-card-title">
-                <div>
-                  <h2>Order Summary</h2>
-                  <p>Configuration and purchase-relevant information are reviewed directly in the checkout before the order is submitted with payment obligation.</p>
-                </div>
-                <button class="edit-text-link" onclick="show('wizard')" type="button">
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25Zm2.92 2.33H4.5v-1.42l9.56-9.56 1.42 1.42-9.56 9.56ZM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/>
-                  </svg>
-                  <span>Edit order</span>
-                </button>
-              </div>
-
-              <div class="review-table">
-                <div class="review-row">
-                  <div class="review-label">Product</div>
-                  <div class="review-value">Managed Kubernetes</div>
-                  <span></span>
-                </div>
-                <div class="review-row">
-                  <div class="review-label">Infrastructure</div>
-                  <div class="review-value">Open Cloud</div>
-                  <span></span>
-                </div>
-                <div class="review-row">
-                  <div class="review-label">Region</div>
-                  <div class="review-value">DE-WEST-1 · Cologne</div>
-                  <span></span>
-                </div>
-                <div class="review-row">
-                  <div class="review-label">Onboarding Workshop</div>
-                  <div class="review-value">No</div>
-                  <span></span>
-                </div>
-                <div class="review-row">
-                  <div class="review-label">Workload Protection</div>
-                  <div class="review-value">No</div>
-                  <span></span>
-                </div>
-                <div class="review-row">
-                  <div class="review-label">Pricing</div>
-                  <div class="review-value">Usage-based, see pricing details</div>
-                  <span></span>
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="checkout-card">
-              <div class="checkout-card-title">
-                <div>
-                  <h2>Relevant Contract Documents</h2>
-                  <p>These documents result from the product and configuration. Final acceptance happens in the checkout.</p>
-                </div>
-              </div>
-
-              <div class="contract-list">
-                <a class="contract-link" href="#" onclick="return false;">Service Description – Managed Kubernetes <span class="contract-version">v1.2</span></a>
-                <a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Managed Hosting <span class="contract-version">v4.1.1</span></a>
-                <a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Cloud Services <span class="contract-version">v4.1.1</span></a>
-                <a class="contract-link" href="#" onclick="return false;">Web Portal Terms <span class="contract-version">v1.1.1</span></a>
-                <a class="contract-link" href="#" onclick="return false;">Service Level Agreements <span class="contract-version">v2.6.1</span></a>
-                <a class="contract-link" href="#" onclick="return false;">Data Processing Agreement <span class="contract-version">v1.9.5</span></a>
-                <a class="contract-link" href="#" onclick="return false;">General Terms and Conditions <span class="contract-version">v3.1.2</span></a>
-              </div>
-
-              <div class="dev-note">
-                <strong>Dev Note – Contract Preview:</strong>
+<div class="page-intro">
+<div>
+<div class="eyebrow">Order Review</div>
+<h1>Review Order</h1>
+<p>The technical configuration is summarized before checkout. The checkout then collects account, company, billing, payment and final acceptance details in one step.</p>
+</div>
+</div>
+<div class="checkout-shell">
+<div class="checkout-main">
+<div class="checkout-card">
+<div class="checkout-card-title">
+<div>
+<h2>Order Review</h2>
+<p>Configuration and purchase-relevant information are reviewed before the final checkout step.</p>
+</div>
+<button class="edit-text-link" onclick="show('wizard')" type="button">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 20h9"></path>
+<path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"></path>
+<path d="m15 5 3 3"></path>
+</svg>
+<span>Edit order</span>
+</button>
+</div>
+<div class="review-table">
+<div class="review-row">
+<div class="review-label">Product</div>
+<div class="review-value">Managed Kubernetes</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Infrastructure</div>
+<div class="review-value">Open Cloud</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Region</div>
+<div class="review-value">Region A</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Onboarding Workshop</div>
+<div class="review-value">No</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Workload Protection</div>
+<div class="review-value">No</div>
+<span></span>
+</div>
+<div class="review-row">
+<div class="review-label">Pricing</div>
+<div class="review-value">Usage-based, see pricing details</div>
+<span></span>
+</div>
+</div>
+</div>
+<div class="checkout-card">
+<div class="checkout-card-title">
+<div>
+<h2>Relevant Contract Documents</h2>
+<p>These documents result from the product and configuration. Final acceptance happens in the checkout.</p>
+</div>
+</div>
+<div class="contract-list">
+<a class="contract-link" href="#" onclick="return false;">Service Description – Managed Kubernetes <span class="contract-version">v1.2</span></a>
+<a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Managed Hosting <span class="contract-version">v4.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Cloud Services <span class="contract-version">v4.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Web Portal Terms <span class="contract-version">v1.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Service Level Agreements <span class="contract-version">v2.6.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Data Processing Agreement <span class="contract-version">v1.9.5</span></a>
+<a class="contract-link" href="#" onclick="return false;">General Terms and Conditions <span class="contract-version">v3.1.2</span></a>
+</div>
+<div class="dev-note">
+<strong>Dev Note – Contract Preview:</strong>
                 The list should be generated based on product and configuration. Final acceptance is collected in the checkout and stored with the order.
               </div>
-            </div>
-          </div>
-
-          <aside class="checkout-summary">
-            <div class="summary-product">
-              <div class="summary-thumb">K<span class="summary-count">1</span></div>
-              <div>
-                <strong>Managed Kubernetes</strong>
-                <p class="small">Standard · DE-WEST-1 · Kubernetes Cluster</p>
-              </div>
-              <strong>€0.00</strong>
-            </div>
-
-            <div class="summary-line">
-              <span>Base price</span>
-              <strong>Usage-based</strong>
-            </div>
-            <div class="summary-line">
-              <span>Setup</span>
-              <strong>€0.00</strong>
-            </div>
-            <div class="summary-line">
-              <span class="total">Current total</span>
-              <span class="total">€0.00</span>
-            </div>
-            <p class="small" style="margin-top:4px">The final price is usage-based and calculated according to the product pricing logic.</p>
-
-            <div class="price-components">
-              <h3>Price Components</h3>
-              <div class="price-component-list">
-                <div class="price-component-row"><span>Control Plane</span><strong>€0.09 / cluster hour</strong></div>
-                <div class="price-component-row"><span>CPU</span><strong>€0.0205 / vCPU hour</strong></div>
-                <div class="price-component-row"><span>RAM</span><strong>€0.007 / vRAM hour</strong></div>
-                <div class="price-component-row"><span>Storage</span><strong>€0.09 / GB month</strong></div>
-                <div class="price-component-row"><span>Loadbalancer</span><strong>€0.07 / LB hour</strong></div>
-                <div class="price-component-row"><span>Traffic</span><strong>included</strong></div>
-                <div class="price-component-row"><span>Public IP addresses</span><strong>€0.003 / IP address hour</strong></div>
-              </div>
-            </div>
-
-            <div style="margin-top:20px">
-              <button class="btn primary full" onclick="show('account-data')">Continue to Account & Company Details</button>
-            </div>
-
-            <div style="margin-top:12px">
-              <button class="edit-text-link" onclick="show('wizard')" type="button">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25Zm2.92 2.33H4.5v-1.42l9.56-9.56 1.42 1.42-9.56 9.56ZM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/>
-                </svg>
-                <span>Edit order</span>
-              </button>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-            <section id="account-data" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step active" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Account & Company Details</div>
-            <h1>Create Account and Enter Company Details</h1>
-            <p>Before payment, registration, contact, company, and billing details are captured. After a successful pre-check, the email address is verified first; only then does the flow continue to the checkout with payment and contract acceptance.</p>
-          </div>
-        </div>
-
-        <div class="checkout-shell" style="grid-template-columns:minmax(0,1fr) 420px;align-items:start">
-          <div class="checkout-main">
-<div class="checkout-card">
-              <div class="checkout-card-title">
-                <div>
-                  <h2>Contact & Registration</h2>
-                  <p class="required-note">* Required fields</p>
-                </div>
-                <span class="login-link">Already a customer? Sign in</span>
-              </div>
-              <div id="emailValidationBanner" class="error-banner email-validation-errors">
-                <div class="error-dot">!</div>
-                <p><strong>Please check the email address.</strong><br>The highlighted entries are invalid or do not match.</p>
-              </div>
-              <label class="full">Email *
-                <input id="emailPrimary" class="full" type="email" value="alex.taylor@example.com" oninput="updateGateButtons()"/>
-                <span id="emailPrimaryError" class="field-error-text">Please enter a valid email address.</span>
-              </label>
-              <label class="full" style="margin-top:14px">Confirm email address *
-                <input id="emailConfirm" class="full" type="email" value="alex.taylor@example.com" oninput="updateGateButtons()" onpaste="return false" ondrop="return false" autocomplete="off"/>
-                <span id="emailConfirmError" class="field-error-text">The email addresses do not match.</span>
-              </label>
-              <label class="full" style="margin-top:14px">Password *
-                <div class="password-wrap">
-                  <input id="passwordPrimary" type="password" value="Portal!2026Demo" oninput="updatePasswordState()"/>
-                  <button class="eye-box" type="button" onclick="togglePasswordVisibility('passwordPrimary', this)" aria-label="Show password">👁</button>
-                </div>
-                <div class="password-guidance" aria-live="polite">
-                  <div class="password-strength-head">
-                    <span>Password strength</span>
-                    <strong id="passwordStrengthLabel" class="password-strength-label strong">Strong</strong>
-                  </div>
-                  <div id="passwordMeter" class="password-meter strong" aria-hidden="true">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <ul class="password-rules">
-                    <li id="ruleLength" class="ok">At least 12 characters</li>
-                    <li id="ruleCase" class="ok">Uppercase and lowercase letters</li>
-                    <li id="ruleNumber" class="ok">At least one number</li>
-                    <li id="ruleSpecial" class="ok">At least one special character</li>
-                  </ul>
-                </div>
-              </label>
-              <label class="full" style="margin-top:14px">Confirm password *
-                <div class="password-wrap">
-                  <input id="passwordConfirm" type="password" value="Portal!2026Demo" oninput="updatePasswordState()"/>
-                  <button class="eye-box" type="button" onclick="togglePasswordVisibility('passwordConfirm', this)" aria-label="Show password">👁</button>
-                </div>
-                <span id="passwordConfirmError" class="field-error-text">The passwords do not match.</span>
-              </label>
-              <div class="checkbox-row">
-                <div id="accountRequiredCheck" class="checkbox" role="checkbox" aria-checked="false"></div>
-                <span>I agree that verification, order, and provisioning updates are sent to this email address. *</span>
-              </div>
-              <div class="dev-note">
-                <strong>Dev Note – Email Confirmation:</strong>
-                The second email field must be typed manually. Copy & paste, drag & drop, and browser autofill should be blocked for this field. After a successful pre-check, a verification email is sent; only after the email address has been confirmed may the customer continue to the checkout. The email address remains linked later to the order, login, and order status.
-                <div class="scenario-actions">
-                  <button class="btn simulation" onclick="simulateInvalidEmail()">Simulation: invalid email</button>
-                  <button class="btn simulation" onclick="simulateEmailMismatch()">Simulation: email mismatch</button>
-                  <button class="btn simulation" onclick="simulatePasswordMismatch()">Simulation: password mismatch</button>
-                  <button class="btn simulation" onclick="resetEmailValidation()">Reset validation</button>
-                </div>
-              </div>
-            </div>
-
-<div class="checkout-card">
-              <h2>Company and Billing Address</h2>
-              <p class="required-note">* Required fields</p>
-              <div class="form-grid">
-                <label class="full">Company name *
-                  <input class="full" value="Example Ltd."/>
-                </label>
-                <div class="triple-row">
-                  <label>Salutation *
-                    <select><option>Mr.</option><option>Ms.</option><option>Diverse</option><option>Prefer not to say</option></select>
-                  </label>
-                  <label>First name *
-                    <input value="Alex"/>
-                  </label>
-                  <label>Last name *
-                    <input value="Taylor"/>
-                  </label>
-                </div>
-                <label>Street *
-                  <input value="Sample Street"/>
-                </label>
-                <label>House number *
-                  <input value="12"/>
-                </label>
-                <label>Postal code *
-                  <input value="50667"/>
-                </label>
-                <label>City *
-                  <input value="Cologne"/>
-                </label>
-                <label>Country / Region *
-                  <select><option>Germany</option><option>Netherlands</option><option>Austria</option><option>Switzerland</option></select>
-                </label>
-                <label>VAT ID <span class="small">(optional)</span>
-                  <input value="DE123456789"/>
-                </label>
-                <div class="phone-combo">
-                  <label class="form-label">Country code *
-                    <div class="phone-code-control">
-                      <div class="flag-select">
-                        <button type="button" class="flag-select-toggle" onclick="toggleFlagMenu(this)" aria-label="Country code *">
-                          <span class="flag-selected"><span class="flag-icon flag-de"></span><span>+49</span></span>
-                          <span class="flag-caret">▾</span>
-                        </button>
-                        <div class="flag-menu">
-                        <button type="button" class="flag-option active" data-code="+49" data-flag="de" onclick="choosePhoneCode(this)">
-                          <span class="flag-option-country">DE</span>
-                          <span class="flag-icon flag-de"></span>
-                          <span class="flag-option-code">+49</span>
-                          <span class="flag-option-check">✓</span>
-                        </button>
-                        <button type="button" class="flag-option" data-code="+31" data-flag="nl" onclick="choosePhoneCode(this)">
-                          <span class="flag-option-country">NL</span>
-                          <span class="flag-icon flag-nl"></span>
-                          <span class="flag-option-code">+31</span>
-                          <span class="flag-option-check"></span>
-                        </button>
-                        <button type="button" class="flag-option" data-code="+43" data-flag="at" onclick="choosePhoneCode(this)">
-                          <span class="flag-option-country">AT</span>
-                          <span class="flag-icon flag-at"></span>
-                          <span class="flag-option-code">+43</span>
-                          <span class="flag-option-check"></span>
-                        </button>
-                        <button type="button" class="flag-option" data-code="+41" data-flag="ch" onclick="choosePhoneCode(this)">
-                          <span class="flag-option-country">CH</span>
-                          <span class="flag-icon flag-ch"></span>
-                          <span class="flag-option-code">+41</span>
-                          <span class="flag-option-check"></span>
-                        </button>
-                        <button type="button" class="flag-option" data-code="+44" data-flag="gb" onclick="choosePhoneCode(this)">
-                          <span class="flag-option-country">UK</span>
-                          <span class="flag-icon flag-gb"></span>
-                          <span class="flag-option-code">+44</span>
-                          <span class="flag-option-check"></span>
-                        </button>
-                        </div>
-                      </div>
-                    </div>
-                  </label>
-                  <label>Phone number *
-                    <input value="221 1234567"/>
-                  </label>
-                </div>
-              </div>
-              <div class="dev-note">
-                <strong>Dev Note – Duplicate & Sanctions Check:</strong>
-                When saving/validating the company and billing details, a duplicate check and a pre-check for the sanctions process are triggered. A duplicate match stops self-service before payment and leads to an admin notice. Only if the pre-check is clear are Email 1 (email verification) and Email 2 (welcome email) triggered. If there is a sanctions hit, no outgoing email may be sent.
-                <div class="scenario-actions">
-                  <button class="btn simulation" onclick="show('duplicate-blocked')">Simulation: duplicate match</button>
-                  <button class="btn simulation" onclick="show('sanctions-technical-error')">Simulation: sanctions hit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
+</div>
+</div>
 <aside class="checkout-summary">
-            <div class="summary-product">
-              <div class="summary-thumb">☁<span class="summary-count">1</span></div>
-              <div>
-                <strong>Managed Kubernetes</strong>
-                <p class="small">Standard · DE-WEST-1 · Kubernetes Cluster</p>
-              </div>
-              <strong>€0.00</strong>
-            </div>
-
-            <div class="summary-line">
-              <span>Due today</span>
-              <strong>€0.00</strong>
-            </div>
-            <div class="summary-line">
-              <span>Base price</span>
-              <strong>Usage-based</strong>
-            </div>
-            <div class="summary-line">
-              <span>Setup</span>
-              <strong>€0.00</strong>
-            </div>
-            <div class="summary-line">
-              <span class="total">Current total</span>
-              <span class="total">€0.00</span>
-            </div>
-            <p class="small" style="margin-top:4px">Billing is usage-based according to the consumed resources.</p>
-
-            <div class="price-components">
-              <h3>Price Components</h3>
-              <div class="price-component-list">
-                <div class="price-component-row"><span>Control Plane</span><strong>€0.09 / cluster hour</strong></div>
-                <div class="price-component-row"><span>CPU</span><strong>€0.0205 / vCPU hour</strong></div>
-                <div class="price-component-row"><span>RAM</span><strong>€0.007 / vRAM hour</strong></div>
-                <div class="price-component-row"><span>Storage</span><strong>€0.09 / GB month</strong></div>
-                <div class="price-component-row"><span>Loadbalancer</span><strong>€0.07 / LB hour</strong></div>
-                <div class="price-component-row"><span>Traffic</span><strong>included</strong></div>
-                <div class="price-component-row"><span>Public IP addresses</span><strong>€0.003 / IP address hour</strong></div>
-              </div>
-            </div>
-
-            <div style="margin-top:20px">
-              <button id="accountSubmitButton" class="btn primary full" onclick="show('email-verify')" disabled>Submit Account & Company Details</button>
-              <p id="accountGateHelper" class="gate-helper">Complete email, password, and the required confirmation to continue.</p>
-            </div>
-            <p class="small" style="margin-top:14px">After submission, the email address is verified first; after that come the welcome email and the final checkout with payment and contract acceptance.</p>
-          </aside>
-        </div>
-        <div class="email-section-below">
-          <div class="page-intro">
-            <div>
-              <div class="eyebrow">System Communication Before Checkout</div>
-              <h2>Email Placeholders Before Payment</h2>
-              <p>This email belongs functionally to step 3 “Account &amp; Company Details”. It is only triggered if the duplicate check and sanctions pre-check are clear. In the event of a duplicate match or sanctions hit, no email may be sent.</p>
-            </div>
-          </div>
-
-          <div class="email-grid">
-            <div class="email-placeholder">
-              <h3>Email 1 – Verify Email Address</h3>
-              <div class="email-meta">
-                <span><strong>Trigger:</strong> after a successful pre-check of the account and company details</span>
-                <span><strong>Recipient:</strong> email address from “Contact &amp; Registration”</span>
-                <span><strong>Purpose:</strong> verification of the email address for the login / portal account</span>
-              </div>
-              <div class="email-body">
-                Subject: Please confirm your email address<br><br>
-                A customer portal account was created with this email address. If that was you, click the link to verify the email address.<br><br>
-                Link to verify the email address<br><br>
-                The link is valid for 15 minutes. If you did not create this account, you can ignore this message.
-              </div>
-            </div>
+<div class="summary-product">
+<div class="summary-thumb">K<span class="summary-count">1</span></div>
+<div>
+<strong>Managed Kubernetes</strong>
+<p class="small">Standard · Region A · Kubernetes Cluster</p>
+</div>
+<strong>€0.00</strong>
+</div>
+<div class="summary-line">
+<span>Base price</span>
+<strong>Usage-based</strong>
+</div>
+<div class="summary-line">
+<span>Setup</span>
+<strong>€0.00</strong>
+</div>
+<div class="summary-line">
+<span class="total">Current total</span>
+<span class="total">€0.00</span>
+</div>
+<p class="small" style="margin-top:4px">The final price is usage-based and calculated according to the product pricing logic.</p>
+<div class="price-components">
+<h3>Price Components</h3>
+<div class="price-component-list">
+<div class="price-component-row"><span>Control Plane</span><strong>€0.09 / cluster hour</strong></div>
+<div class="price-component-row"><span>CPU</span><strong>€0.0205 / vCPU hour</strong></div>
+<div class="price-component-row"><span>RAM</span><strong>€0.007 / vRAM hour</strong></div>
+<div class="price-component-row"><span>Storage</span><strong>€0.09 / GB month</strong></div>
+<div class="price-component-row"><span>Loadbalancer</span><strong>€0.07 / LB hour</strong></div>
+<div class="price-component-row"><span>Traffic</span><strong>included</strong></div>
+<div class="price-component-row"><span>Public IP addresses</span><strong>€0.003 / IP address hour</strong></div>
+</div>
+</div>
+<div style="margin-top:20px">
+<button class="btn primary full" onclick="show('checkout')">Continue to Checkout</button>
+</div>
+<div style="margin-top:12px">
+<button class="edit-text-link" onclick="show('wizard')" type="button">
+<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 20h9"></path>
+<path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"></path>
+<path d="m15 5 3 3"></path>
+</svg>
+<span>Edit order</span>
+</button>
+</div>
+</aside>
+</div>
+</section>
 
 
-          </div>
+<section class="screen" id="checkout">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step active" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
 
-          <div class="dev-note" style="margin-top:16px">
-            <strong>Dev Note – Email Triggers Before Checkout:</strong>
-            Email 1 is only triggered after a successful pre-check. In case of a duplicate match or a sanctions hit, no verification, welcome, or order emails may be sent.
-          </div>
-        </div>
-      </section>
-
-      <section id="email-verify" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step active" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Intermediate Email Verification State:</strong>
-          This screen is not its own stepper step but an intermediate state within step 3. It only appears if the verification email was actually sent. In the case of a duplicate match or a sanctions hit, this screen must not appear.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">email verification</div>
-            <h1>Please verify your email address to continue</h1>
-            <p>We sent an email to <strong>alex.taylor@example.com</strong>. Please confirm your email address using the link in the email. After that, you can continue with Checkout &amp; Payment.</p>
-          </div>
-        </div>
-
-        <div class="customer-system-shell">
-          <div class="customer-view">
-            <div class="success-panel" style="max-width:none">
-              <div class="review-pending-icon">✉</div>
-              <div class="eyebrow">Customer View</div>
-              <h1>Verify Email Address</h1>
-              <p>For security reasons, you must verify your email address before you can continue to the checkout.</p>
-
-              <div class="section info-banner" style="margin-top:18px">
-                <div class="info-dot">i</div>
-                <p><strong>Confirmation email sent to:</strong><br>alex.taylor@example.com</p>
-              </div>
-
-              <div class="timeline section" style="margin-top:18px">
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Email sent</div>
-                    <div class="timeline-desc">The confirmation link has been sent and is valid for 15 minutes.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot waiting">…</div>
-                  <div>
-                    <div class="timeline-title">Waiting for verification</div>
-                    <div class="timeline-desc">After clicking the link, your access is confirmed and the checkout is unlocked.</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="section" style="margin-top:18px;padding:0;background:transparent;border:0">
-                <p class="small" style="margin-bottom:8px"><strong>Notes:</strong></p>
-                <ul class="small" style="margin:0;padding-left:18px;color:var(--muted);line-height:1.6">
-                  <li>The link is valid for 15 minutes.</li>
-                  <li>Please also check your spam folder.</li>
-                  <li>If you used the wrong email address, you can change it.</li>
-                </ul>
-              </div>
-
-              <div class="button-row" style="margin-top:22px">
-                <button class="btn secondary" onclick="alert('Resend verification email (Prototype)')">Resend email</button>
-                <button class="btn secondary" onclick="show('account-data')">Change email address</button>
-              </div>
-            </div>
-
-            <div class="dev-note" style="margin-top:16px">
-              <strong>Dev Note – State of the Art:</strong><br>
-              A dedicated guidance screen between registration and checkout is useful for SaaS/B2B flows when email verification is a mandatory prerequisite for the next step. It makes the waiting state transparent and prevents the user from assuming the flow is broken.
-              <div class="scenario-actions">
-                <button class="btn simulation" onclick="show('checkout')">Simulation: email confirmed</button>
-              </div>
-            </div>
-          </div>
-
-          <aside class="system-view">
-            <div class="system-card">
-              <h2>System Process Timeline</h2>
-              <p>This intermediate state explains what happens between registration and checkout.</p>
-
-              <div class="timeline section">
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Account and company details saved</div>
-                    <div class="timeline-desc">Contact details, password, company name, and billing address were saved successfully.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Pre-check successful</div>
-                    <div class="timeline-desc">The duplicate check and pre-check were clear. Therefore, email verification may start.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Email 1 sent</div>
-                    <div class="timeline-desc">The verification email was sent to the registered email address.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot waiting">…</div>
-                  <div>
-                    <div class="timeline-title">Waiting for email confirmation</div>
-                    <div class="timeline-desc">As long as the email is not confirmed, Checkout &amp; Payment remains locked.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Email 2 – Welcome Email</div>
-                    <div class="timeline-desc">After successful verification, the welcome email is sent.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Unlock checkout</div>
-                    <div class="timeline-desc">Only after that may the customer continue with Checkout &amp; Payment.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
-          </aside>
-        </div>
-
-        <div class="email-section-below">
-          <div class="page-intro">
-            <div>
-              <div class="eyebrow">System Communication After Email Verification</div>
-              <h2>Welcome Email Placeholder</h2>
-              <p>This email belongs functionally to the email verification step. It is sent only after the customer has verified the email address successfully.</p>
-            </div>
-          </div>
-
-          <div class="email-grid">
-            <div class="email-placeholder">
-              <h3>Email 2 – Welcome Email</h3>
-              <div class="email-meta">
-                <span><strong>Trigger:</strong> after successful email verification</span>
-                <span><strong>Recipient:</strong> verified login email address</span>
-                <span><strong>Purpose:</strong> confirms successful registration and activates access to the customer account</span>
-              </div>
-              <div class="email-body">
-                Subject: Welcome to the Customer Portal<br><br>
-                Welcome to the customer portal. Your account has been created successfully. You can now continue with Checkout &amp; Payment and later track your order status in the customer area.
-              </div>
-            </div>
-          </div>
-
-          <div class="dev-note" style="margin-top:16px">
-            <strong>Dev Note – Welcome Email Trigger:</strong>
-            Email 2 is triggered after successful email verification. The customer may continue to Checkout &amp; Payment only after this state has been reached.
-          </div>
-        </div>
-
-      </section>
-
-      <section id="checkout" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step done" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step active" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Checkout & Payment</div>
-            <h1>Payment and Completion</h1>
-            <p>Registration and company details are complete. In the final checkout, payment details, contract acceptance, and the paid submission follow.</p>
-          </div>
-        </div>
-
-        <div class="checkout-shell">
-          <div class="checkout-main">
+<div class="page-intro">
+<div>
+<div class="eyebrow">Checkout</div>
+<h1>One Page Checkout</h1>
+<p>Enter account, company, billing and payment details on one page. Email verification is sent after successful checkout and is no longer a separate step before payment.</p>
+</div>
+</div>
+<div class="dev-note" style="margin-bottom:18px"><strong>Dev Note – One Page Checkout:</strong> The checkout combines account creation, company data, billing address, payment details and contractual confirmations in one customer-facing step. Email verification is handled after successful checkout as account activation and is not a pre-payment gate.</div>
+<div class="checkout-shell">
+<div class="checkout-main">
 <div class="checkout-card">
-              <h2>Payment</h2>
-              <p class="required-note">* Required fields</p>
-              <p style="margin-bottom:14px">All transactions are secure and encrypted. New customers pay by credit card via the payment provider.</p>
-              <div class="payment-method">
-                <div class="payment-head">
-                  <div><span class="radio-dot"></span>Credit card *</div>
-                  <div class="payment-logos">
-                    <span class="logo-chip">VISA</span>
-                    <span class="logo-chip">MC</span>
-                    <span class="logo-chip">AMEX</span>
-                    <span class="logo-chip">+2</span>
-                  </div>
-                </div>
-                <div class="payment-body">
-                  <div class="form-grid">
-                    <label class="full">Card number *
-                      <input class="full" value="4242 4242 4242 4242" data-mollie-error-field/>
-                      <span class="field-error-text mollie-error-detail">Card number is incomplete or invalid.</span>
-                    </label>
-                    <label>Expiry date *
-                      <input value="12/29" data-mollie-error-field/>
-                      <span class="field-error-text mollie-error-detail">Please check the expiry date.</span>
-                    </label>
-                    <label>Security code *
-                      <input value="123" data-mollie-error-field/>
-                      <span class="field-error-text mollie-error-detail">Please check the security code.</span>
-                    </label>
-                    <label class="full">Name on card *
+<div class="checkout-card-title">
+<div>
+<h2>Account Setup</h2>
+<p class="required-note">* Required fields</p>
+</div>
+<span class="login-link">Already have an account? Sign in</span>
+</div>
+<div class="error-banner email-validation-errors" id="emailValidationBanner">
+<div class="error-dot">!</div>
+<p><strong>Please check the email address.</strong><br/>The highlighted entries are invalid or do not match.</p>
+</div>
+<label class="full">Email *
+                <input class="full" id="emailPrimary" oninput="updateGateButtons()" type="email" value="alex.taylor@example.com"/>
+<span class="field-error-text" id="emailPrimaryError">Please enter a valid email address.</span>
+</label>
+<label class="full" style="margin-top:14px">Confirm email address *
+                <input autocomplete="off" class="full" id="emailConfirm" ondrop="return false" oninput="updateGateButtons()" onpaste="return false" type="email" value="alex.taylor@example.com"/>
+<span class="field-error-text" id="emailConfirmError">The email addresses do not match.</span>
+</label>
+<label class="full" style="margin-top:14px">Password *
+                <div class="password-wrap">
+<input id="passwordPrimary" oninput="updatePasswordState()" type="password" value="Portal!2026Demo"/>
+<button aria-label="Show password" class="eye-box" onclick="togglePasswordVisibility('passwordPrimary', this)" type="button"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg></button>
+</div>
+<div aria-live="polite" class="password-guidance">
+<div class="password-strength-head">
+<span>Password strength</span>
+<strong class="password-strength-label strong" id="passwordStrengthLabel">Strong</strong>
+</div>
+<div aria-hidden="true" class="password-meter strong" id="passwordMeter">
+<span></span><span></span><span></span>
+</div>
+<ul class="password-rules">
+<li class="ok" id="ruleLength">At least 12 characters</li>
+<li class="ok" id="ruleCase">Uppercase and lowercase letters</li>
+<li class="ok" id="ruleNumber">At least one number</li>
+<li class="ok" id="ruleSpecial">At least one special character</li>
+</ul>
+</div>
+</label>
+<label class="full" style="margin-top:14px">Confirm password *
+                <div class="password-wrap">
+<input id="passwordConfirm" oninput="updatePasswordState()" type="password" value="Portal!2026Demo"/>
+<button aria-label="Show password" class="eye-box" onclick="togglePasswordVisibility('passwordConfirm', this)" type="button"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg></button>
+</div>
+<span class="field-error-text" id="passwordConfirmError">The passwords do not match.</span>
+</label>
+<div class="checkbox-row">
+<div aria-checked="false" class="checkbox" id="accountRequiredCheck" role="checkbox"></div>
+<span>I agree that verification, order, and provisioning updates are sent to this email address. *</span>
+</div>
+<div class="dev-note prototype-controls">
+<strong>Prototype controls – account validation:</strong>
+<div class="scenario-actions">
+<button class="btn simulation" onclick="simulateInvalidEmail()">Simulation: invalid email</button>
+<button class="btn simulation" onclick="simulateEmailMismatch()">Simulation: email mismatch</button>
+<button class="btn simulation" onclick="simulatePasswordMismatch()">Simulation: password mismatch</button>
+<button class="btn simulation" onclick="resetEmailValidation()">Reset validation</button>
+</div>
+</div>
+</div><div class="checkout-card">
+<h2>Company and Billing Address</h2>
+<p class="required-note">* Required fields</p>
+<div class="form-grid">
+<label class="full">Company name *
+                  <input class="full" value="Example Ltd."/>
+</label>
+<div class="triple-row">
+<label>Salutation *
+                    <select><option>Mr.</option><option>Ms.</option><option>Diverse</option><option>Prefer not to say</option></select>
+</label>
+<label>First name *
+                    <input value="Alex"/>
+</label>
+<label>Last name *
+                    <input value="Taylor"/>
+</label>
+</div>
+<label>Street *
+                  <input value="Sample Street"/>
+</label>
+<label>House number *
+                  <input value="12"/>
+</label>
+<label>Postal code *
+                  <input value="50667"/>
+</label>
+<label>City *
+                  <input value="Cologne"/>
+</label>
+<label>Country / Region *
+                  <select><option>Germany</option><option>Netherlands</option><option>Austria</option><option>Switzerland</option></select>
+</label>
+<label><span class="field-label-inline">VAT ID <span class="label-optional">(optional)</span></span>
+<input value="DE123456789"/>
+</label>
+<div class="phone-combo">
+<label class="form-label">Country code *
+                    <div class="phone-code-control">
+<div class="flag-select">
+<button aria-label="Country code *" class="flag-select-toggle" onclick="toggleFlagMenu(this)" type="button">
+<span class="flag-selected"><span class="flag-icon flag-de"></span><span>+49</span></span>
+<span class="flag-caret">▾</span>
+</button>
+<div class="flag-menu">
+<button class="flag-option active" data-code="+49" data-flag="de" onclick="choosePhoneCode(this)" type="button">
+<span class="flag-option-country">DE</span>
+<span class="flag-icon flag-de"></span>
+<span class="flag-option-code">+49</span>
+<span class="flag-option-check">✓</span>
+</button>
+<button class="flag-option" data-code="+31" data-flag="nl" onclick="choosePhoneCode(this)" type="button">
+<span class="flag-option-country">NL</span>
+<span class="flag-icon flag-nl"></span>
+<span class="flag-option-code">+31</span>
+<span class="flag-option-check"></span>
+</button>
+<button class="flag-option" data-code="+43" data-flag="at" onclick="choosePhoneCode(this)" type="button">
+<span class="flag-option-country">AT</span>
+<span class="flag-icon flag-at"></span>
+<span class="flag-option-code">+43</span>
+<span class="flag-option-check"></span>
+</button>
+<button class="flag-option" data-code="+41" data-flag="ch" onclick="choosePhoneCode(this)" type="button">
+<span class="flag-option-country">CH</span>
+<span class="flag-icon flag-ch"></span>
+<span class="flag-option-code">+41</span>
+<span class="flag-option-check"></span>
+</button>
+<button class="flag-option" data-code="+44" data-flag="gb" onclick="choosePhoneCode(this)" type="button">
+<span class="flag-option-country">UK</span>
+<span class="flag-icon flag-gb"></span>
+<span class="flag-option-code">+44</span>
+<span class="flag-option-check"></span>
+</button>
+</div>
+</div>
+</div>
+</label>
+<label>Phone number *
+                    <input value="221 1234567"/>
+</label>
+</div>
+</div>
+<div class="dev-note prototype-controls">
+<strong>Prototype controls – backend pre-checks:</strong>
+<p>On final checkout submit, duplicate and sanctions checks run before any payment or order object is created in the backend. In case of a hit, the customer sees a neutral stop/error state.</p>
+<div class="scenario-actions">
+<button class="btn simulation" onclick="show('duplicate-blocked')">Simulation: duplicate match</button>
+<button class="btn simulation" onclick="show('sanctions-technical-error')">Simulation: sanctions hit</button>
+</div>
+</div>
+</div><div class="checkout-card">
+<h2>Payment</h2>
+<p class="required-note">* Required fields</p>
+<p style="margin-bottom:14px">All transactions are secure and encrypted. New customers pay by credit card via the payment provider.</p>
+<div class="payment-method">
+<div class="payment-head">
+<div><span class="radio-dot"></span>Credit card *</div>
+<div class="payment-logos">
+<span class="logo-chip">VISA</span>
+<span class="logo-chip">MC</span>
+<span class="logo-chip">AMEX</span>
+<span class="logo-chip">+2</span>
+</div>
+</div>
+<div class="payment-body">
+<div class="form-grid">
+<label class="full">Card number *
+                      <input class="full" data-payment-provider-error-field="" value="4242 4242 4242 4242"/>
+<span class="field-error-text payment-provider-error-detail">Card number is incomplete or invalid.</span>
+</label>
+<label>Expiry date *
+                      <input data-payment-provider-error-field="" value="12/29"/>
+<span class="field-error-text payment-provider-error-detail">Please check the expiry date.</span>
+</label>
+<label>Security code *
+                      <input data-payment-provider-error-field="" value="123"/>
+<span class="field-error-text payment-provider-error-detail">Please check the security code.</span>
+</label>
+<label class="full">Name on card *
                       <input class="full" value="Alex Taylor"/>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div id="mollieInlineErrors" class="error-banner mollie-inline-errors">
-                <div class="error-dot">!</div>
-                <p><strong>The payment details could not be validated.</strong><br>
+</label>
+</div>
+</div>
+</div>
+<div class="error-banner payment-provider-inline-errors" id="paymentProviderInlineErrors">
+<div class="error-dot">!</div>
+<p><strong>The payment details could not be validated.</strong><br/>
                 Please check the highlighted fields. Concrete error messages should be provided by the payment provider and shown directly in the checkout.</p>
-              </div>
-
-              <div class="card-auth-preview">
-                <h3>Card Verification / 3D Secure Challenge</h3>
-                <p>When entering card details, an additional card check may appear. This check is triggered depending on the card, bank, and risk assessment.</p>
-                <div class="card-auth-row">
-                  <span>Card Network Check</span>
-                  <strong>Optional / issuer-dependent</strong>
-                </div>
-              </div>
-
-              <div class="dev-note">
-                <strong>Dev Note – Payment Provider Payment & Fraud Check:</strong>
+</div>
+<div class="card-auth-preview">
+<h3>Card Verification / 3D Secure Challenge</h3>
+<p>When entering card details, an additional card check may appear. This check is triggered depending on the card, bank, and risk assessment.</p>
+<div class="card-auth-row">
+<span>Card Network Check</span>
+<strong>Optional / issuer-dependent</strong>
+</div>
+</div>
+<div class="dev-note">
+<strong>Dev Note – Payment Provider Payment &amp; Fraud Check:</strong>
                 Payment starts after the upstream checks have passed. Normal payment-provider data or validation errors are shown in the payment context as field or form errors. If the payment provider detects fraud, the customer-facing flow initially continues like the normal payment/success process; internal follow-up processing is evaluated separately.
                 <div class="scenario-actions">
-                  <button class="btn simulation" onclick="showPaymentProviderErrors()">Simulation: payment provider field errors</button>
-                  <button class="btn simulation" onclick="resetPaymentProviderErrors()">Reset payment errors</button>
-                </div>
-              </div>
-            </div>
-
+<button class="btn simulation" onclick="showPaymentProviderErrors()">Simulation: payment provider field errors</button>
+<button class="btn simulation" onclick="resetPaymentProviderErrors()">Reset payment errors</button>
+</div>
+</div>
+</div>
 <div class="checkout-card">
-              <h2>Final Contract Acceptance</h2>
-              <p class="required-note">* Required confirmations</p>
+<h2>Final Contract Acceptance</h2>
+<p class="required-note">* Required confirmations</p>
+<div class="info-banner" style="margin-top:12px">
+<div class="info-dot">i</div>
+<p>The relevant contract documents were shown in the order summary. The legally relevant acceptance takes place here before the paid submission.</p>
+</div>
+<div class="checkbox-row">
+<div aria-checked="false" class="checkbox" id="contractAcceptanceCheck" role="checkbox"></div>
+<span>I accept the displayed contract documents, service descriptions, SLA, data processing agreement, and general terms as part of this order. *</span>
+</div>
+<div class="checkbox-row">
+<div aria-checked="false" class="checkbox" id="privacyAcceptanceCheck" role="checkbox"></div>
+<span>I have read the privacy information. *</span>
+</div>
+<div class="checkbox-row">
+<div aria-checked="false" class="checkbox" id="b2bConfirmationCheck" role="checkbox"></div>
+<span>I confirm that I am a B2B customer. *</span>
+</div>
+<div class="contract-list">
+<a class="contract-link" href="#" onclick="openContractModal();return false;">Show contract documents <span class="contract-version">7 documents</span></a>
+</div>
+<div class="dev-note"><strong>Dev Note – Final Contract Acceptance:</strong> The accepted document list, including versions, must be stored with the order in an audit-safe way at the time of purchase. The final submit validates account, company, payment and contract confirmations together.</div>
+</div>
+</div>
+<aside class="checkout-summary">
+<div class="summary-product">
+<div class="summary-thumb">☁<span class="summary-count">1</span></div>
+<div>
+<strong>Managed Kubernetes</strong>
+<p class="small">Standard · Region A · Kubernetes Cluster</p>
+</div>
+<strong>€0.00</strong>
+</div>
+<div class="summary-line">
+<span>Due today</span>
+<strong>€0.00</strong>
+</div>
+<div class="summary-line">
+<span>Base price</span>
+<strong>Usage-based</strong>
+</div>
+<div class="summary-line">
+<span>Setup</span>
+<strong>€0.00</strong>
+</div>
+<div class="summary-line">
+<span class="total">Current total</span>
+<span class="total">€0.00</span>
+</div>
+<p class="small" style="margin-top:4px">Billing is usage-based according to the consumed resources.</p>
+<div class="price-components">
+<h3>Price Components</h3>
+<div class="price-component-list">
+<div class="price-component-row"><span>Control Plane</span><strong>€0.09 / cluster hour</strong></div>
+<div class="price-component-row"><span>CPU</span><strong>€0.0205 / vCPU hour</strong></div>
+<div class="price-component-row"><span>RAM</span><strong>€0.007 / vRAM hour</strong></div>
+<div class="price-component-row"><span>Storage</span><strong>€0.09 / GB month</strong></div>
+<div class="price-component-row"><span>Loadbalancer</span><strong>€0.07 / LB hour</strong></div>
+<div class="price-component-row"><span>Traffic</span><strong>included</strong></div>
+<div class="price-component-row"><span>Public IP addresses</span><strong>€0.003 / IP address hour</strong></div>
+</div>
+</div>
+<div style="margin-top:20px">
+<button class="btn primary full" disabled="" id="checkoutSubmitButton" onclick="show('payment-auth')">Place order with payment obligation</button>
+<p class="gate-helper" id="checkoutGateHelper">Complete account details, payment information and all required confirmations to continue.</p>
+</div>
+<p class="small" style="margin-top:14px">On the final submit, payment authentication and the final internal checks are executed.</p>
+</aside>
+</div>
+</section>
+<section class="screen" id="payment-auth">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step active" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
 
-              <div class="info-banner" style="margin-top:12px">
-                <div class="info-dot">i</div>
-                <p>The relevant contract documents were shown in the order summary. The legally relevant acceptance takes place here before the paid submission.</p>
-              </div>
-
-              <div class="checkbox-row">
-                <div id="contractAcceptanceCheck" class="checkbox" role="checkbox" aria-checked="false"></div>
-                <span>I accept the displayed contract documents, service descriptions, SLA, data processing agreement, and general terms as part of this order. *</span>
-              </div>
-
-              <div class="checkbox-row">
-                <div id="privacyAcceptanceCheck" class="checkbox" role="checkbox" aria-checked="false"></div>
-                <span>I have read the privacy information. *</span>
-              </div>
-
-              <div class="checkbox-row">
-                <div id="b2bConfirmationCheck" class="checkbox" role="checkbox" aria-checked="false"></div>
-                <span>I confirm that I am a B2B customer. *</span>
-              </div>
-
-              <div class="contract-list">
-                <a class="contract-link" href="#" onclick="openContractModal();return false;">Show contract documents <span class="contract-version">7 documents</span></a>
-              </div>
-
-              <div class="dev-note">
-                <strong>Dev Note – Final Contract Acceptance:</strong>
-                The accepted document list, including versions, must be stored with the order in an audit-safe way at the time of purchase.
-              </div>
-            </div>
-          </div>
-
-          <aside class="checkout-summary">
-            <div class="summary-product">
-              <div class="summary-thumb">☁<span class="summary-count">1</span></div>
-              <div>
-                <strong>Managed Kubernetes</strong>
-                <p class="small">Standard · DE-WEST-1 · Kubernetes Cluster</p>
-              </div>
-              <strong>€0.00</strong>
-            </div>
-
-            <div class="summary-line">
-              <span>Due today</span>
-              <strong>€0.00</strong>
-            </div>
-            <div class="summary-line">
-              <span>Base price</span>
-              <strong>Usage-based</strong>
-            </div>
-            <div class="summary-line">
-              <span>Setup</span>
-              <strong>€0.00</strong>
-            </div>
-            <div class="summary-line">
-              <span class="total">Current total</span>
-              <span class="total">€0.00</span>
-            </div>
-            <p class="small" style="margin-top:4px">Billing is usage-based according to the consumed resources.</p>
-
-            <div class="price-components">
-              <h3>Price Components</h3>
-              <div class="price-component-list">
-                <div class="price-component-row"><span>Control Plane</span><strong>€0.09 / cluster hour</strong></div>
-                <div class="price-component-row"><span>CPU</span><strong>€0.0205 / vCPU hour</strong></div>
-                <div class="price-component-row"><span>RAM</span><strong>€0.007 / vRAM hour</strong></div>
-                <div class="price-component-row"><span>Storage</span><strong>€0.09 / GB month</strong></div>
-                <div class="price-component-row"><span>Loadbalancer</span><strong>€0.07 / LB hour</strong></div>
-                <div class="price-component-row"><span>Traffic</span><strong>included</strong></div>
-                <div class="price-component-row"><span>Public IP addresses</span><strong>€0.003 / IP address hour</strong></div>
-              </div>
-            </div>
-
-            <div style="margin-top:20px">
-              <button id="checkoutSubmitButton" class="btn primary full" onclick="show('payment-auth')" disabled>Place order with payment obligation</button>
-              <p id="checkoutGateHelper" class="gate-helper">Accept all required confirmations to continue.</p>
-            </div>
-            <p class="small" style="margin-top:14px">On the final submit, payment authentication and the final internal checks are executed.</p>
-          </aside>
-        </div>
-      </section>
-
-<section id="payment-auth" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step done" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step active" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">External Payment Step</div>
-            <h1>Payment Authentication</h1>
-            <p>After clicking “Place order with payment obligation”, payment authentication starts. Registration is already completed at this point.</p>
-          </div>
-        </div>
-
-        <div class="auth-shell">
-          <div class="auth-browserbar">
-            <span>pay.payment-provider.example/authenticate/payment/...</span>
-            <span>External secure payment authentication</span>
-          </div>
-          <div class="auth-page">
-            <div class="auth-logos">
-              <span class="auth-bank">BANK</span>
-              <span>VISA</span>
-            </div>
-
-            <div class="auth-box">
-              <div class="eyebrow">Card payment</div>
-              <h1 style="font-size:28px;margin-bottom:8px">€0.00</h1>
-              <p><strong>Example Cloud Provider GmbH</strong></p>
-              <p>VISA Card: xxxx xxxx xxxx 0019</p>
-              <p>Date: June 24, 2026, 09:43</p>
-            </div>
-
-            <div class="auth-info">
-              <h2>Authentication required</h2>
-              <p style="text-align:left;margin-top:12px">
-                1. A notification has been sent to the customer's approval device.<br>
+<div class="page-intro">
+<div>
+<div class="eyebrow">External Payment Step</div>
+<h1>Payment Authentication</h1>
+<p>After clicking “Place order with payment obligation”, payment authentication starts. Account setup details have already been submitted as part of checkout at this point.</p>
+</div>
+</div>
+<div class="auth-shell">
+<div class="auth-browserbar">
+<span>pay.payment-provider.example/authenticate/payment/...</span>
+<span>External secure payment authentication</span>
+</div>
+<div class="auth-page">
+<div class="auth-logos">
+<span class="auth-bank">BANK</span>
+<span>VISA</span>
+</div>
+<div class="auth-box">
+<div class="eyebrow">Card payment</div>
+<h1 style="font-size:28px;margin-bottom:8px">€0.00</h1>
+<p><strong>Example Cloud Provider</strong></p>
+<p>VISA Card: xxxx xxxx xxxx 0019</p>
+<p>Date: June 24, 2026, 09:43</p>
+</div>
+<div class="auth-info">
+<h2>Authentication required</h2>
+<p style="text-align:left;margin-top:12px">
+                1. A notification has been sent to the customer's approval device.<br/>
                 2. The customer confirms the transaction in the banking app.
               </p>
-            </div>
-
-            <div style="max-width:620px;margin:0 auto">
-              <h2>Confirm transaction</h2>
-              <p>To protect against fraud, the customer authenticates with the card-issuing institution.</p>
-            </div>
-          </div>
-          <div class="auth-footer">
-            <span>€0.00 is charged at this moment. The payment method is being verified for usage-based billing.</span>
-            <div style="display:flex;gap:10px;flex-wrap:wrap">
-              <button class="btn secondary" onclick="show('checkout')">Cancel</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="dev-note" style="max-width:860px;margin:18px auto 0">
-          <strong>Dev Note – Payment Redirect:</strong>
+</div>
+<div style="max-width:620px;margin:0 auto">
+<h2>Confirm transaction</h2>
+<p>To protect against fraud, the customer authenticates with the card-issuing institution.</p>
+</div>
+</div>
+<div class="auth-footer">
+<span>The payment method is authenticated at this moment. Usage-based billing follows the product pricing logic.</span>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<button class="btn secondary" onclick="show('checkout')">Cancel</button>
+</div>
+</div>
+</div>
+<div class="dev-note" style="max-width:860px;margin:18px auto 0">
+<strong>Dev Note – Payment Redirect:</strong>
           After the final checkout submit, the payment is created with the payment provider. If 3D Secure / bank authentication is required, the customer briefly leaves the customer portal. The order stays in the status “Payment pending” until the return/webhook. Afterwards, success, failure, or cancel follows.
           <div class="scenario-actions">
-            <button class="btn simulation" onclick="show('success')">Simulation: successful authentication</button>
-          </div>
-        </div>
-      </section>
+<button class="btn simulation" onclick="show('success')">Simulation: successful authentication</button>
+</div>
+</div>
+</section>
+<section class="screen" id="success">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step done" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step active" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
 
-      <section id="success" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step done" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step done" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step active" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Order Completed / System Process</div>
-            <h1>Order completed successfully</h1>
-            <p>The customer view is shown on the left. On the right, the system view for developers shows checks, email triggers, and technical dependencies.</p>
-          </div>
-        </div>
-
-        <div class="customer-system-shell">
-          <div class="customer-view">
-            <div class="success-panel" style="max-width:none">
-              <div class="success-icon">✓</div>
-              <div class="eyebrow">Customer View</div>
-              <h1>Thank you for your order</h1>
-              <p>Your order has been submitted. Your account was created before payment; the order status is now available.</p>
-
-              <div class="section info-banner">
-                <div class="info-dot">i</div>
-                <p><strong>What does the customer see here?</strong> The customer sees the confirmation and can then switch to the order status.</p>
-              </div>
-
-              <div class="button-row">
-                <button class="btn primary" onclick="show('orderstatus')">Go to Order Status</button>
-                <p class="small" style="margin-top:10px">In the live process, the next step leads directly to the order status in the registered customer area.</p>
-              </div>
-            </div>
-          </div>
-
-          <aside class="system-view">
-            <div class="system-card">
-              <h2>System Process Timeline</h2>
-              <p>Dev view: technical checks and triggers in the background.</p>
-
-              <div class="timeline section">
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Duplicate Check</div>
-                    <div class="timeline-desc">Company and billing details are checked against existing customer and company data.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Sanctions screening</div>
-                    <div class="timeline-desc">If the result is clear, the order continues. If there is a hit, an internal review status is set; from the customer perspective, the normal success screen remains visible.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Email 1 – Email verification</div>
-                    <div class="timeline-desc">After a successful pre-check, the verification email was sent and the email address was confirmed.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Email 2 – Welcome Email</div>
-                    <div class="timeline-desc">The welcome email was sent after successful verification; the customer could then move into the checkout.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Payment successful</div>
-                    <div class="timeline-desc">The payment-provider payment has been confirmed and the checkout can now be completed from a business perspective.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Payment Provider Fraud Check</div>
-                    <div class="timeline-desc">Fraud check via payment-provider API. In the event of a fraud hit, an internal review status is set; the normal success screen remains visible to the customer.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Email 3 – Order receipt confirmation</div>
-                    <div class="timeline-desc">The first order email is sent after successful checkout and confirms that the order was received.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot waiting">…</div>
-                  <div>
-                    <div class="timeline-title">Optional internal review</div>
-                    <div class="timeline-desc">If the payment provider flags fraud, an internal review status may be set; from the customer perspective, the normal success screen remains visible.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Email 4 – Order confirmation</div>
-                    <div class="timeline-desc">The order confirmation is sent after successful validation and payment confirmation.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Unlock Order Status</div>
-                    <div class="timeline-desc">The customer can open the order status in the customer area after successful completion.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </aside>
-        </div>
-
-        <div class="email-section-below">
-          <div class="page-intro">
-            <div>
-              <div class="eyebrow">System Communication</div>
-              <h2>Email Placeholders</h2>
-              <p>These emails are not intended as their own customer step. The order emails are shown here after successful payment; the registration emails are already part of step 3.</p>
-            </div>
-          </div>
-
-          <div class="email-grid">
-            <div class="email-placeholder">
-              <h3>Email 3 – Order receipt confirmation</h3>
-              <div class="email-meta">
-                <span><strong>Trigger:</strong> directly after successful checkout / end of the order</span>
-                <span><strong>Recipient:</strong> verified account email address</span>
-                <span><strong>Purpose:</strong> confirms receipt of the order, but not yet final order acceptance</span>
-              </div>
-              <div class="email-body">
-                Subject: Your customer portal order has been received<br><br>
-                Thank you for your order. We have received your order and are preparing the next steps. You will receive another message with the order confirmation as soon as the order has been released.
-              </div>
-            </div>
-
-            <div class="email-placeholder">
-              <h3>Email 4 – Order confirmation</h3>
-              <div class="email-meta">
-                <span><strong>Trigger:</strong> after successful validation and payment confirmation</span>
-                <span><strong>Recipient:</strong> verified account email address</span>
-                <span><strong>Purpose:</strong> confirms the order and points to the order status</span>
-              </div>
-              <div class="email-body">
-                Subject: Your customer portal order confirmation<br><br>
-                Your order has been confirmed. You can track the provisioning status of your order in the customer portal order status.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      
-      <section id="duplicate-blocked" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step active" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Duplicate Check</div>
-            <h1>Order cannot continue automatically</h1>
-            <p>The customer view is shown on the left. The system view for duplicate matches and follow-up actions is shown on the right.</p>
-          </div>
-        </div>
-
-        <div class="customer-system-shell">
-          <div class="customer-view">
-            <div class="success-panel" style="max-width:none">
-              <div class="review-pending-icon">!</div>
-              <div class="eyebrow">Customer View</div>
-              <h1>Please contact your administrator</h1>
-              <p>Placeholder text: An existing customer context was found for the entered company or contact details. Self-service cannot continue automatically at this point.</p>
-
-              <div class="section warning-banner">
-                <div class="warning-dot">!</div>
-                <p><strong>Clarification required.</strong><br>
+<div class="page-intro">
+<div>
+<div class="eyebrow">Order Completed / System Process</div>
+<h1>Order completed successfully</h1>
+<p>The order has been submitted successfully. Account activation now continues via email verification after checkout.</p>
+</div>
+</div>
+<div class="customer-system-shell">
+<div class="customer-view">
+<div class="success-panel" style="max-width:none">
+<div class="success-icon">✓</div>
+<div class="eyebrow">Customer View</div>
+<h1>Thank you for your order</h1>
+<p>Your order has been submitted. Please verify your email address to activate your customer account and access the customer area later.</p>
+<div class="section info-banner" id="successVerificationNotice">
+<div class="info-dot" id="successVerificationIcon">i</div>
+<p id="successVerificationText"><strong>Next step: verify your email address.</strong> We sent a verification email to alex.taylor@example.com. Your order status is already available.</p>
+</div>
+<div class="button-row">
+<button class="btn primary" onclick="show('orderstatus')">Go to Order Overview</button>
+<p class="small" style="margin-top:10px">In the live process, the next step leads to the order overview. Email verification is handled after the order was submitted.</p>
+</div>
+<div class="dev-note prototype-controls" style="margin-top:16px">
+<strong>Prototype controls – account activation:</strong>
+<div class="scenario-actions">
+<button class="btn simulation" onclick="simulateEmailVerified()">Simulation: email verified</button>
+</div>
+</div>
+</div>
+</div>
+<aside class="system-view">
+<div class="system-card">
+<h2>System Process Timeline</h2>
+<p>Dev view: checks, payment and email triggers after final checkout submit.</p>
+<div class="timeline section">
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Checkout submitted</div><div class="timeline-desc">Account, company, billing, payment and contract confirmations were submitted in one checkout.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Duplicate check</div><div class="timeline-desc">Company and billing details are checked before payment or order creation continues.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Sanctions screening</div><div class="timeline-desc">If the result is clear, backend processing may continue. If there is a hit, no customer-facing compliance wording is shown.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Payment authentication successful</div><div class="timeline-desc">The payment-provider authentication returned successfully.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Email 1 – Order received</div><div class="timeline-desc">The order receipt email confirms that the order was submitted.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot done">✓</div><div><div class="timeline-title">Email 2 – Verify email address</div><div class="timeline-desc">The account verification email is sent after successful checkout and no longer blocks payment.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot waiting">…</div><div><div class="timeline-title">Optional internal review</div><div class="timeline-desc">If the payment provider flags fraud, internal review may be triggered while the customer-facing success state remains neutral.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot pending">◌</div><div><div class="timeline-title">Email 3 – Account activated / welcome</div><div class="timeline-desc">Sent after the customer verifies the email address.</div></div></div>
+<div class="timeline-item"><div class="timeline-dot pending">◌</div><div><div class="timeline-title">Email 4 – Order confirmation</div><div class="timeline-desc">Sent after final validation and payment confirmation.</div></div></div>
+</div>
+<div class="dev-note" style="margin-top:16px"><strong>Dev Note – Order Overview Access:</strong> In this unbranded flow mock-up, the customer can open a limited order overview after successful checkout even if the email address is not verified yet. The full logged-in portal navigation is a Design System state: after verification, the account becomes active and the navigation can switch from guest/limited context to customer area.</div>
+</div>
+</aside>
+</div>
+<div class="email-section-below">
+<div class="page-intro">
+<div>
+<div class="eyebrow">System Communication</div>
+<h2>Customer Email Placeholders</h2>
+<p>Email verification is now handled after successful checkout. Order and account activation messages are shown separately because they serve different customer needs.</p>
+</div>
+</div>
+<div class="email-grid">
+<div class="email-placeholder">
+<h3>Email 1 – Order received</h3>
+<div class="email-meta"><span><strong>Trigger:</strong> directly after successful checkout submit</span><span><strong>Recipient:</strong> checkout email address</span><span><strong>Purpose:</strong> confirms receipt of the order, but not yet final order acceptance</span></div>
+<div class="email-body">Subject: Your customer portal order has been received<br/><br/>Thank you for your order. We have received your order and are preparing the next steps. You can track the current status in the order overview.</div>
+</div>
+<div class="email-placeholder">
+<h3>Email 2 – Verify your email address</h3>
+<div class="email-meta"><span><strong>Trigger:</strong> after account creation during successful checkout</span><span><strong>Recipient:</strong> checkout email address</span><span><strong>Purpose:</strong> activates the customer account for later login</span></div>
+<div class="email-body">Subject: Please verify your email address<br/><br/>Your customer portal account was created during checkout. Please verify your email address to activate your account and access the customer area later.</div>
+</div>
+<div class="email-placeholder">
+<h3>Email 3 – Welcome / account activated</h3>
+<div class="email-meta"><span><strong>Trigger:</strong> after successful email verification</span><span><strong>Recipient:</strong> verified account email address</span><span><strong>Purpose:</strong> confirms that the customer account can be used</span></div>
+<div class="email-body">Subject: Welcome to the Customer Portal<br/><br/>Your email address has been verified and your customer portal account is active.</div>
+</div>
+<div class="email-placeholder">
+<h3>Email 4 – Order confirmation</h3>
+<div class="email-meta"><span><strong>Trigger:</strong> after final validation and payment confirmation</span><span><strong>Recipient:</strong> verified account email address</span><span><strong>Purpose:</strong> confirms the order and points to the order overview</span></div>
+<div class="email-body">Subject: Your customer portal order confirmation<br/><br/>Your order has been confirmed. You can track the provisioning status of your order in the customer portal order overview.</div>
+</div>
+</div>
+<div class="dev-note" style="margin-top:16px"><strong>Important for duplicate / sanctions hits:</strong> No order, verification, welcome or order confirmation email may be triggered if the checkout is stopped by duplicate or sanctions checks.</div>
+</div>
+</section>
+<section class="screen" id="duplicate-blocked">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step active" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
+<div class="page-intro">
+<div>
+<div class="eyebrow">Duplicate Check</div>
+<h1>Order cannot continue automatically</h1>
+<p>The customer view is shown on the left. The system view for duplicate matches and follow-up actions is shown on the right.</p>
+</div>
+</div>
+<div class="customer-system-shell">
+<div class="customer-view">
+<div class="success-panel" style="max-width:none">
+<div class="review-pending-icon">!</div>
+<div class="eyebrow">Customer View</div>
+<h1>Please contact your administrator</h1>
+<p>Placeholder text: An existing customer context was found for the entered company or contact details. Self-service cannot continue automatically at this point.</p>
+<div class="section warning-banner">
+<div class="warning-dot">!</div>
+<p><strong>Clarification required.</strong><br/>
                 Please contact your administrator or the responsible support contact so the order can be assigned to the existing customer account.</p>
-              </div>
-
-              <div class="button-row">
-                <button class="btn secondary" onclick="show('account-data')">Back to Account & Company Details</button>
-                <button class="btn primary" onclick="alert('Open support contact (Prototype)')">Contact Support</button>
-              </div>
-            </div>
-          </div>
-
-          <aside class="system-view">
-            <div class="system-card">
-              <h2>System View</h2>
-              <p>Dev view: business stop in the guest checkout due to an existing customer/account context.</p>
-
-              <div class="timeline section">
-                <div class="timeline-item">
-                  <div class="timeline-dot waiting">!</div>
-                  <div>
-                    <div class="timeline-title">Duplicate check match</div>
-                    <div class="timeline-desc">Company or contact details match an existing customer/account context.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Stop self-service</div>
-                    <div class="timeline-desc">The new-customer checkout is not continued automatically.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Do not start payment</div>
-                    <div class="timeline-desc">No payment data is sent to the payment provider.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">No order confirmation</div>
-                    <div class="timeline-desc">Order confirmation and order release remain blocked until the assignment has been clarified.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Admin / Support clarification</div>
-                    <div class="timeline-desc">The order must be assigned to an existing customer context or clarified from a business perspective.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="dev-note" style="margin-top:0">
-              <strong>Dev Note – Duplicate Match:</strong><br>
+</div>
+<div class="button-row">
+<button class="btn secondary" onclick="show('checkout')">Back to Checkout</button>
+<button class="btn primary" onclick="alert('Open support contact (Prototype)')">Contact Support</button>
+</div>
+</div>
+</div>
+<aside class="system-view">
+<div class="system-card">
+<h2>System View</h2>
+<p>Dev view: business stop in the guest checkout due to an existing customer/account context.</p>
+<div class="timeline section">
+<div class="timeline-item">
+<div class="timeline-dot waiting">!</div>
+<div>
+<div class="timeline-title">Duplicate check match</div>
+<div class="timeline-desc">Company or contact details match an existing customer/account context.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Stop self-service</div>
+<div class="timeline-desc">The new-customer checkout is not continued automatically.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Do not start payment</div>
+<div class="timeline-desc">No payment data is sent to the payment provider.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">No order confirmation</div>
+<div class="timeline-desc">Order confirmation and order release remain blocked until the assignment has been clarified.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Admin / Support clarification</div>
+<div class="timeline-desc">The order must be assigned to an existing customer context or clarified from a business perspective.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dev-note" style="margin-top:0">
+<strong>Dev Note – Duplicate Match:</strong><br/>
               This state is a hard stop in self-service. No payment is initiated, no payment data is sent to the payment provider, and the order is not enabled until the existing customer context has been clarified.
             </div>
-          </aside>
-        </div>
-      </section>
-
-
-      <section id="sanctions-technical-error" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step done" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step active" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Technical Error</div>
-            <h1>Order could not be completed right now</h1>
-            <p>Placeholder text: A technical problem occurred while completing your order. Please try again later or contact support.</p>
-          </div>
-        </div>
-
-        <div class="customer-system-shell">
-          <div class="customer-view">
-            <div class="success-panel" style="max-width:none">
-              <div class="review-pending-icon">!</div>
-              <div class="eyebrow">Customer View</div>
-              <h1>A technical problem occurred</h1>
-              <p>Placeholder text: Your order could not be completed at the moment. Please try again later. The final wording regarding support contact or automatic feedback is still to be aligned.</p>
-
-              <div class="section warning-banner">
-                <div class="warning-dot">!</div>
-                <p><strong>Order not completed.</strong><br>For technical reasons, the order completion could not be executed.</p>
-              </div>
-
-              <div class="button-row">
-                <button class="btn secondary" onclick="show('account-data')">Back to Account & Company Details</button>
-                <button class="btn primary" onclick="alert('Open support contact (Prototype)')">Contact Support</button>
-              </div>
+</aside>
+</div>
+</section>
+<section class="screen" id="sanctions-technical-error">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step active" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
+<div class="page-intro">
+<div>
+<div class="eyebrow">Technical Error</div>
+<h1>Order could not be completed right now</h1>
+<p>Placeholder text: A technical problem occurred while completing your order. Please try again later or contact support.</p>
+</div>
+</div>
+<div class="customer-system-shell">
+<div class="customer-view">
+<div class="success-panel" style="max-width:none">
+<div class="review-pending-icon">!</div>
+<div class="eyebrow">Customer View</div>
+<h1>A technical problem occurred</h1>
+<p>Placeholder text: Your order could not be completed at the moment. Please try again later. The final wording regarding support contact or automatic feedback is still to be aligned.</p>
+<div class="section warning-banner">
+<div class="warning-dot">!</div>
+<p><strong>Order not completed.</strong><br/>For technical reasons, the order completion could not be executed.</p>
+</div>
+<div class="button-row">
+<button class="btn secondary" onclick="show('checkout')">Back to Checkout</button>
+<button class="btn primary" onclick="alert('Open support contact (Prototype)')">Contact Support</button>
+</div>
+</div>
+</div>
+<aside class="system-view">
+<div class="system-card">
+<h2>System View</h2>
+<p>Dev view: a sanctions hit during final checkout submit is presented to the customer as a neutral technical error. No payment or order object is created in the backend.</p>
+<div class="timeline section">
+<div class="timeline-item">
+<div class="timeline-dot done">✓</div>
+<div>
+<div class="timeline-title">Checkout submitted</div>
+<div class="timeline-desc">The customer has submitted contact, account, company, billing and payment details. The sanctions check runs during final checkout validation before payment and final order creation continue.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot waiting">!</div>
+<div>
+<div class="timeline-title">Sanctions hit</div>
+<div class="timeline-desc">The hit is detected during final checkout validation and blocks payment and final order creation.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Do not create order or payment</div>
+<div class="timeline-desc">Final order creation remains blocked and no final order is created.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Do not forward payment data</div>
+<div class="timeline-desc">No payment authentication is started and no payment data is sent to the payment provider.</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-dot pending">◌</div>
+<div>
+<div class="timeline-title">Do not send email</div>
+<div class="timeline-desc">Neither the verification email, the welcome email, nor any order emails may be triggered.</div>
+</div>
+</div>
+</div>
+</div>
+<div class="dev-note" style="margin-top:0">
+<strong>Dev Note – Sanctions hit:</strong><br/>
+              The hit must not be visible to the customer. The customer sees a neutral technical error and cannot continue to Checkout. Do not use customer-facing terms such as sanctions list, compliance, fraud, or review. Important: in this case, no outgoing email may be sent at all – neither verification email, welcome email, nor order emails.
             </div>
-          </div>
+</aside>
+</div>
+</section>
+<section class="screen" id="orderstatus">
+<div class="stepper"><div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div><div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Review</div><div class="step done" onclick="show('checkout')" role="button" tabindex="0">3 Checkout</div><div class="step active" onclick="show('orderstatus')" role="button" tabindex="0">4 Order Overview</div></div>
 
-          <aside class="system-view">
-            <div class="system-card">
-              <h2>System View</h2>
-              <p>Dev view: a sanctions hit during the company data pre-check is presented to the customer as a neutral technical error.</p>
-
-              <div class="timeline section">
-                <div class="timeline-item">
-                  <div class="timeline-dot done">✓</div>
-                  <div>
-                    <div class="timeline-title">Account & company details submitted</div>
-                    <div class="timeline-desc">The customer has submitted contact, account, company, and billing details. The sanctions pre-check runs before Checkout &amp; Payment is enabled.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot waiting">!</div>
-                  <div>
-                    <div class="timeline-title">Sanctions hit</div>
-                    <div class="timeline-desc">The hit is detected during the company data pre-check and blocks the transition to Checkout &amp; Payment.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Do not enable checkout</div>
-                    <div class="timeline-desc">Checkout &amp; Payment remains blocked and no final order is created.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Do not start payment</div>
-                    <div class="timeline-desc">No payment authentication is started and no payment data is sent to the payment provider.</div>
-                  </div>
-                </div>
-                <div class="timeline-item">
-                  <div class="timeline-dot pending">◌</div>
-                  <div>
-                    <div class="timeline-title">Do not send email</div>
-                    <div class="timeline-desc">Neither the verification email, the welcome email, nor any order emails may be triggered.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="dev-note" style="margin-top:0">
-              <strong>Dev Note – Sanctions hit:</strong><br>
-              The hit must not be visible to the customer. The customer sees a neutral technical error and cannot continue to Checkout &amp; Payment. Do not use customer-facing terms such as sanctions list, compliance, fraud, or review. Important: in this case, no outgoing email may be sent at all – neither verification email, welcome email, nor order emails.
-            </div>
-          </aside>
-        </div>
-      </section>
-
-
-      <section id="orderstatus" class="screen">
-        <div class="stepper">
-          <div class="step done" onclick="show('wizard')" role="button" tabindex="0">1 Configuration</div>
-          <div class="step done" onclick="show('summary')" role="button" tabindex="0">2 Order Summary</div>
-          <div class="step done" onclick="show('account-data')" role="button" tabindex="0">3 Account & Company Details</div>
-          <div class="step done" onclick="show('checkout')" role="button" tabindex="0">4 Checkout & Payment</div>
-          <div class="step active" onclick="show('orderstatus')" role="button" tabindex="0">5 Order Status</div>
-        </div>
-        <div class="dev-note stepper-note">
-          <strong>Dev Note – Clickable Stepper:</strong>
-          In the mock-up, all stepper steps are clickable to make review and alignment faster. In the real implementation, only completed, current, and previous steps should be freely accessible. Registration/account and company details come before Checkout & Payment; email verification is an intermediate state within step 3 and is not its own stepper step. Payment Authentication only starts after the final submit, and the order status is only available after successful completion.
-        </div>
-
-        <div class="page-intro">
-          <div>
-            <div class="eyebrow">Product-Dashboard</div>
-            <h1>Order Status</h1>
-            <p>After registration and successful checkout, the new customer lands on the existing order status page.</p>
-          </div>
-        </div>
-
-        <div class="info-banner">
-          <div class="info-dot">✓</div>
-          <p><strong>Your order is being provisioned.</strong> Payment confirmed, account registered, provisioning started.</p>
-        </div>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Order</th>
-              <th>Product</th>
-              <th>Status</th>
-              <th>Last update</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ORD-2026-1048</strong><br><span class="small">New customer order</span></td>
-              <td>Managed Kubernetes · Kubernetes Cluster</td>
-              <td><span class="status-pill blue">In provisioning</span></td>
-              <td>Today, 10:42 AM</td>
-            </tr>
-            <tr>
-              <td><strong>Payment Confirmation</strong></td>
-              <td>Credit card via payment provider</td>
-              <td><span class="status-pill green">Confirmed</span></td>
-              <td>Today, 10:39 AM</td>
-            </tr>
-            <tr>
-              <td><strong>Account registration</strong></td>
-              <td>Customer portal account</td>
-              <td><span class="status-pill green">Active</span></td>
-              <td>Today, 10:41 AM</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-
-
-    </div>
-  </main>
+<div class="page-intro">
+  <div>
+    <div class="eyebrow">Order Overview</div>
+    <h1>Track your order and account activation</h1>
+    <p id="orderOverviewInfoText"><strong>Next step:</strong> Verify your email address to activate the customer account. Until then, this remains a limited order overview.</p>
+  </div>
 </div>
 
-  <div class="contract-modal-backdrop" id="contractModal" onclick="closeContractModal(event)">
-    <div class="contract-modal" role="dialog" aria-modal="true" aria-labelledby="contractModalTitle" onclick="event.stopPropagation()">
-      <div class="contract-modal-head">
-        <div>
-          <h2 id="contractModalTitle">Contract documents</h2>
-          <p>These document versions apply to the current order and are stored with the order on completion.</p>
-        </div>
-        <button class="contract-close" onclick="closeContractModal()" aria-label="Close">×</button>
-      </div>
-      <div class="contract-modal-body">
-        <div class="contract-list">
-          <a class="contract-link" href="#" onclick="return false;">Service Description – Managed Kubernetes <span class="contract-version">v1.2</span></a>
-          <a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Managed Hosting <span class="contract-version">v4.1.1</span></a>
-          <a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Cloud Services <span class="contract-version">v4.1.1</span></a>
-          <a class="contract-link" href="#" onclick="return false;">Web Portal Terms <span class="contract-version">v1.1.1</span></a>
-          <a class="contract-link" href="#" onclick="return false;">Service Level Agreements <span class="contract-version">v2.6.1</span></a>
-          <a class="contract-link" href="#" onclick="return false;">Data Processing Agreement <span class="contract-version">v1.9.5</span></a>
-          <a class="contract-link" href="#" onclick="return false;">General Terms and Conditions <span class="contract-version">v3.1.2</span></a>
-        </div>
-        <div class="dev-note"><strong>Dev Note – Contract Documents in Checkout:</strong> The documents must be viewable again in the checkout. The accepted list, including versions, is stored with the order in an audit-safe way.</div>
-      </div>
-      <div class="contract-modal-foot"><button class="btn primary" onclick="closeContractModal()">Close</button></div>
-    </div>
-  </div>
+<div id="orderActivationBanner" class="warning-banner" style="margin-top:0">
+  <div id="orderActivationBannerIcon" class="warning-dot">!</div>
+  <p id="orderActivationBannerText"><strong>Verify your email address.</strong><br>Please verify your email address to activate the customer account. Until then, this remains a limited order overview.</p>
+</div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Product</th>
+      <th>Status</th>
+      <th>Last update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>ORD-2026-1048</strong><br/><span class="small">New customer order</span></td>
+      <td>Managed Kubernetes · Kubernetes Cluster</td>
+      <td><span class="status-pill blue">In provisioning</span></td>
+      <td>Today, 10:42 AM</td>
+    </tr>
+    <tr>
+      <td><strong>Payment Confirmation</strong></td>
+      <td>Credit card via payment provider</td>
+      <td><span class="status-pill green">Confirmed</span></td>
+      <td>Today, 10:39 AM</td>
+    </tr>
+    <tr>
+      <td><strong>Email verification</strong><br/><span class="small">Account activation</span></td>
+      <td>Customer portal account</td>
+      <td><span class="status-pill amber" id="accountActivationStatus">Email verification pending</span></td>
+      <td><span id="accountActivationUpdate">Waiting for email verification</span><br/><button id="resendVerificationButton" class="btn secondary table-action" onclick="alert('Verification email resent (Prototype)')">Resend verification email</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="dev-note" style="margin-top:16px"><strong>Dev Note – Email Verification State:</strong> Email verification changes the account activation status, not the original checkout result. In Design System, this can drive the portal navigation state: unverified users see a limited post-checkout context; verified users can enter the full customer area.
+  <div class="scenario-actions">
+    <button class="btn simulation" onclick="simulateEmailVerified()">Simulation: email verified</button>
+    <button class="btn simulation" onclick="resetEmailVerificationSimulation()">Reset email verification</button>
+  </div>
+</div>
+</section>
+</div>
+</main>
+</div>
+<div class="contract-modal-backdrop" id="contractModal" onclick="closeContractModal(event)">
+<div aria-labelledby="contractModalTitle" aria-modal="true" class="contract-modal" onclick="event.stopPropagation()" role="dialog">
+<div class="contract-modal-head">
+<div>
+<h2 id="contractModalTitle">Contract documents</h2>
+<p>These document versions apply to the current order and are stored with the order on completion.</p>
+</div>
+<button aria-label="Close" class="contract-close" onclick="closeContractModal()">×</button>
+</div>
+<div class="contract-modal-body">
+<div class="contract-list">
+<a class="contract-link" href="#" onclick="return false;">Service Description – Managed Kubernetes <span class="contract-version">v1.2</span></a>
+<a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Managed Hosting <span class="contract-version">v4.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Special Contract Terms – Cloud Services <span class="contract-version">v4.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Web Portal Terms <span class="contract-version">v1.1.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Service Level Agreements <span class="contract-version">v2.6.1</span></a>
+<a class="contract-link" href="#" onclick="return false;">Data Processing Agreement <span class="contract-version">v1.9.5</span></a>
+<a class="contract-link" href="#" onclick="return false;">General Terms and Conditions <span class="contract-version">v3.1.2</span></a>
+</div>
+<div class="dev-note"><strong>Dev Note – Contract Documents in Checkout:</strong> The documents must be viewable again in the checkout. The accepted list, including versions, is stored with the order in an audit-safe way.</div>
+</div>
+<div class="contract-modal-foot"><button class="btn primary" onclick="closeContractModal()">Close</button></div>
+</div>
+</div>
 <script>
 const labels = {
   "start": "Case Overview",
   "services": "Products",
   "faq": "FAQ",
   "wizard": "Order Wizard",
-  "summary": "Order Summary",
-  "account-data": "Account & Company Details",
-  "email-verify": "Verify Email",
-  "checkout": "Checkout & Payment",
+  "summary": "Order Review",
+  "checkout": "Checkout",
   "payment-auth": "Payment Authentication",
   "success": "Order Completed",
   "duplicate-blocked": "Duplicate Match",
   "sanctions-technical-error": "Technical Error",
-  "orderstatus": "Order Status"
+  "orderstatus": "Order Overview"
 };
 
 
@@ -5012,13 +4647,24 @@ function resetPasswordState(){
   updatePasswordState();
 }
 
+const lucideEyeIcon = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>`;
+const lucideEyeOffIcon = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .698 10.747 10.747 0 0 1-1.444 2.49"></path>
+<path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path>
+<path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"></path>
+<path d="m2 2 20 20"></path>
+</svg>`;
+
 function togglePasswordVisibility(inputId, button){
   const input = document.getElementById(inputId);
   if(!input) return;
   const shouldShow = input.type === "password";
   input.type = shouldShow ? "text" : "password";
   if(button){
-    button.textContent = shouldShow ? "🙈" : "👁";
+    button.innerHTML = shouldShow ? lucideEyeOffIcon : lucideEyeIcon;
     button.setAttribute("aria-label", shouldShow ? "Hide password" : "Show password");
   }
 }
@@ -5058,7 +4704,7 @@ function updateGateButtons(){
   const emailConfirm = document.getElementById("emailConfirm");
   const password = document.getElementById("passwordPrimary");
   const passwordConfirm = document.getElementById("passwordConfirm");
-  const paymentErrorBox = document.getElementById("mollieInlineErrors");
+  const paymentErrorBox = document.getElementById("paymentProviderInlineErrors");
 
   const accountReady =
     isValidEmail(email?.value) &&
@@ -5077,6 +4723,7 @@ function updateGateButtons(){
 
   const paymentHasErrors = !!(paymentErrorBox && paymentErrorBox.classList.contains("show"));
   const checkoutReady =
+    accountReady &&
     isChecked("contractAcceptanceCheck") &&
     isChecked("privacyAcceptanceCheck") &&
     isChecked("b2bConfirmationCheck") &&
@@ -5086,29 +4733,105 @@ function updateGateButtons(){
     "checkoutSubmitButton",
     "checkoutGateHelper",
     checkoutReady,
-    "All required confirmations are complete. You can place the order.",
-    paymentHasErrors ? "Resolve the payment field errors before placing the order." : "Accept all required confirmations to continue."
+    "All required checkout details and confirmations are complete. You can place the order.",
+    paymentHasErrors ? "Resolve the payment field errors before placing the order." : "Complete account details, payment information and all required confirmations to continue."
   );
 }
 
+function simulateEmailVerified(){
+  const successNotice = document.getElementById("successVerificationNotice");
+  const successIcon = document.getElementById("successVerificationIcon");
+  const successText = document.getElementById("successVerificationText");
+  if(successNotice){
+    successNotice.classList.remove("warning-banner");
+    successNotice.classList.add("info-banner");
+  }
+  if(successIcon) successIcon.textContent = "✓";
+  if(successText) successText.innerHTML = "<strong>Email verified.</strong> Your customer account is active. You can use the full customer area after signing in.";
+
+  const orderInfo = document.getElementById("orderOverviewInfoText");
+  if(orderInfo) orderInfo.textContent = "The customer account is active. In Design System, the navigation can switch from the limited post-checkout context to the full customer area.";
+
+  const overviewBanner = document.getElementById("orderActivationBanner");
+  const overviewBannerIcon = document.getElementById("orderActivationBannerIcon");
+  const overviewBannerText = document.getElementById("orderActivationBannerText");
+  if(overviewBanner){
+    overviewBanner.classList.remove("warning-banner");
+    overviewBanner.classList.add("info-banner");
+  }
+  if(overviewBannerIcon){
+    overviewBannerIcon.className = "info-dot";
+    overviewBannerIcon.textContent = "✓";
+  }
+  if(overviewBannerText) overviewBannerText.innerHTML = "<strong>Email verified.</strong><br>The customer account is active. The order overview can now transition from the limited post-checkout context to the full customer area.";
+
+  const accountStatus = document.getElementById("accountActivationStatus");
+  const accountUpdate = document.getElementById("accountActivationUpdate");
+  const resendButton = document.getElementById("resendVerificationButton");
+  if(accountStatus){
+    accountStatus.className = "status-pill green";
+    accountStatus.textContent = "Email verified";
+  }
+  if(accountUpdate) accountUpdate.textContent = "Today, 10:45 AM";
+  if(resendButton) resendButton.style.display = "none";
+}
+
+function resetEmailVerificationSimulation(){
+  const successNotice = document.getElementById("successVerificationNotice");
+  const successIcon = document.getElementById("successVerificationIcon");
+  const successText = document.getElementById("successVerificationText");
+  if(successNotice){
+    successNotice.classList.remove("info-banner");
+    successNotice.classList.add("warning-banner");
+  }
+  if(successIcon) successIcon.textContent = "!";
+  if(successText) successText.innerHTML = "<strong>Verify your email address.</strong> We have sent a verification email to alex.taylor@example.com. Please verify your email address to activate the customer account.";
+
+  const orderInfo = document.getElementById("orderOverviewInfoText");
+  if(orderInfo) orderInfo.innerHTML = "<strong>Next step:</strong> Verify your email address to activate the customer account. Until then, this remains a limited order overview.";
+
+  const overviewBanner = document.getElementById("orderActivationBanner");
+  const overviewBannerIcon = document.getElementById("orderActivationBannerIcon");
+  const overviewBannerText = document.getElementById("orderActivationBannerText");
+  if(overviewBanner){
+    overviewBanner.classList.remove("info-banner");
+    overviewBanner.classList.add("warning-banner");
+  }
+  if(overviewBannerIcon){
+    overviewBannerIcon.className = "warning-dot";
+    overviewBannerIcon.textContent = "!";
+  }
+  if(overviewBannerText) overviewBannerText.innerHTML = "<strong>Verify your email address.</strong><br>Please verify your email address to activate the customer account. Until then, this remains a limited order overview.";
+
+  const accountStatus = document.getElementById("accountActivationStatus");
+  const accountUpdate = document.getElementById("accountActivationUpdate");
+  const resendButton = document.getElementById("resendVerificationButton");
+  if(accountStatus){
+    accountStatus.className = "status-pill amber";
+    accountStatus.textContent = "Email verification pending";
+  }
+  if(accountUpdate) accountUpdate.textContent = "Waiting for email verification";
+  if(resendButton) resendButton.style.display = "inline-flex";
+}
+
 function showPaymentProviderErrors(){
-  const box = document.getElementById("mollieInlineErrors");
+  const box = document.getElementById("paymentProviderInlineErrors");
   const payment = document.querySelector("#checkout .payment-method");
   if(!box || !payment) return;
   box.classList.add("show");
-  payment.classList.add("mollie-errors-active");
+  payment.classList.add("payment-provider-errors-active");
   updateGateButtons();
   box.scrollIntoView({behavior:"smooth", block:"center"});
 }
 function resetPaymentProviderErrors(){
-  const box = document.getElementById("mollieInlineErrors");
+  const box = document.getElementById("paymentProviderInlineErrors");
   const payment = document.querySelector("#checkout .payment-method");
   if(box) box.classList.remove("show");
-  if(payment) payment.classList.remove("mollie-errors-active");
+  if(payment) payment.classList.remove("payment-provider-errors-active");
   updateGateButtons();
 }
 function togglePaymentProviderErrors(){
-  const box = document.getElementById("mollieInlineErrors");
+  const box = document.getElementById("paymentProviderInlineErrors");
   if(box && box.classList.contains("show")) resetPaymentProviderErrors();
   else showPaymentProviderErrors();
 }

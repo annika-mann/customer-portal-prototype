@@ -28,15 +28,14 @@ The mockups are organized into three stages:
 
 ## Current Features
 
-| Feature                    | Status         | Description                                                                                                                    | Unbranded                                                                             | Design System  | Product Vision |
-| -------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- | -------------- | -------------- |
-| Virtual Network Management | Available      | Self-service management of virtual networks and assigned resources within a customer portal.                                   | [Open](features/virtual-network-management/virtual-network-management-unbranded.html) | [Open](features/virtual-network-management/virtual-network-management-design-system.html) | —              |
-| API Management             | Available      | API activation, key lifecycle, documentation, request transparency and access restrictions for platform customers.             | [Open](features/api-management/api-management-unbranded.html)                         | —              | —              |
-| eCommerce Checkout         | Available      | Commerce-first B2B SaaS ordering flow with configuration, checkout, payment verification, account activation and order status. | [Open](features/commerce-checkout/commerce-checkout-unbranded.html)                   | —              | —              |
-| Customer MFA Policies      | In Preparation | Customer-level security policies for mandatory MFA and passkey adoption.                                                       | —                                                                                     | —              | —              |
-| User & Role Management     | In Progress    | Next-generation user administration, role management and permission handling.                                                  | —                                                                                     | —              | —              |
-| Bulk User Operations       | In Preparation | Administrative bulk actions for customer user management.                                                                      | —                                                                                     | —              | —              |
-
+| Feature | Status | Description | Unbranded | Design System | Product Vision |
+|---|---|---|---|---|---|
+| Virtual Network Management | Available | Self-service management of virtual networks and assigned resources within a customer portal. | [Open](features/virtual-network-management/virtual-network-management-unbranded.html) | [Open](features/virtual-network-management/virtual-network-management-design-system.html) | — |
+| API Management | Available | API activation, key lifecycle, documentation, request transparency and access restrictions for platform customers. | [Open](features/api-management/api-management-unbranded.html) | — | — |
+| Commerce Checkout | Available | Commerce-first B2B SaaS ordering flow with configuration, checkout, payment verification, account activation and order status.<br><br>[Read Case Study](features/commerce-checkout/commerce-checkout-case-study.md) | [Open](features/commerce-checkout/commerce-checkout-unbranded.html) | In Preparation | — |
+| Customer MFA Policies | In Preparation | Customer-level security policies for mandatory MFA and passkey adoption. | — | — | — |
+| User & Role Management | In Progress | Next-generation user administration, role management and permission handling. | — | — | — |
+| Bulk User Operations | In Preparation | Administrative bulk actions for customer user management. | — | — | — |
 
 ## Goals, Signals & Metrics
 

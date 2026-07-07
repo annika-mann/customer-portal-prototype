@@ -59,9 +59,9 @@ Not every module contains all stages yet. The repository will continue to evolve
 
 | Product Area | Status | Product Focus | Case Study | Prototype Stages |
 |---|---|---|---|---|
-| Commerce Checkout | In progress | Commerce-first ordering journey, guest and logged-in entry states, order wizard optimization, checkout, payment, account activation and order status. | [View case study](./features/commerce-checkout/commerce-checkout-case-study.html) | Unbranded |
-| API Management | Available | API activation, API key management, documentation access and developer-oriented self-service. | Coming soon | Unbranded |
-| Virtual Network Management | Available | Service overview, product details, resource relationships and selected management actions. | Coming soon | Unbranded, Design System / MVP Reconstruction |
+| Commerce Checkout | In progress | Commerce-first ordering journey, guest and logged-in entry states, order wizard optimization, checkout, payment, account activation and order status. | [View case study](./features/commerce-checkout/commerce-checkout-case-study.md) | Unbranded |
+| API Management | Available | API activation, API key management, documentation access and developer-oriented self-service. | [View case study](./features/api-management/api-management-case-study.md) | Unbranded |
+| Virtual Network Management | Available | Service overview, product details, resource relationships and selected management actions. | [View case study](./features/virtual-network-management/virtual-network-management-case-study.md) | Unbranded, Design System / MVP Reconstruction |
 
 ### 1. Commerce Checkout
 
@@ -92,14 +92,6 @@ Commerce Checkout shows how a customer-facing product flow can combine ordering,
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./features/commerce-checkout/unbranded/commerce-checkout-unbranded.html) |
-| Design System / MVP Reconstruction | Coming soon |
-| Product Vision | Coming soon |
-
-**Prototype Links**
-
-| Stage | Link |
-|---|---|
 | Unbranded | [Open prototype](./commerce-checkout/unbranded/commerce-checkout-unbranded.html) |
 | Design System / MVP Reconstruction | In Preparation |
 | Product Vision | Coming soon |
@@ -122,6 +114,12 @@ This module explores how customers can understand API availability, activate acc
 **What this demonstrates**
 
 API Management shows how a technical product capability can be translated into a guided customer-facing workflow that balances autonomy, clarity, and security.
+
+**Case Study**
+
+| Case Study | Link |
+|---|---|
+| API Management Case Study | [Open case study](./features/api-management/api-management-case-study.md) |
 
 **Prototype Links**
 
@@ -149,6 +147,12 @@ This module explores how customers can view network services, inspect related pr
 **What this demonstrates**
 
 Virtual Network Management shows how a complex infrastructure-related capability can be translated into a usable customer-facing product module with clear information hierarchy and guided interaction patterns.
+
+**Case Study**
+
+| Case Study | Link |
+|---|---|
+| Virtual Network Management Case Study | [Open case study](./features/virtual-network-management/virtual-network-management-case-study.md) |
 
 **Prototype Links**
 

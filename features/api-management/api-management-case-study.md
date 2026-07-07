@@ -169,19 +169,18 @@ These iterations move the prototype from a focused activation and key creation f
 
 ## What This Case Demonstrates
 
-This case demonstrates how a technical platform capability can be translated into a structured customer-facing product experience.
+This case highlights the product capabilities behind the API Management prototype.
 
-It shows:
-
-- platform product thinking
-- technical self-service design
-- API onboarding flow design
-- MVP scoping
-- information architecture for technical users
-- security-sensitive interaction design
-- status and empty-state guidance
-- support reduction through self-service
-- interactive prototyping for stakeholder alignment and implementation preparation
+| Capability | Evidence in this case |
+|---|---|
+| Technical self-service design | Translates API activation and key management into a guided customer-facing workflow. |
+| Platform product thinking | Frames API access as part of a broader customer portal and developer experience. |
+| Information architecture | Structures API status, activation, key creation and documentation access into one understandable product area. |
+| Security-sensitive interaction design | Makes API key creation, credential handling and permission-related actions more explicit and controlled. |
+| MVP scoping | Focuses the first prototype on activation, initial key creation, key overview and documentation access. |
+| Support reduction | Designs the flow to reduce repetitive API onboarding questions and guide customers toward self-service. |
+| Outcome-oriented product thinking | Defines goals, signals and potential metrics around activation, time to first API use, support reduction and security awareness. |
+| Stakeholder alignment | Uses the prototype to support product, development, security and support discussions before implementation. |
 
 ## Related Portfolio Context
 

@@ -148,18 +148,17 @@ These iterations move the prototype from an integrated first-purchase checkout t
 
 ## What This Case Demonstrates
 
-This case demonstrates how a complex B2B customer journey can be translated into a structured product flow.
+This case highlights the product capabilities behind the Commerce Checkout prototype.
 
-It shows:
-
-- product thinking beyond individual screens
-- customer journey design
-- checkout and onboarding flow design
-- MVP scoping
-- handling of operational and compliance dependencies
-- edge case visibility
-- outcome-oriented product framing
-- interactive prototyping for stakeholder alignment and implementation preparation
+| Capability | Evidence in this case |
+|---|---|
+| Customer journey design | Structures the first-purchase journey from product intent to checkout, account activation and order status. |
+| B2B commerce thinking | Balances checkout simplicity with company data, billing, payment, contract and compliance requirements. |
+| MVP scoping | Focuses the first prototype on the core ordering and onboarding journey plus relevant exception states. |
+| Operational realism | Reflects duplicate checks, payment authorization, compliance review, pending states and internal handover needs. |
+| Outcome-oriented product thinking | Defines goals, signals and potential metrics around completion, friction, transparency and support reduction. |
+| Stakeholder alignment | Uses an interactive prototype to make product, design, development, operations and compliance discussions concrete. |
+| Product evolution | Moves from an unbranded first-purchase checkout toward a broader logged-in commerce and portal experience. |
 
 ## Related Portfolio Context
 

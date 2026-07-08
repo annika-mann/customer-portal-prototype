@@ -35,8 +35,8 @@ The current prototypes cover both the first functional feature concept and a mor
 
 | Prototype | Status | Link |
 |---|---|---|
-| Virtual Network Management – Unbranded Prototype | Available | [Open prototype](./features/virtual-network-management/virtual-network-management-unbranded.html) |
-| Virtual Network Management – Design System / MVP Reconstruction | Available | [Open prototype](./features/virtual-network-management/virtual-network-management-design-system.html) |
+| Virtual Network Management – Unbranded Prototype | Available | [Open prototype](./virtual-network-management-unbranded.html) |
+| Virtual Network Management – Design System / MVP Reconstruction | Available | [Open prototype](./virtual-network-management-design-system.html) |
 | Product Vision / CloudHub Evolution Basis | Exploration | Coming soon |
 
 ## Problem

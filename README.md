@@ -92,7 +92,7 @@ Commerce Checkout shows how a customer-facing product flow can combine ordering,
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./commerce-checkout-unbranded.html) |
+| Unbranded | [Open prototype](./features/commerce-checkout/commerce-checkout-unbranded.html) |
 | Design System / MVP Reconstruction | In Preparation |
 | Product Vision | Coming soon |
 

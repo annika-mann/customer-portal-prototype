@@ -32,7 +32,7 @@ The current prototype focuses on the unbranded MVP flow for API activation and A
 
 | Prototype | Status | Link |
 |---|---|---|
-| API Management – Unbranded Prototype | Available | [Open prototype](./unbranded/api-management-unbranded.html) |
+| API Management – Unbranded Prototype | Available | [Open prototype](./features/api-management/api-management-unbranded.html) |
 | Design System / MVP Reconstruction | Planned | In Preperation |
 | Product Vision | Planned | Coming soon |
 

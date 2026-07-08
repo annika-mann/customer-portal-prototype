@@ -32,7 +32,7 @@ The current prototype focuses on the unbranded MVP flow for a commerce-first B2B
 
 | Prototype | Status | Link |
 |---|---|---|
-| Commerce Checkout – Unbranded Prototype | Available | [[Open prototype](./features/commerce-checkout/commerce-checkout-unbranded.html) |
+| Commerce Checkout – Unbranded Prototype | Available | [Open prototype](./features/commerce-checkout/commerce-checkout-unbranded.html) |
 | Design System / MVP Reconstruction | Planned | In Preparation |
 | Product Vision | Planned | Coming soon |
 

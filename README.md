@@ -92,7 +92,7 @@ Commerce Checkout shows how a customer-facing product flow can combine ordering,
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./features/commerce-checkout/unbranded/commerce-checkout-unbranded.html) |
+| Unbranded | [Open prototype](./features/commerce-checkout/commerce-checkout-unbranded.html) |
 | Design System / MVP Reconstruction | In Preparation |
 | Product Vision | Coming soon |
 
@@ -125,7 +125,7 @@ API Management shows how a technical product capability can be translated into a
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./features/api-management/unbranded/api-management-unbranded.html) |
+| Unbranded | [Open prototype](./features/api-management/api-management-unbranded.html) |
 | Design System / MVP Reconstruction | Coming soon |
 | Product Vision | Coming soon |
 
@@ -158,8 +158,8 @@ Virtual Network Management shows how a complex infrastructure-related capability
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./features/virtual-network-management/unbranded/virtual-network-management-unbranded.html) |
-| Design System / MVP Reconstruction | [Open prototype](./features/virtual-network-management/design-system/virtual-network-management-design-system.html) |
+| Unbranded | [Open prototype](./features/virtual-network-management/virtual-network-management-unbranded.html) |
+| Design System / MVP Reconstruction | [Open prototype](./features/virtual-network-management/virtual-network-management-design-system.html) |
 | Product Vision | Coming soon |
 
 ## Product Areas & Roadmap

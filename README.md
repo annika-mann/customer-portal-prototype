@@ -92,7 +92,7 @@ Commerce Checkout shows how a customer-facing product flow can combine ordering,
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./commerce-checkout/unbranded/commerce-checkout-unbranded.html) |
+| Unbranded | [Open prototype](./features/commerce-checkout/unbranded/commerce-checkout-unbranded.html) |
 | Design System / MVP Reconstruction | In Preparation |
 | Product Vision | Coming soon |
 
@@ -125,7 +125,7 @@ API Management shows how a technical product capability can be translated into a
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./api-management/unbranded/api-management-unbranded.html) |
+| Unbranded | [Open prototype](./features/api-management/unbranded/api-management-unbranded.html) |
 | Design System / MVP Reconstruction | Coming soon |
 | Product Vision | Coming soon |
 
@@ -158,8 +158,8 @@ Virtual Network Management shows how a complex infrastructure-related capability
 
 | Stage | Link |
 |---|---|
-| Unbranded | [Open prototype](./virtual-network-management/unbranded/virtual-network-management-unbranded.html) |
-| Design System / MVP Reconstruction | [Open prototype](./virtual-network-management/design-system/virtual-network-management-design-system.html) |
+| Unbranded | [Open prototype](./features/virtual-network-management/unbranded/virtual-network-management-unbranded.html) |
+| Design System / MVP Reconstruction | [Open prototype](./features/virtual-network-management/design-system/virtual-network-management-design-system.html) |
 | Product Vision | Coming soon |
 
 ## Product Areas & Roadmap
@@ -256,7 +256,7 @@ Together, both portfolios demonstrate how customer experience and employee exper
 
 This Customer Portal portfolio focuses on the customer-facing side of a modular B2B service ecosystem.
 
-A related portfolio area, [Operations Hub](https://github.com/annika-mann/operations-hub-prototype), focuses on internal employee-facing workflows such as customer management, customer operations, contracts, credentials, reporting and operational service support.
+A related portfolio area, [Operations Hub](https://annika-mann.github.io/operations-hub-prototype/), focuses on internal employee-facing workflows such as customer management, customer operations, contracts, credentials, reporting and operational service support.
 
 Together, both portfolios demonstrate how customer experience and employee experience can be designed as connected parts of one service ecosystem:
 

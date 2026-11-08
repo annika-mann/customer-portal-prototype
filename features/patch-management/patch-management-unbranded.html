@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Customer Portal – Patch Management – Unbranded Portfolio Mock-up</title>
+<style>
+:root{
+  --brand-primary:#2563EB;
+  --brand-accent:#2a918a;
+  --ink:#0F172A;
+  --muted:#64748B;
+  --line:#E2E8F0;
+  --bg:#FFFFFF;
+  --bg2:#F8FAFC;
+  --success:#16A34A;
+  --danger:#DC2626;
+  --warning:#F59E0B;
+
+  /* Shared portfolio status palette */
+  --status-success-bg:rgba(22,163,74,.10);
+  --status-success-border:rgba(22,163,74,.22);
+  --status-success-text:#166534;
+  --status-warning-bg:rgba(245,158,11,.10);
+  --status-warning-border:rgba(245,158,11,.25);
+  --status-warning-text:#92400E;
+  --status-danger-bg:rgba(220,38,38,.08);
+  --status-danger-border:rgba(220,38,38,.18);
+  --status-danger-text:#b42318;
+  --status-neutral-bg:#F8FAFC;
+  --status-neutral-border:var(--line);
+  --status-neutral-text:var(--muted);
+
+  --policy-all-bg:#DBEAFE;
+  --policy-all-border:#BFDBFE;
+  --policy-all-text:#1E3A8A;
+  --policy-security-bg:#CCFBF1;
+  --policy-security-border:#99F6E4;
+  --policy-security-text:#17635F;
+  --policy-check-bg:#EDE9FE;
+  --policy-check-border:#DDD6FE;
+  --policy-check-text:#4338CA;
+
+  --shadow:0 10px 25px rgba(15,23,42,.06);
+  --radius:16px;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg)}
+a{color:var(--brand-primary);text-decoration:none}a:hover{text-decoration:underline}
+.layout{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}
+.sidebar{border-right:1px solid var(--line);padding:18px 14px;background:linear-gradient(180deg,#fff,#fbfcff)}
+.brand{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px}
+.logo{width:40px;height:40px;border-radius:14px;background:rgba(37,99,235,.12);display:flex;align-items:center;justify-content:center;font-weight:1100;color:var(--brand-primary)}
+.muted{color:var(--muted)}
+.nav{margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.nav-title{margin:18px 10px 6px;font-size:11px;font-weight:1100;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.nav a{padding:10px;border-radius:14px;font-weight:1100;color:var(--muted);display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav a.active{background:rgba(37,99,235,.10);color:var(--ink)}
+.nav a:hover{background:rgba(37,99,235,.06);text-decoration:none}
+.notes{margin-top:18px;padding:12px 10px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.divider{height:1px;background:var(--line);margin:14px 0}
+.main{padding:18px 22px;min-width:0}
+.toprow{display:flex;gap:14px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;background:#fff;padding:14px 0 10px;border-bottom:1px solid var(--line)}
+.crumb{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.crumb a{color:var(--muted);font-weight:1100}
+.user{display:flex;gap:10px;align-items:center;color:var(--muted);font-weight:1100}
+.dot{width:10px;height:10px;border-radius:99px;background:var(--brand-primary)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:var(--policy-all-bg);border:1px solid var(--policy-all-border);font-size:12px;font-weight:1100;white-space:nowrap;color:var(--policy-all-text)}
+.pill.ok{background:var(--status-success-bg);border-color:var(--status-success-border);color:var(--status-success-text)}
+.pill.pending{background:rgba(37,99,235,.10);border-color:rgba(37,99,235,.22);color:#1E3A8A}
+.pill.warn{background:var(--status-warning-bg);border-color:var(--status-warning-border);color:var(--status-warning-text)}
+.pill.danger{background:var(--status-danger-bg);border-color:var(--status-danger-border);color:var(--status-danger-text)}
+.pill.neutral{background:var(--status-neutral-bg);border-color:var(--status-neutral-border);color:var(--status-neutral-text)}
+.pill.policy{background:var(--policy-all-bg);border-color:var(--policy-all-border);color:var(--policy-all-text)}
+.pill.policy-security{background:var(--policy-security-bg);border-color:var(--policy-security-border);color:var(--policy-security-text)}
+.pill.policy-check{background:var(--policy-check-bg);border-color:var(--policy-check-border);color:var(--policy-check-text)}
+.route{display:none}.route.show{display:block}
+h1{margin:12px 0 2px;font-size:30px;letter-spacing:-.02em}
+h2,h3{margin:0;font-size:16px}
+.sub{color:var(--muted);font-size:13px;line-height:1.45}
+.page-head{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;margin-top:8px}
+.card{min-width:0;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);overflow:hidden;margin-top:18px}
+.cardhead{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(180deg,#fff,#fbfcff)}
+.cardbody{padding:14px 16px}
+.tabs{display:flex;gap:0;align-items:flex-end;border-bottom:1px solid var(--line);margin-top:18px;overflow:auto}
+.tab{padding:12px 18px;font-weight:1100;color:#111827;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+.tab+.tab{margin-left:26px}
+.tab.active{border-bottom-color:var(--brand-primary)}
+.tabpane{display:none;padding-top:14px}.tabpane.show{display:block}
+.filters{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;justify-content:space-between;margin-top:12px}
+.inline-field{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.inline-label{font-size:12px;font-weight:1100;color:var(--muted);white-space:nowrap}
+input{border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:14px;outline:none;background:var(--bg2);color:var(--ink);min-width:320px;font-family:var(--sans)}
+table{width:100%;border-collapse:collapse;font-size:14px;font-family:var(--sans)}
+th,td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+th{color:var(--brand-primary);font-size:13px;font-weight:1100;white-space:nowrap}
+tr:hover td{background:rgba(37,99,235,.03)}
+.clickable{cursor:pointer}
+.results{margin-top:14px;font-size:13px;color:var(--muted)}
+.tablewrap{overflow:auto;margin-top:12px}
+.sort-arrows{display:inline-flex;flex-direction:column;line-height:8px;margin-left:5px;color:#111827;opacity:.45;font-size:7px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.box{min-width:0;border:1px solid var(--line);border-radius:16px;padding:16px;background:#fff}
+.box h3{margin-bottom:14px}
+.kv{display:grid;grid-template-columns:190px 1fr;gap:10px 16px;font-size:14px}
+.kv .k{color:var(--muted)}
+.linkish{color:var(--brand-primary);font-weight:700;cursor:pointer}
+.legend{margin-top:22px}
+.legend h3{font-size:16px;margin-bottom:14px}
+.legend-items{display:flex;flex-direction:column;gap:10px}
+.legend-row{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:center;font-size:12px}
+.swatch{width:20px;height:20px;border-radius:50%}
+.swatch.ok{background:var(--status-success-bg);border:1px solid var(--status-success-border)}
+.swatch.pending{background:rgba(37,99,235,.10);border:1px solid rgba(37,99,235,.22)}
+.swatch.warn{background:var(--status-warning-bg);border:1px solid var(--status-warning-border)}
+.swatch.danger{background:var(--status-danger-bg);border:1px solid var(--status-danger-border)}
+.swatch.neutral{background:var(--status-neutral-bg);border:1px solid var(--status-neutral-border)}
+.swatch.blue{background:var(--policy-all-bg);border:1px solid var(--policy-all-border)}
+.swatch.teal{background:var(--policy-security-bg);border:1px solid var(--policy-security-border)}
+.swatch.purple{background:var(--policy-check-bg);border:1px solid var(--policy-check-border)}
+.notice{padding:12px;border-radius:14px;background:#F4F7F9;border:1px solid #CBD5DC;border-left:4px solid #4B5B69;color:#3F4E5A;font-size:13px;line-height:1.45;margin-top:18px}
+.btn{border-radius:999px;border:2px solid var(--line);background:#fff;padding:10px 14px;font-weight:400;font-size:14px;cursor:pointer;display:inline-flex;gap:10px;align-items:center;transition:.15s transform,.15s border-color;color:#111827;font-family:var(--sans)}
+.btn:hover{transform:translateY(-1px);border-color:#d7dbe5}
+.btn.primary{border-color:var(--brand-accent);color:var(--brand-accent);background:#fff}
+.btn.neutral{border-color:#111827;color:#111827;background:#fff}
+.backlink{margin-top:22px;display:inline-block;font-weight:700;cursor:pointer;color:var(--brand-primary)}
+.disabled-link{color:var(--muted);cursor:default;text-decoration:none}
+.mono{font-family:var(--mono);font-size:12px}
+@media(max-width:980px){
+ .layout{grid-template-columns:minmax(0,1fr)}
+ .sidebar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;padding:10px 18px;border-right:0;border-bottom:1px solid var(--line)}
+ .sidebar .brand{padding:4px 0}
+ .sidebar .nav{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px;margin:0}
+ .sidebar .nav-title,.sidebar .notes{display:none}
+ .sidebar .nav a{padding:9px 12px}
+ .main{padding:0 18px;min-width:0}
+ .detail-grid{grid-template-columns:minmax(0,1fr)}
+ .toprow{position:relative}
+}
+
+@media(max-width:600px){
+ .sidebar{padding:10px 12px}
+ .sidebar .brand{width:100%}
+ .sidebar .nav{width:100%}
+ .main{padding:0 12px}
+ .toprow{align-items:flex-start;flex-wrap:wrap;gap:8px}
+ .user{flex-wrap:wrap}
+ .cardbody{padding:12px}
+ .filters,.inline-field{min-width:0;width:100%}
+ .inline-field input{min-width:0;width:100%;max-width:100%}
+ .kv{grid-template-columns:minmax(0,1fr);overflow-wrap:anywhere}
+ .mono{overflow-wrap:anywhere}
+ .tabs{max-width:100%}
+ .tablewrap{max-width:100%;overflow-x:auto}
+}
+
+/* Virtual Network typography / component alignment */
+h1{margin:12px 0 2px;font-size:30px;letter-spacing:-.02em;line-height:normal;font-weight:1100}
+h2,h3{font-weight:1100}
+.sub{color:var(--muted);font-size:13px;line-height:normal}
+.mono{font-family:var(--mono);font-size:12px;font-weight:400}
+.crumb{font-size:13px;line-height:normal}
+.crumb a{font-weight:1100}
+.tab{padding:12px 18px;font-weight:1100;color:#111827}
+
+</style>
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand">
+    <div class="logo">cp</div>
+    <div>
+      <div style="font-weight:1100">Customer Portal</div>
+      <div class="muted" style="font-size:12px">Prototype • Patch Management</div>
+    </div>
+  </div>
+
+  <div class="nav" id="nav">
+    <div class="nav-title">Service Area</div>
+    <a href="#" class="active" data-route="schedules" onclick="go('schedules');return false;">Patch Management</a>
+    <a href="#" data-route="devices" onclick="go('devices');return false;">Devices</a>
+  </div>
+
+  <div class="notes">
+    <div class="muted" style="font-size:12px;font-weight:1100;letter-spacing:.06em;text-transform:uppercase">Notes</div>
+    <div class="divider"></div>
+    <div class="muted" style="font-size:12px;line-height:1.45">
+      • Read-only service overview<br/>
+      • List → detail navigation<br/>
+      • Patch schedules and individual patch runs are linked<br/>
+      • Devices may include resources not shown in the product dashboard<br/>
+      • Data and identifiers are illustrative
+    </div>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="toprow">
+    <div class="crumb" id="breadcrumb">Patch Management</div>
+    <div class="user"><span class="dot"></span><span>customer user</span><span class="pill">user-role</span></div>
+  </div>
+
+  <section id="route-schedules" class="route show">
+    <div class="page-head">
+      <div><h1>Patch Management</h1><div class="sub">Review upcoming patch schedules and completed or active patch runs.</div></div>
+    </div>
+    <div class="tabs">
+      <div class="tab active" onclick="go('schedules')">Patch Schedules</div>
+      <div class="tab" onclick="go('runs')">Patch Runs</div>
+    </div>
+<section class="card">
+      <div class="cardbody">
+        <div class="filters">
+          <div></div>
+          <div class="inline-field"><span class="inline-label">Search:</span><input id="scheduleSearch" placeholder="e.g. database or weekly" oninput="filterRows('scheduleTable',this.value)"/></div>
+        </div>
+        <div class="results">Results 1 to 3</div>
+        <div class="tablewrap">
+          <table id="scheduleTable">
+            <thead><tr>
+              <th>Name <span class="sort-arrows">▲<span>▼</span></span></th>
+              <th>Next Run <span class="sort-arrows">▲<span>▼</span></span></th>
+              <th>Interval</th>
+              <th>Policy</th>
+              <th>Reboot Allowed</th>
+              <th>Device Count</th>
+            </tr></thead>
+            <tbody>
+              <tr class="clickable" onclick="go('scheduleDetail')" data-text="weekly application maintenance all updates">
+                <td>application-weekly-maintenance</td>
+                <td>15 Oct 2026, 08:00<br><span class="muted">in 14 hours, 32 minutes</span></td>
+                <td>Every Wednesday at 08:00</td>
+                <td><span class="pill policy">All updates</span></td>
+                <td>✓</td><td>1</td>
+              </tr>
+              <tr class="clickable" onclick="go('scheduleDetail')" data-text="database security maintenance security updates">
+                <td>database-security-maintenance</td>
+                <td>16 Oct 2026, 10:00<br><span class="muted">in 1 day, 16 hours</span></td>
+                <td>Every Wednesday at 10:00</td>
+                <td><span class="pill policy-security">Security updates</span></td>
+                <td>✓</td><td>3</td>
+              </tr>
+              <tr class="clickable" onclick="go('scheduleDetail')" data-text="quarterly check only disabled">
+                <td>quarterly-check-only</td>
+                <td><span class="muted">Disabled</span></td>
+                <td>Every third month, first Monday at 12:30</td>
+                <td><span class="pill policy-check">Check only</span></td>
+                <td>—</td><td>20</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="legend">
+          <h3>Policy Legend</h3>
+          <div class="legend-items">
+            <div class="legend-row"><span class="swatch blue"></span><span><strong>All updates</strong> = Applies all available updates.</span></div>
+            <div class="legend-row"><span class="swatch teal"></span><span><strong>Security updates</strong> = Applies security-related updates only.</span></div>
+            <div class="legend-row"><span class="swatch purple"></span><span><strong>Check only</strong> = Checks whether updates are available without installing them.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="route-scheduleDetail" class="route">
+    <div class="page-head"><div><h1>Patch Schedule</h1><div class="sub mono">database-security-maintenance</div></div></div>
+
+    <div class="detail-grid">
+      <div class="box"><h3>General</h3><div class="kv">
+        <div class="k">Description</div><div>Database cluster maintenance in Region A</div>
+        <div class="k">Enabled</div><div>✓</div>
+        <div class="k">Next Run</div><div>16 Oct 2026, 10:00<br><span class="muted">in 1 day, 16 hours</span></div>
+        <div class="k">Interval</div><div>Every Wednesday at 10:00</div>
+      </div></div>
+      <div class="box"><h3>Settings</h3><div class="kv">
+        <div class="k">Update Policy</div><div><span class="pill policy-security">Security updates</span></div>
+        <div class="k">Reboot Allowed</div><div>✓</div>
+        <div class="k">Batch Policy</div><div>Batches are processed independently</div>
+        <div class="k">Devices per Batch</div><div>As many devices as possible in parallel</div>
+      </div></div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" id="schedDeviceTab" onclick="showScheduleTab('devices')">Devices</div>
+      <div class="tab" id="schedRunTab" onclick="showScheduleTab('runs')">Patch Runs</div>
+    </div>
+    <div id="schedDevices" class="tabpane show">
+      <section class="card">
+        <div class="cardbody">
+          <div class="tablewrap">
+            <table><thead><tr><th>Order</th><th>Name</th><th>Role</th><th>Operating System</th></tr></thead>
+              <tbody>
+                <tr class="clickable" onclick="go('deviceDetail')"><td>1</td><td>server-001.example.net</td><td>Server</td><td>Linux 13</td></tr>
+                <tr class="clickable" onclick="go('deviceDetail')"><td>2</td><td>server-002.example.net</td><td>Server</td><td>Linux 13</td></tr>
+                <tr class="clickable" onclick="go('deviceDetail')"><td>3</td><td>vm-003.example.net</td><td>Virtual Machine</td><td>Linux 13</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div id="schedRuns" class="tabpane">
+      <section class="card"><div class="cardbody">
+        <div class="tablewrap"><table><thead><tr><th>Status</th><th>Name</th><th>Reference</th><th>Started</th><th>Finished</th><th>Policy</th><th>Reboot Allowed</th><th>Device Count</th></tr></thead>
+        <tbody>
+          <tr class="clickable" onclick="go('runDetail')"><td><span class="pill ok">Successful</span></td><td>database-security-maintenance</td><td><span class="linkish">SUP-10482</span></td><td>16 Oct 2026, 10:00</td><td>16 Oct 2026, 10:12</td><td><span class="pill policy-security">Security updates</span></td><td>✓</td><td>3</td></tr>
+        </tbody></table></div>
+      </div></section>
+    </div>
+    <span class="backlink" onclick="go('schedules')">← Back to Patch Schedules</span>
+  </section>
+
+  <section id="route-runs" class="route">
+    <div class="page-head"><div><h1>Patch Management</h1><div class="sub">Review individual patch runs and their results.</div></div></div>
+    <div class="tabs"><div class="tab" onclick="go('schedules')">Patch Schedules</div><div class="tab active">Patch Runs</div></div>
+    <section class="card"><div class="cardbody">
+      <div class="filters"><div></div><div class="inline-field"><span class="inline-label">Search:</span><input id="runSearch" placeholder="e.g. security or manual" oninput="filterRows('runTable',this.value)"/></div></div>
+      <div class="results">Results 1 to 4</div>
+      <div class="tablewrap"><table id="runTable"><thead><tr><th>Status</th><th>Name</th><th>Reference</th><th>Started</th><th>Finished</th><th>Policy</th><th>Reboot Allowed</th><th>Device Count</th></tr></thead>
+      <tbody>
+        <tr class="clickable" onclick="go('runDetail')" data-text="in progress manual maintenance"><td><span class="pill warn">In Progress</span></td><td>Manual database maintenance</td><td><span class="linkish">SUP-10490</span><div class="muted" style="font-size:11px;margin-top:3px">No linked schedule</div></td><td>17 Oct 2026, 11:26</td><td>—</td><td><span class="pill policy">All updates</span></td><td>—</td><td>3</td></tr>
+        <tr class="clickable" onclick="go('runDetail')" data-text="successful database security"><td><span class="pill ok">Successful</span></td><td>database-security-maintenance</td><td><span class="linkish">SUP-10482</span></td><td>16 Oct 2026, 10:00</td><td>16 Oct 2026, 10:12</td><td><span class="pill policy-security">Security updates</span></td><td>✓</td><td>3</td></tr>
+        <tr class="clickable" onclick="go('runDetail')" data-text="failed application maintenance"><td><span class="pill danger">Failed</span></td><td>application-weekly-maintenance</td><td><span class="linkish">SUP-10411</span></td><td>15 Oct 2026, 08:00</td><td>15 Oct 2026, 08:05</td><td><span class="pill policy">All updates</span></td><td>✓</td><td>1</td></tr>
+        <tr class="clickable" onclick="go('runDetail')" data-text="successful security mitigation"><td><span class="pill ok">Successful</span></td><td>security-mitigation-run</td><td><span class="linkish">SUP-10398</span></td><td>11 Oct 2026, 13:32</td><td>11 Oct 2026, 13:59</td><td><span class="pill policy-security">Security updates</span></td><td>—</td><td>74</td></tr>
+      </tbody></table></div>
+
+      <div class="legend">
+        <h3>Status Legend</h3>
+        <div class="legend-items">
+          <div class="legend-row"><span class="swatch warn"></span><span><strong>In Progress</strong> = The patch run is currently being processed.</span></div>
+          <div class="legend-row"><span class="swatch ok"></span><span><strong>Successful</strong> = The patch run completed successfully.</span></div>
+          <div class="legend-row"><span class="swatch danger"></span><span><strong>Failed</strong> = The patch run failed.</span></div>
+        </div>
+      </div>
+    </div></section>
+  </section>
+
+  <section id="route-runDetail" class="route">
+    <div class="page-head"><div><h1>Patch Run</h1><div class="sub mono">database-security-maintenance</div></div></div>
+    <div class="notice"><strong>Prototype behaviour:</strong> Patch runs may also exist without a linked schedule. In that case, the schedule field remains unlinked.</div>
+    <div class="detail-grid">
+      <div class="box"><h3>General</h3><div class="kv">
+        <div class="k">Status</div><div><span class="pill ok">Successful</span></div>
+        <div class="k">Patch Schedule</div><div><span class="linkish" onclick="go('scheduleDetail')">database-security-maintenance</span></div>
+        <div class="k">Description</div><div>Database cluster maintenance in Region A</div>
+        <div class="k">Reference</div><div><span class="linkish">SUP-10482</span></div>
+        <div class="k">Started</div><div>16 Oct 2026, 10:00:32</div>
+        <div class="k">Finished</div><div>16 Oct 2026, 10:12:47</div>
+      </div></div>
+      <div class="box"><h3>Settings</h3><div class="kv">
+        <div class="k">Update Policy</div><div><span class="pill policy-security">Security updates</span></div>
+        <div class="k">Reboot Allowed</div><div>✓</div>
+        <div class="k">Batch Policy</div><div>Batches are processed independently</div>
+        <div class="k">Devices per Batch</div><div>As many devices as possible in parallel</div>
+      </div></div>
+    </div>
+
+    <section class="card"><div class="cardhead"><h2>Devices</h2></div><div class="cardbody">
+      <div class="tablewrap"><table><thead><tr><th>Order</th><th>Name</th><th>Role</th><th>Operating System</th><th>Status</th><th>Reboot</th><th>Updated Packages</th><th>Available Packages</th></tr></thead>
+      <tbody>
+        <tr class="clickable" onclick="go('deviceDetail')"><td>1</td><td>server-001.example.net</td><td>Server</td><td>Linux 13</td><td><span class="pill ok">Processed</span></td><td><span class="pill neutral">Not required</span></td><td>3</td><td>1</td></tr>
+        <tr class="clickable" onclick="go('deviceDetail')"><td>2</td><td>server-002.example.net</td><td>Server</td><td>Linux 13</td><td><span class="pill ok">Processed</span></td><td><span class="pill ok">Completed</span></td><td>12</td><td>2</td></tr>
+        <tr class="clickable" onclick="go('deviceDetail')"><td>3</td><td>vm-003.example.net</td><td>Virtual Machine</td><td>Linux 13</td><td><span class="pill danger">Failed</span></td><td><span class="pill warn">Pending</span></td><td>0</td><td>6</td></tr>
+        <tr><td>4</td><td><span class="disabled-link">legacy-host.example.net</span><div class="muted" style="font-size:11px;margin-top:3px">Device no longer exists</div></td><td>Server</td><td>Linux 12</td><td><span class="pill ok">Processed</span></td><td><span class="pill neutral">Not required</span></td><td>2</td><td>0</td></tr>
+      </tbody></table></div>
+
+      <div class="legend">
+        <h3>Status Legend</h3>
+        <div class="legend-items">
+          <div class="legend-row"><span class="swatch ok"></span><span><strong>Processed</strong> = The device was processed successfully.</span></div>
+          <div class="legend-row"><span class="swatch danger"></span><span><strong>Failed</strong> = Processing the device failed.</span></div>
+        </div>
+      </div>
+      <div class="legend">
+        <h3>Reboot Legend</h3>
+        <div class="legend-items">
+          <div class="legend-row"><span class="swatch ok"></span><span><strong>Completed</strong> = The required reboot was completed.</span></div>
+          <div class="legend-row"><span class="swatch warn"></span><span><strong>Pending</strong> = The reboot is still pending.</span></div>
+          <div class="legend-row"><span class="swatch neutral"></span><span><strong>Not required</strong> = No reboot was required for this device.</span></div>
+        </div>
+      </div>
+    </div></section>
+    <span class="backlink" onclick="go('runs')">← Back to Patch Runs</span>
+  </section>
+
+  <section id="route-devices" class="route">
+    <div class="page-head"><div><h1>Devices</h1><div class="sub">Technical resource view for managed servers and virtual machines.</div></div></div>
+    <section class="card"><div class="cardhead"><h2>Device Overview</h2></div><div class="cardbody">
+      <div class="filters"><div></div><div class="inline-field"><span class="inline-label">Search:</span><input id="deviceSearch" placeholder="e.g. server-001" oninput="filterRows('deviceTable',this.value)"/></div></div>
+      <div class="tablewrap"><table id="deviceTable"><thead><tr><th>Project ID</th><th>Name</th><th>Role</th><th>Product</th><th>Operating System</th><th>IP Addresses</th></tr></thead>
+      <tbody>
+        <tr class="clickable" onclick="go('deviceDetail')" data-text="prj-1001 server 001 managed server linux"><td class="mono">PRJ-1001</td><td>server-001.example.net</td><td>Server</td><td>Managed Server</td><td>Linux 13</td><td>198.51.100.10/31<br>2001:db8:100:24b::2/64</td></tr>
+        <tr class="clickable" onclick="go('deviceDetail')" data-text="prj-1002 server 002 managed server linux"><td class="mono">PRJ-1002</td><td>server-002.example.net</td><td>Server</td><td>Managed Server</td><td>Linux 13</td><td>2001:db8:100:246::2/64</td></tr>
+      </tbody></table></div>
+    </div></section>
+  </section>
+
+  <section id="route-deviceDetail" class="route">
+    <div class="page-head"><div><h1>Device Details</h1><div class="sub mono">server-001.example.net</div></div></div>
+    <div class="detail-grid">
+      <div class="box"><h3>General</h3><div class="kv">
+        <div class="k">Name</div><div>server-001.example.net</div>
+        <div class="k">Role</div><div>Server</div>
+        <div class="k">Operating System</div><div>Linux 13</div>
+        <div class="k">Primary IPv4</div><div class="mono">198.51.100.10/31</div>
+        <div class="k">Primary IPv6</div><div class="mono">2001:db8:100:24b::2/64</div>
+      </div></div>
+      <div class="box"><h3>Contract</h3><div class="kv">
+        <div class="k">Contract Reference</div><div><span class="linkish">CON-10042 – Managed Server Service</span></div>
+        <div class="k">Credentials</div><div><span class="linkish">View credentials</span></div>
+      </div></div>
+    </div>
+    <div class="notice"><strong>Prototype note:</strong> The credential presentation reuses the existing contract-view pattern and is not a new standalone credential flow.</div>
+    <div class="tabs"><div class="tab active" id="deviceCredTab" onclick="showDeviceTab('credentials')">Credentials</div><div class="tab" id="devicePatchTab" onclick="showDeviceTab('patches')">Patches</div></div>
+    <div class="tabpane show" id="deviceCredentials">
+      <section class="card"><div class="cardbody"><div class="kv">
+        <div class="k">Operating System User</div><div>admin-user</div>
+        <div class="k">Authentication</div><div>SSH key</div>
+        <div class="k">SSH Key Fingerprint</div><div class="mono">SHA256:exampleFingerprintForPrototypeOnly</div>
+      </div></div></section>
+    </div>
+    <div class="tabpane" id="devicePatches">
+      <section class="card"><div class="cardbody"><div class="tablewrap"><table><thead><tr><th>Status</th><th>Patch Run</th><th>Started</th><th>Updated Packages</th><th>Available Packages</th></tr></thead>
+      <tbody><tr class="clickable" onclick="go('runDetail')"><td><span class="pill ok">Successful</span></td><td>database-security-maintenance</td><td>16 Oct 2026, 10:00</td><td>3</td><td>1</td></tr></tbody>
+      </table></div></div></section>
+    </div>
+    <span class="backlink" onclick="go('devices')">← Back to Devices</span>
+  </section>
+</main>
+</div>
+
+<script>
+const routes=['schedules','scheduleDetail','runs','runDetail','devices','deviceDetail'];
+function go(route){
+  routes.forEach(r=>document.getElementById('route-'+r)?.classList.remove('show'));
+  document.getElementById('route-'+route)?.classList.add('show');
+  document.querySelectorAll('.nav a').forEach(a=>a.classList.remove('active'));
+  const navRoute=(route==='devices'||route==='deviceDetail')?'devices':'schedules';
+  document.querySelector(`.nav a[data-route="${navRoute}"]`)?.classList.add('active');
+  const crumbs={
+    schedules:'Patch Management',
+    scheduleDetail:'Patch Management → Patch Schedule',
+    runs:'Patch Management → Patch Runs',
+    runDetail:'Patch Management → Patch Run',
+    devices:'Devices',
+    deviceDetail:'Devices → Details'
+  };
+  document.getElementById('breadcrumb').textContent=crumbs[route]||'';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showScheduleTab(tab){
+  const d=document.getElementById('schedDevices'),r=document.getElementById('schedRuns');
+  const dt=document.getElementById('schedDeviceTab'),rt=document.getElementById('schedRunTab');
+  const devices=tab==='devices';
+  d.classList.toggle('show',devices);r.classList.toggle('show',!devices);
+  dt.classList.toggle('active',devices);rt.classList.toggle('active',!devices);
+}
+function showDeviceTab(tab){
+  const c=document.getElementById('deviceCredentials'),p=document.getElementById('devicePatches');
+  const ct=document.getElementById('deviceCredTab'),pt=document.getElementById('devicePatchTab');
+  const cred=tab==='credentials';
+  c.classList.toggle('show',cred);p.classList.toggle('show',!cred);
+  ct.classList.toggle('active',cred);pt.classList.toggle('active',!cred);
+}
+function filterRows(tableId,value){
+  const q=value.toLowerCase().trim();
+  document.querySelectorAll(`#${tableId} tbody tr`).forEach(tr=>{
+    const text=(tr.dataset.text||tr.innerText).toLowerCase();
+    tr.style.display=!q||text.includes(q)?'':'none';
+  });
+}
+</script>
+</body>
+</html>

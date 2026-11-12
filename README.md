@@ -14,6 +14,7 @@ Its purpose is to show how complex customer-facing platform capabilities can be 
   - [Commerce Checkout](#1-commerce-checkout)
   - [API Management](#2-api-management)
   - [Virtual Network Management](#3-virtual-network-management)
+  - [Patch Management](#4-patch-management)
 - [Product Areas & Roadmap](#product-areas--roadmap)
 - [Portal Architecture](#portal-architecture)
 - [Goal Signals & Metrics](#goal-signals--metrics)
@@ -62,6 +63,7 @@ Not every module contains all stages yet. The repository will continue to evolve
 | Commerce Checkout | In progress | Commerce-first ordering journey, guest and logged-in entry states, order wizard optimization, checkout, payment, account activation and order status. | [View case study](./features/commerce-checkout/commerce-checkout-case-study.md) | Unbranded |
 | API Management | Available | API activation, API key management, documentation access and developer-oriented self-service. | [View case study](./features/api-management/api-management-case-study.md) | Unbranded |
 | Virtual Network Management | Available | Service overview, product details, resource relationships and selected management actions. | [View case study](./features/virtual-network-management/virtual-network-management-case-study.md) | Unbranded, Design System / MVP Reconstruction |
+| Patch Management | Available | Read-only visibility into patch schedules, individual runs, affected devices and processing and reboot results. | [View case study](./features/patch-management/patch-management-case-study.md) | Unbranded |
 
 ### 1. Commerce Checkout
 
@@ -162,6 +164,39 @@ Virtual Network Management shows how a complex infrastructure-related capability
 | Design System / MVP Reconstruction | [Open prototype](./features/virtual-network-management/virtual-network-management-design-system.html) |
 | Product Vision | Coming soon |
 
+### 4. Patch Management
+
+A read-only service module for understanding scheduled patch maintenance and individual execution results.
+
+This module explores how customers can review patch schedules, inspect patch runs, and trace maintenance outcomes to affected technical devices, including manual runs without a linked schedule and historical device references.
+
+**Product focus**
+
+- patch schedule overview and details
+- patch run history and execution results
+- device-level processing and reboot states
+- update policies and operational status clarity
+- relationships between schedules, runs and devices
+- maintenance transparency through read-only navigation
+
+**What this demonstrates**
+
+Patch Management shows how operational service information can be structured into a customer-facing experience that connects planned maintenance, execution history and technical resource context without implying that customers can initiate or configure patch operations.
+
+**Case Study**
+
+| Case Study | Link |
+|---|---|
+| Patch Management Case Study | [Open case study](./features/patch-management/patch-management-case-study.md) |
+
+**Prototype Links**
+
+| Stage | Link |
+|---|---|
+| Unbranded | [Open prototype](./features/patch-management/patch-management-unbranded.html) |
+| Design System / MVP Reconstruction | Not scoped |
+| Product Vision | Not scoped |
+
 ## Product Areas & Roadmap
 
 The Customer Portal portfolio is structured around product areas that represent different parts of a modular B2B self-service portal.
@@ -173,6 +208,7 @@ Some areas already contain interactive prototypes. Others are planned based on i
 | Commerce Checkout | Current / In progress | Commerce-first ordering journey, guest and logged-in entry states, order wizard optimization, checkout, payment, account activation and order status. |
 | API Management | Current / Available | API activation, API key management, documentation access and developer-oriented self-service. |
 | Virtual Network Management | Current / Available | Service overview, product details, resource relationships and selected management actions. |
+| Patch Management | Current / Available | Read-only patch schedule, run and device views with operational status and maintenance result transparency. |
 | User, Contacts, Roles & Rights | Planned | User management, bulk actions, contact persons, roles, permissions and access management. |
 | My Account & MFA | Planned | Personal data, company data, account settings and multi-factor authentication. |
 | Contract Cancellation Flow | Backlog / Exploration | Contract cancellation journey and related confirmation, status and communication flows. |
@@ -186,7 +222,7 @@ Each product area focuses on a specific customer need, while shared portal patte
 | Layer | Purpose | Examples |
 |---|---|---|
 | Portal Entry & Commerce | Helps customers enter the portal experience, understand available products, complete orders, activate accounts and follow order status. | Guest start page, logged-in start page, order wizard optimization, commerce checkout, order status. |
-| Product & Service Management | Enables customers to understand and manage booked services and related product resources. | Virtual Network Management, product details, resource relationships, service actions. |
+| Product & Service Management | Enables customers to understand and manage booked services and related product resources. | Virtual Network Management, Patch Management, product details, resource relationships, service actions. |
 | Developer & Technical Self-Service | Provides guided access to technical capabilities and documentation. | API Management, API activation, API keys, documentation access. |
 | Account & Access Management | Supports customer administration, user access, permissions and account security. | User management, bulk actions, contact persons, roles & rights, My Account, MFA. |
 | Support & Contract Journeys | Supports service lifecycle moments beyond initial ordering and product management. | Contract cancellation flow, support-related journeys, contract and billing-related self-service. |
@@ -202,6 +238,7 @@ The prototypes are not connected to real analytics data. However, each product a
 | Commerce Checkout | Customers can complete an order and activate their account with reduced friction. | Checkout completion rate, registration completion rate, payment success rate, order status page visits, support contacts after checkout. |
 | API Management | Customers can activate and manage API access independently. | API activation rate, successful key creation, documentation visits, API-related support tickets, time to first successful API use. |
 | Virtual Network Management | Customers can understand services, resources and available actions without support dependency. | Detail page usage, edit flow completion, resource lookup success, support tickets related to network information, task completion rate. |
+| Patch Management | Customers can understand upcoming maintenance, run outcomes and device-level results. | Schedule and run lookup success, status comprehension in usability tests, patch-status support enquiries, device-result lookup success. |
 | User, Contacts, Roles & Rights | Customers can manage users, contacts and access rights transparently. | User management task completion, role update success, contact data completeness, reduced access-related support requests. |
 | My Account & MFA | Customers can manage account and security settings independently. | MFA activation rate, profile completion rate, account update success, reduced account-related support requests. |
 
